@@ -24,7 +24,9 @@ export default function BoardOV() {
 
   useEffect(() => {
     axios
-      .get("https://parsity-final-be.onrender.com/projects/")
+      .get("https://parsity-final-be.onrender.com/projects/", {
+        withCredentials: true,
+      })
       .then((response) => {
         setProjects(response.data);
         setLoading(false);
