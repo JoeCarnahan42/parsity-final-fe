@@ -33,10 +33,18 @@ export default function BoardOV() {
       })
       .catch((err) => {
         setError(err.message);
-        console.error(error);
         setLoading(false);
       });
   }, []);
+
+  if (error) {
+    return (
+      <div className="text-center mt-5 text-danger">
+        <h2>Error Loading Projects</h2>
+        <p>{error}</p>
+      </div>
+    );
+  }
 
   return (
     <>
