@@ -1,35 +1,39 @@
 "use client";
-import axios from "axios";
-import { useState } from "react";
+import { useAuth } from "../context/AuthContext";
+import { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/navigation";
 
 export const AuthForm = () => {
+  const { login } = useAuth();
   const router = useRouter();
+
+  const emailRef = useRef();
+  const passwordRef = useRef();
+
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const login = async (e) => {
+
+  useEffect(() => {
+    setTimeout(() => {
+      if (emailRef.current?.value) setEmail(emailRef.current.value);
+      if (passwordRef.current?.value) setPassword(passwordRef.current.value);
+    }, 100);
+  }, []);
+
+  const handleLogin = async (e) => {
     e.preventDefault();
     setError("");
-    const credentials = {
-      email,
-      password,
-    };
+    setLoading(true);
+
     try {
-      setLoading(true);
-      await axios.post(
-        "https://parsity-final-be.onrender.com/login/",
-        credentials,
-        {
-          withCredentials: true,
-        }
-      );
-      setLoading(false);
+      await login({ email, password });
       router.push("/board-overview");
     } catch (err) {
       console.error("Login Failed", err);
-      setError(err.response.data.message);
+      setError(err?.response?.data?.message || "Login failed.");
+    } finally {
       setLoading(false);
     }
   };
@@ -41,24 +45,30 @@ export const AuthForm = () => {
           <h2>Attempting to log in...</h2>
         </div>
       ) : (
-        <form className="container" onSubmit={login}>
+        <form className="container" onSubmit={handleLogin}>
           {error && <p className="text-danger">{error}</p>}
           <div className="form-group">
             <label>Email</label>
             <input
               className="form-control"
+              ref={emailRef}
               type="email"
+              name="email"
+              autoComplete="email"
               required
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onInput={(e) => setEmail(e.target.value)}
             />
             <label>Password</label>
             <input
               className="form-control"
+              ref={passwordRef}
               type="password"
+              name="password"
+              autoComplete="password"
               required
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onInput={(e) => setPassword(e.target.value)}
             />
             <button className="btn btn-primary" type="submit">
               Login

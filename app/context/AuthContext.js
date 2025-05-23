@@ -18,12 +18,17 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (credentials) => {
     try {
-      const res = await axios.post("/login/", credentials, {
-        withCredentials: true,
-      });
+      const res = await axios.post(
+        "https://parsity-final-be.onrender.com/login/",
+        credentials,
+        {
+          withCredentials: true,
+        }
+      );
       setUser(res.data); // TODO - update backend to return user info
     } catch (err) {
       console.error("Login failed:", err);
+      throw err;
     }
   };
 
