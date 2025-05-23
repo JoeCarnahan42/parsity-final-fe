@@ -29,9 +29,7 @@ export const AuthForm = () => {
 
     try {
       await login({ email, password });
-      router.push("/board-overview");
     } catch (err) {
-      console.error("Login Failed", err);
       setError(err?.response?.data?.message || "Login failed.");
     } finally {
       setLoading(false);
@@ -50,7 +48,8 @@ export const AuthForm = () => {
           <div className="form-group">
             <label>Email</label>
             <input
-              className="form-control"
+              className="form-control form-control-sm mx-auto"
+              style={{ maxWidth: "250px" }}
               ref={emailRef}
               type="email"
               name="email"
@@ -59,9 +58,10 @@ export const AuthForm = () => {
               value={email}
               onInput={(e) => setEmail(e.target.value)}
             />
-            <label>Password</label>
+            <label className="mt-2">Password</label>
             <input
-              className="form-control"
+              className="form-control form-control-sm mx-auto"
+              style={{ maxWidth: "250px" }}
               ref={passwordRef}
               type="password"
               name="password"
@@ -70,6 +70,7 @@ export const AuthForm = () => {
               value={password}
               onInput={(e) => setPassword(e.target.value)}
             />
+            <br />
             <button className="btn btn-primary" type="submit">
               Login
             </button>

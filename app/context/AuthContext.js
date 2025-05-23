@@ -1,5 +1,6 @@
 "use client";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 
 const { createContext, useState, useEffect, useContext } = require("react");
 
@@ -7,6 +8,7 @@ const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(false);
+  const router = useRouter();
 
   // TODO - Check for authentication
   // useEffect(() => {
@@ -26,6 +28,7 @@ export const AuthProvider = ({ children }) => {
         }
       );
       setUser(res.data); // TODO - update backend to return user info
+      router.push("/board-overview");
     } catch (err) {
       console.error("Login failed:", err);
       throw err;
