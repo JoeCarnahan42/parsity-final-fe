@@ -9,6 +9,8 @@ export const RegForm = () => {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
 
   const handleRegister = async (e) => {
     e.preventDefault();
@@ -51,6 +53,22 @@ export const RegForm = () => {
           required
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+        />
+        <label className="mt-2">First Name</label>
+        <input
+          className="form-control form-control-sm mx-auto"
+          style={{ maxWidth: "250px" }}
+          required
+          value={firstName}
+          onChange={(e) => setFirstName(e.target.value)}
+        />
+        <label className="mt-2">Last Name</label>
+        <input
+          className="form-control form-control-sm mx-auto"
+          style={{ maxWidth: "250px" }}
+          required
+          value={lastName}
+          onChange={(e) => setLastName(e.target.value)}
         />
         <br />
         <button
