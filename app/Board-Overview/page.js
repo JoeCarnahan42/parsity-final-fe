@@ -1,8 +1,10 @@
 "use client";
 import axios from "axios";
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 export default function BoardOV() {
+  const router = useRouter();
   const [isLoading, setLoading] = useState(true);
   const [projects, setProjects] = useState([]);
   const [error, setError] = useState(null);
@@ -36,6 +38,21 @@ export default function BoardOV() {
         setLoading(false);
       });
   }, []);
+
+  const handleLogout = async () => {
+    try {
+      await axios.post(
+        "https://parsity-final-be.onrender.com/login/logout",
+        {},
+        {
+          withCredentials: true,
+        }
+      );
+      router.push("/"); // or wherever your login screen is
+    } catch (err) {
+      console.error("Logout failed:", err);
+    }
+  };
 
   if (error) {
     return (
@@ -264,6 +281,11 @@ export default function BoardOV() {
                 </div>
               </div>
             </div>
+          </div>
+          <div className="text-end text-center me-5">
+            <button className="btn btn-danger btn-sm" onClick={handleLogout}>
+              Logout
+            </button>
           </div>
         </>
       )}

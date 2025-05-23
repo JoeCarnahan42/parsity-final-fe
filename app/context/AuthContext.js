@@ -10,14 +10,6 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(false);
   const router = useRouter();
 
-  // TODO - Check for authentication
-  // useEffect(() => {
-  //   axios
-  //     .get("/auth/me", { withCredentials: true })
-  //     .then((res) => setUser(res.data))
-  //     .catch(() => setUser(null));
-  // }, []);
-
   const login = async (credentials) => {
     try {
       const res = await axios.post(
@@ -36,7 +28,11 @@ export const AuthProvider = ({ children }) => {
   };
 
   const logout = async () => {
-    await axios.post("/auth/logout", {}, { withCredentials: true });
+    await axios.post(
+      "https://parsity-final-be.onrender.com/login/logout",
+      {},
+      { withCredentials: true }
+    );
     setUser(null);
   };
 
