@@ -43,7 +43,27 @@ export const ProjectBreakdown = () => {
       <div>
         {console.log(project)}
         {/* TODO - populate window with project info */}
-        <p>This is your floating window!</p>
+        <br />
+        <div className="container">
+          <h1
+            style={{ backgroundColor: "aqua" }}
+            className="border border-rounded w-50 text-center"
+          >
+            Status: {project.state}
+          </h1>
+          <h1
+            style={{ backgroundColor: "lavender" }}
+            className="border border-rounded w-25 text-center"
+          >
+            Blockers: {project.blockers?.length || 0}
+          </h1>
+          <h1
+            style={{ backgroundColor: "forestgreen" }}
+            className="border border-rounded w-25 text-center"
+          >
+            Comments: {project.comments?.length || 0}
+          </h1>
+        </div>
       </div>
     </div>
   );
