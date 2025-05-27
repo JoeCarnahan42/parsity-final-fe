@@ -1,11 +1,12 @@
 "use client";
 import { useAuth } from "../context/AuthContext";
 import { useState, useRef, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
+import { useAuthCheck } from "../hooks/useAuthCheck";
 
 export const AuthForm = () => {
   const { login } = useAuth();
-  const router = useRouter();
+  const sessionExpired = useAuthCheck();
 
   const emailRef = useRef();
   const passwordRef = useRef();
@@ -71,6 +72,9 @@ export const AuthForm = () => {
               onInput={(e) => setPassword(e.target.value)}
             />
             <br />
+            {sessionExpired ? (
+              <p style={{ color: red }}>Session Expired</p>
+            ) : null}
             <button className="btn btn-primary" type="submit">
               Login
             </button>
