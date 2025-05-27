@@ -8,6 +8,7 @@ const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(false);
+  const [sessionExpired, setSessionExpired] = useState(false);
   const router = useRouter();
 
   const login = async (credentials) => {
@@ -37,7 +38,16 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ user, setUser, login, logout }}>
+    <AuthContext.Provider
+      value={{
+        user,
+        setUser,
+        login,
+        logout,
+        sessionExpired,
+        setSessionExpired,
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );

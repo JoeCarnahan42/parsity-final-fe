@@ -1,12 +1,10 @@
 "use client";
 import { useAuth } from "../context/AuthContext";
 import { useState, useRef, useEffect } from "react";
-import { redirect, useRouter } from "next/navigation";
-import { useAuthCheck } from "../hooks/useAuthCheck";
 
 export const AuthForm = () => {
   const { login } = useAuth();
-  const sessionExpired = useAuthCheck();
+  const { sessionExpired, setSessionExpired } = useAuth();
 
   const emailRef = useRef();
   const passwordRef = useRef();
@@ -16,6 +14,7 @@ export const AuthForm = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
+  // Handles Autofill
   useEffect(() => {
     setTimeout(() => {
       if (emailRef.current?.value) setEmail(emailRef.current.value);
@@ -27,6 +26,7 @@ export const AuthForm = () => {
     e.preventDefault();
     setError("");
     setLoading(true);
+    setSessionExpired(false);
 
     try {
       await login({ email, password });
@@ -73,7 +73,7 @@ export const AuthForm = () => {
             />
             <br />
             {sessionExpired ? (
-              <p style={{ color: red }}>Session Expired</p>
+              <p style={{ color: "red" }}>Session Expired</p>
             ) : null}
             <button className="btn btn-primary" type="submit">
               Login

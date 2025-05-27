@@ -6,8 +6,7 @@ import { useRouter } from "next/navigation";
 
 export const useAuthCheck = (intervalMs = 5 * 60 * 1000) => {
   const router = useRouter();
-  const { setUser } = useAuth();
-  const [sessionExpired, setSessionExpired] = useState(false);
+  const { setUser, setSessionExpired } = useAuth();
 
   useEffect(() => {
     let timeoutId;
@@ -40,6 +39,5 @@ export const useAuthCheck = (intervalMs = 5 * 60 * 1000) => {
     checkAuth();
     const interval = setInterval(checkAuth, intervalMs);
     return () => clearInterval(interval);
-  }, [setUser, intervalMs, router]);
-  return sessionExpired;
+  }, [setUser, intervalMs, router, setSessionExpired]);
 };
