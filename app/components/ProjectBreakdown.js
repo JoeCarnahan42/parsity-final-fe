@@ -100,7 +100,9 @@ export const ProjectBreakdown = () => {
             </div>
             <br />
             <div className="border rounded">
-              <p className="mt-0">Projections</p>
+              <p className="mt-0">
+                <u>Projections</u>
+              </p>
               <div
                 style={{
                   height: "150px",

@@ -3,16 +3,23 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { useAuthCheck } from "../hooks/useAuthCheck";
 import { useProjectContext } from "../context/ProjectContext";
+import { useAuth } from "../context/AuthContext";
+import { useToggleView } from "../context/ViewContext";
 import { ProjectBreakdown } from "../components/ProjectBreakdown";
 
 // Components
 import { ProjectBtn } from "../components/ProjectBtn";
 import { LogoutButton } from "../components/LogoutButton";
+import { ToggleButton } from "../components/ToggleButton";
 
 export default function BoardOV() {
   const sessionExpired = useAuthCheck();
 
+  // TODO - add logic for only showing selected job type
+  const { activeView } = useToggleView();
   const { showWindow } = useProjectContext();
+  const { user } = useAuth();
+  const loggedInUser = user.user;
 
   const [isLoading, setLoading] = useState(true);
   const [projects, setProjects] = useState([]);
@@ -66,7 +73,6 @@ export default function BoardOV() {
   }
 
   if (showWindow) {
-    // TODO - return project breakdown component
     return <ProjectBreakdown />;
   }
 
@@ -83,6 +89,33 @@ export default function BoardOV() {
           </div>
           <br />
           <div className="container text-center border border-5 rounded-5 p-3">
+            <div className="row">
+              <div
+                className="d-flex align-items-center justify-content-center border rounded w-25"
+                style={{ height: "45px", backgroundColor: "aqua" }}
+              >
+                <p className="mb-0">Hello, {loggedInUser.firstName}!</p>
+              </div>
+              <div
+                className="d-flex align-items-center justify-content-center border rounded w-25"
+                style={{ height: "45px", backgroundColor: "lavender" }}
+              >
+                <p className="mb-0">Total Blockers: 0</p>
+              </div>
+              <div
+                className="d-flex align-items-center justify-content-center border rounded w-25"
+                style={{ height: "45px", backgroundColor: "forestgreen" }}
+              >
+                <p className="mb-0">Total Comments: 0</p>
+              </div>
+              <div
+                className="d-flex align-items-center justify-content-center w-25"
+                style={{ height: "45px" }}
+              >
+                <ToggleButton />
+              </div>
+            </div>
+            <br />
             <div className="row">
               <div
                 className="border border-2 rounded-2 p-2 w-25 d-flex flex-column"
@@ -264,9 +297,12 @@ export default function BoardOV() {
                 </div>
               </div>
             </div>
-          </div>
-          <div className="text-center mt-5">
-            <LogoutButton />
+            <br />
+            <div>
+              {/* TODO - Add logic for opening the form for proj creation */}
+              <button className="btn btn-primary">Create a new project</button>
+              <LogoutButton />
+            </div>
           </div>
         </>
       )}

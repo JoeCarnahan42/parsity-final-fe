@@ -1,0 +1,24 @@
+.toggle-group .btn {
+  background-color: #a95600; /* brownish-orange */
+  color: white;
+  font-family: "Comic Sans MS", cursive, sans-serif; /* for handwritten style */
+  border: 1px solid #a95600;
+}
+
+.toggle-group .btn:first-child {
+  border-top-left-radius: 1rem;
+  border-bottom-left-radius: 1rem;
+}
+
+.toggle-group .btn:last-child {
+  border-top-right-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+}
+
+.toggle-group .btn:not(:last-child) {
+  border-right: 1px solid #fff; /* divider between buttons */
+}
+
+.toggle-group .btn.active {
+  background-color: #874400; /* darker when active */
+}

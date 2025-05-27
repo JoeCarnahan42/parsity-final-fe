@@ -20,10 +20,10 @@ export const RegForm = () => {
     try {
       await axios.post(
         "https://parsity-final-be.onrender.com/register/",
-        { email, password },
+        { email, password, firstName, lastName },
         { withCredentials: true }
       );
-      await login({ email, password });
+      await login({ email, password, firstName, lastName });
     } catch (err) {
       console.error("Registration or login failed:", err);
       setError(err?.response?.data?.message || "Registration failed.");
