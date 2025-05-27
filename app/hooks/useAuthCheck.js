@@ -1,5 +1,5 @@
 "use client";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { useAuth } from "../context/AuthContext";
 import { useRouter } from "next/navigation";
@@ -7,8 +7,11 @@ import { useRouter } from "next/navigation";
 export const useAuthCheck = (intervalMs = 5 * 60 * 1000) => {
   const router = useRouter();
   const { setUser } = useAuth();
+  const [sessionExpired, setSessionExpired] = useState(false);
 
   useEffect(() => {
+    let timeoutId;
+
     const checkAuth = async () => {
       try {
         const res = await axios.get(
@@ -18,11 +21,18 @@ export const useAuthCheck = (intervalMs = 5 * 60 * 1000) => {
           }
         );
         setUser(res.data);
+        setSessionExpired(false);
+        if (timeoutId) {
+          clearTimeout(timeoutId);
+        }
       } catch (err) {
         if (err.response?.status === 401) {
           setUser(null);
+          setSessionExpired(true);
           console.log("Session expired. User logged out.");
-          router.push("/");
+          setTimeout(() => {
+            router.push("/");
+          }, 3000);
         }
       }
     };
@@ -31,4 +41,5 @@ export const useAuthCheck = (intervalMs = 5 * 60 * 1000) => {
     const interval = setInterval(checkAuth, intervalMs);
     return () => clearInterval(interval);
   }, [setUser, intervalMs, router]);
+  return sessionExpired;
 };

@@ -10,7 +10,8 @@ import { ProjectBtn } from "../components/ProjectBtn";
 import { LogoutButton } from "../components/LogoutButton";
 
 export default function BoardOV() {
-  useAuthCheck();
+  const sessionExpired = useAuthCheck();
+
   const { showWindow } = useProjectContext();
 
   const [isLoading, setLoading] = useState(true);
@@ -52,6 +53,14 @@ export default function BoardOV() {
       <div className="text-center mt-5 text-danger">
         <h2>Error Loading Projects</h2>
         <p>{error}</p>
+      </div>
+    );
+  }
+
+  if (sessionExpired) {
+    return (
+      <div style={{ textAlign: "center", marginTop: "2rem", color: "red" }}>
+        Session expired, redirecting to log in page...
       </div>
     );
   }
