@@ -11,7 +11,7 @@ import { LogoutButton } from "../components/LogoutButton";
 
 export default function BoardOV() {
   useAuthCheck();
-  const { project, showWindow } = useProjectContext();
+  const { showWindow } = useProjectContext();
 
   const [isLoading, setLoading] = useState(true);
   const [projects, setProjects] = useState([]);

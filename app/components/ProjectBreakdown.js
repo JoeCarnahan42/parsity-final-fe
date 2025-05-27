@@ -2,7 +2,7 @@
 import { useProjectContext } from "../context/ProjectContext";
 
 export const ProjectBreakdown = () => {
-  const { setShowWindow, project } = useProjectContext();
+  const { setShowWindow, project, setProject } = useProjectContext();
   // component logic
   return (
     <div
@@ -31,7 +31,14 @@ export const ProjectBreakdown = () => {
         <span>
           {project.title} : {project.customer}
         </span>
-        <button onClick={() => setShowWindow(false)}>X</button>
+        <button
+          onClick={() => {
+            setShowWindow(false);
+            setProject(null);
+          }}
+        >
+          X
+        </button>
       </div>
       <div>
         {console.log(project)}
