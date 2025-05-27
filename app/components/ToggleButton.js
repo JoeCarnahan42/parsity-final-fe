@@ -19,7 +19,7 @@ export const ToggleButton = () => {
         className={`btn ${activeTab === "Jobs" ? "active" : ""}`}
         onClick={() => handleClick("Jobs")}
       >
-        Jobs
+        Builds
       </button>
       <button
         type="button"
