@@ -3,6 +3,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { useAuthCheck } from "../hooks/useAuthCheck";
 import { useProjectContext } from "../context/ProjectContext";
+import { ProjectBreakdown } from "../components/ProjectBreakdown";
 
 // Components
 import { ProjectBtn } from "../components/ProjectBtn";
@@ -10,7 +11,7 @@ import { LogoutButton } from "../components/LogoutButton";
 
 export default function BoardOV() {
   useAuthCheck();
-  const { project } = useProjectContext();
+  const { project, showWindow } = useProjectContext();
 
   const [isLoading, setLoading] = useState(true);
   const [projects, setProjects] = useState([]);
@@ -55,9 +56,9 @@ export default function BoardOV() {
     );
   }
 
-  if (project) {
+  if (showWindow) {
     // TODO - return project breakdown component
-    console.log(project);
+    return <ProjectBreakdown />;
   }
 
   return (

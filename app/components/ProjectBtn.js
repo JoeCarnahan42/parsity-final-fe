@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useProjectContext } from "../context/ProjectContext";
 
 export const ProjectBtn = (props) => {
-  const { setProject } = useProjectContext();
+  const { setProject, setShowWindow } = useProjectContext();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
@@ -18,6 +18,7 @@ export const ProjectBtn = (props) => {
         }
       );
       setProject(response.data);
+      setShowWindow(true);
     } catch (err) {
       console.error("Failed to retrieve project.", err);
       setLoading(false);
