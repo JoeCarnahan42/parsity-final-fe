@@ -3,7 +3,7 @@ import { useProjectContext } from "../context/ProjectContext";
 
 export const ProjectBreakdown = () => {
   const { setShowWindow, project, setProject } = useProjectContext();
-  // component logic
+
   return (
     <div
       style={{
