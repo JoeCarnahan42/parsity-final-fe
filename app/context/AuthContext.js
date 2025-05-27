@@ -2,7 +2,7 @@
 import axios from "axios";
 import { useRouter } from "next/navigation";
 
-const { createContext, useState, useEffect, useContext } = require("react");
+const { createContext, useState, useContext } = require("react");
 
 const AuthContext = createContext();
 
@@ -19,7 +19,7 @@ export const AuthProvider = ({ children }) => {
           withCredentials: true,
         }
       );
-      setUser(res.data); // TODO - update backend to return user info
+      setUser(res.data);
       router.push("/board-overview");
     } catch (err) {
       console.error("Login failed:", err);
@@ -37,7 +37,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, logout }}>
+    <AuthContext.Provider value={{ user, setUser, login, logout }}>
       {children}
     </AuthContext.Provider>
   );

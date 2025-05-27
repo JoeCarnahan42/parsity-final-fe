@@ -1,12 +1,17 @@
 "use client";
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { useAuthCheck } from "../hooks/useAuthCheck";
+import { useProjectContext } from "../context/ProjectContext";
 
+// Components
+import { ProjectBtn } from "../components/ProjectBtn";
 import { LogoutButton } from "../components/LogoutButton";
 
 export default function BoardOV() {
-  const router = useRouter();
+  useAuthCheck();
+  const { project } = useProjectContext();
+
   const [isLoading, setLoading] = useState(true);
   const [projects, setProjects] = useState([]);
   const [error, setError] = useState(null);
@@ -50,6 +55,11 @@ export default function BoardOV() {
     );
   }
 
+  if (project) {
+    // TODO - return project breakdown component
+    console.log(project);
+  }
+
   return (
     <>
       {isLoading ? (
@@ -74,11 +84,8 @@ export default function BoardOV() {
                 >
                   {quotingProjects.length > 0 ? (
                     quotingProjects.map((project) => (
-                      <div
-                        className="border border-2 rounded-2 mb-2"
-                        key={project.id}
-                      >
-                        <h3>{project.title}</h3>
+                      <div key={project.id}>
+                        <ProjectBtn project={project} />
                       </div>
                     ))
                   ) : (
@@ -99,11 +106,8 @@ export default function BoardOV() {
                 >
                   {processingProjects.length > 0 ? (
                     processingProjects.map((project) => (
-                      <div
-                        className="border border-2 rounded-2"
-                        key={project.id}
-                      >
-                        <h3>{project.title}</h3>
+                      <div key={project.id}>
+                        <ProjectBtn project={project} />
                       </div>
                     ))
                   ) : (
@@ -124,11 +128,8 @@ export default function BoardOV() {
                 >
                   {kickedOffProjects.length > 0 ? (
                     kickedOffProjects.map((project) => (
-                      <div
-                        className="border border-2 rounded-2"
-                        key={project.id}
-                      >
-                        <h3>{project.title}</h3>
+                      <div key={project.id}>
+                        <ProjectBtn project={project} />
                       </div>
                     ))
                   ) : (
@@ -149,11 +150,8 @@ export default function BoardOV() {
                 >
                   {inProdProjects.length > 0 ? (
                     inProdProjects.map((project) => (
-                      <div
-                        className="border border-2 rounded-2"
-                        key={project.id}
-                      >
-                        <h3>{project.title}</h3>
+                      <div key={project.id}>
+                        <ProjectBtn project={project} />
                       </div>
                     ))
                   ) : (
@@ -177,11 +175,8 @@ export default function BoardOV() {
                 >
                   {debugProjects.length > 0 ? (
                     debugProjects.map((project) => (
-                      <div
-                        className="border border-2 rounded-2"
-                        key={project.id}
-                      >
-                        <h3>{project.title}</h3>
+                      <div key={project.id}>
+                        <ProjectBtn project={project} />
                       </div>
                     ))
                   ) : (
@@ -202,11 +197,8 @@ export default function BoardOV() {
                 >
                   {runoffProjects.length > 0 ? (
                     runoffProjects.map((project) => (
-                      <div
-                        className="border border-2 rounded-2"
-                        key={project.id}
-                      >
-                        <h3>{project.title}</h3>
+                      <div key={project.id}>
+                        <ProjectBtn project={project} />
                       </div>
                     ))
                   ) : (
@@ -227,11 +219,8 @@ export default function BoardOV() {
                 >
                   {shippingProjects.length > 0 ? (
                     shippingProjects.map((project) => (
-                      <div
-                        className="border border-2 rounded-2"
-                        key={project.id}
-                      >
-                        <h3>{project.title}</h3>
+                      <div key={project.id}>
+                        <ProjectBtn project={project} />
                       </div>
                     ))
                   ) : (
@@ -252,11 +241,8 @@ export default function BoardOV() {
                 >
                   {installProjects.length > 0 ? (
                     installProjects.map((project) => (
-                      <div
-                        className="border border-2 rounded-2"
-                        key={project.id}
-                      >
-                        <h3>{project.title}</h3>
+                      <div key={project.id}>
+                        <ProjectBtn project={project} />
                       </div>
                     ))
                   ) : (

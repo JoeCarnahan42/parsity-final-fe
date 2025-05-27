@@ -1,8 +1,10 @@
 "use client";
 import { useState } from "react";
+import { useInitialAuth } from "./hooks/useInitialAuth";
+
+// Components
 import { AuthForm } from "./components/AuthForm";
 import { RegForm } from "./components/RegForm";
-import { useInitialAuth } from "./hooks/useInitialAuth";
 
 export default function MainAuth() {
   useInitialAuth();

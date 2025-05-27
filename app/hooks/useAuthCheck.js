@@ -2,8 +2,10 @@
 import { useEffect } from "react";
 import axios from "axios";
 import { useAuth } from "../context/AuthContext";
+import { useRouter } from "next/navigation";
 
 export const useAuthCheck = (intervalMs = 5 * 60 * 1000) => {
+  const router = useRouter();
   const { setUser } = useAuth();
 
   useEffect(() => {
@@ -20,6 +22,7 @@ export const useAuthCheck = (intervalMs = 5 * 60 * 1000) => {
         if (err.response?.status === 401) {
           setUser(null);
           console.log("Session expired. User logged out.");
+          router.push("/");
         }
       }
     };
@@ -27,5 +30,5 @@ export const useAuthCheck = (intervalMs = 5 * 60 * 1000) => {
     checkAuth();
     const interval = setInterval(checkAuth, intervalMs);
     return () => clearInterval(interval);
-  }, [setUser, intervalMs]);
+  }, [setUser, intervalMs, router]);
 };

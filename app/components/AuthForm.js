@@ -40,7 +40,7 @@ export const AuthForm = () => {
     <>
       {loading ? (
         <div className="text-center mt-5">
-          <h2>Attempting to log in...</h2>
+          <h2>Attempting to log in... This may take a while.</h2>
         </div>
       ) : (
         <form className="container" onSubmit={handleLogin}>

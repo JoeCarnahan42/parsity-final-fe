@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import axios from "axios";
-import { useAuth } from "../context/AuthContext"; // adjust path
+import { useAuth } from "../context/AuthContext";
 
 export const RegForm = () => {
   const { login } = useAuth();
