@@ -5,14 +5,14 @@ import { useAuthCheck } from "../hooks/useAuthCheck";
 import { useProjectContext } from "../context/ProjectContext";
 import { useAuth } from "../context/AuthContext";
 import { useToggleView } from "../context/ViewContext";
-import { ProjectBreakdown } from "../components/ProjectBreakdown";
+import { ProjectBreakdown } from "./ProjectBreakdown";
 
 // Components
-import { ProjectBtn } from "../components/ProjectBtn";
-import { LogoutButton } from "../components/LogoutButton";
-import { ToggleButton } from "../components/ToggleButton";
+import { ProjectBtn } from "./ProjectBtn";
+import { LogoutButton } from "./LogoutButton";
+import { ToggleButton } from "./ToggleButton";
 
-export default function BoardOV() {
+export const BoardOverview = () => {
   const sessionExpired = useAuthCheck();
 
   // TODO - add logic for only showing selected job type
@@ -39,6 +39,8 @@ export default function BoardOV() {
   const runoffProjects = projects.filter((proj) => proj.state === "Runoff");
   const shippingProjects = projects.filter((proj) => proj.state === "Shipping");
   const installProjects = projects.filter((proj) => proj.state === "Install");
+
+  // TODO - Make sure newly created projects appear on board
 
   useEffect(() => {
     axios
@@ -308,4 +310,4 @@ export default function BoardOV() {
       )}
     </>
   );
-}
+};

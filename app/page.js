@@ -1,14 +1,16 @@
 "use client";
 import { useState } from "react";
 import { useInitialAuth } from "./hooks/useInitialAuth";
+import { useAuth } from "./context/AuthContext";
 
 // Components
 import { AuthForm } from "./components/AuthForm";
 import { RegForm } from "./components/RegForm";
+import { BoardOverview } from "./components/BoardOverview";
 
 export default function MainAuth() {
   useInitialAuth();
-  const [authMode, setAuthMode] = useState("login");
+  const { user, authMode, setAuthMode } = useAuth();
 
   return (
     <div className="text-center mt-5">
@@ -41,6 +43,8 @@ export default function MainAuth() {
           </p>
         </>
       )}
+
+      {user && <BoardOverview />}
     </div>
   );
 }

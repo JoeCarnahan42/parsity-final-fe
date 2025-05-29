@@ -1,6 +1,5 @@
 "use client";
 import axios from "axios";
-import { useRouter } from "next/navigation";
 
 const { createContext, useState, useContext } = require("react");
 
@@ -9,7 +8,7 @@ const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(false);
   const [sessionExpired, setSessionExpired] = useState(false);
-  const router = useRouter();
+  const [authMode, setAuthMode] = useState("login");
 
   const login = async (credentials) => {
     try {
@@ -21,7 +20,6 @@ export const AuthProvider = ({ children }) => {
         }
       );
       setUser(res.data);
-      router.push("/board-overview");
     } catch (err) {
       console.error("Login failed:", err);
       throw err;
@@ -35,6 +33,7 @@ export const AuthProvider = ({ children }) => {
       { withCredentials: true }
     );
     setUser(null);
+    setAuthMode("login");
   };
 
   return (
@@ -46,6 +45,8 @@ export const AuthProvider = ({ children }) => {
         logout,
         sessionExpired,
         setSessionExpired,
+        authMode,
+        setAuthMode,
       }}
     >
       {children}

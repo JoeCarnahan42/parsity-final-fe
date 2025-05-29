@@ -7,7 +7,6 @@ export const ProjectBtn = (props) => {
 
   const getProject = async (e) => {
     try {
-      setLoading(true);
       const response = await axios.get(
         `https://parsity-final-be.onrender.com/projects/${e.target.id}`,
         {
@@ -18,10 +17,6 @@ export const ProjectBtn = (props) => {
       setShowWindow(true);
     } catch (err) {
       console.error("Failed to retrieve project.", err);
-      setLoading(false);
-      setError("Error retrieving project");
-    } finally {
-      setLoading(false);
     }
   };
 

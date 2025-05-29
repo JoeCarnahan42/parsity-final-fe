@@ -4,7 +4,7 @@ import { useState, useRef, useEffect } from "react";
 
 export const AuthForm = () => {
   const { login } = useAuth();
-  const { sessionExpired, setSessionExpired } = useAuth();
+  const { sessionExpired, setSessionExpired, setAuthMode } = useAuth();
 
   const emailRef = useRef();
   const passwordRef = useRef();
@@ -27,6 +27,7 @@ export const AuthForm = () => {
     setError("");
     setLoading(true);
     setSessionExpired(false);
+    setAuthMode(null);
 
     try {
       await login({ email, password });

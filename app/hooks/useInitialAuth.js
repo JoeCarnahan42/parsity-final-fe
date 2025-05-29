@@ -16,7 +16,7 @@ export const useInitialAuth = () => {
           }
         );
         if (res.status === 200) {
-          router.push("/board-overview");
+          router.push("/");
         }
       } catch (err) {
         // Not authenticated — do nothing
