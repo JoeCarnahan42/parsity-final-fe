@@ -1,12 +1,9 @@
 "use client";
 import axios from "axios";
-import { useEffect, useState } from "react";
 import { useProjectContext } from "../context/ProjectContext";
 
 export const ProjectBtn = (props) => {
   const { setProject, setShowWindow } = useProjectContext();
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
 
   const getProject = async (e) => {
     try {
@@ -27,10 +24,6 @@ export const ProjectBtn = (props) => {
       setLoading(false);
     }
   };
-
-  useEffect(() => {
-    // update context here??
-  });
 
   return (
     <>

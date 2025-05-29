@@ -2,10 +2,10 @@
 import { useState } from "react";
 
 export const ToggleButton = () => {
-  const [activeTab, setActiveTab] = useState("Jobs"); // Tracks active tab
+  const [activeTab, setActiveTab] = useState("Jobs");
 
   const handleClick = (tab) => {
-    setActiveTab(tab); // Change the active tab
+    setActiveTab(tab);
   };
 
   return (

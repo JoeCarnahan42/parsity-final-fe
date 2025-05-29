@@ -8,7 +8,7 @@ import { RegForm } from "./components/RegForm";
 
 export default function MainAuth() {
   useInitialAuth();
-  const [authMode, setAuthMode] = useState("login"); // always start on login
+  const [authMode, setAuthMode] = useState("login");
 
   return (
     <div className="text-center mt-5">

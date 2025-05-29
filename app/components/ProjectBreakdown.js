@@ -129,7 +129,7 @@ export const ProjectBreakdown = () => {
               <div>
                 <p>Estimated Completion: {currentMetrics.expected_date}</p>
                 <p>Total Spent: {currentMetrics.budget_money}</p>
-                {/* TODO - Add more metrics, finish component */}
+                {/* TODO - Add more metrics, finish component/ Comments and Blockers */}
               </div>
             ) : (
               <div className="text-center">
