@@ -1,15 +1,26 @@
 "use client";
 import { useProjectContext } from "../context/ProjectContext";
+import { ProjectDetails } from "./ProjectDetails";
 
 export const ProjectBreakdown = () => {
-  const { setShowWindow, project, setProject } = useProjectContext();
+  const {
+    setShowWindow,
+    showDetailsWindow,
+    setShowDetailsWindow,
+    project,
+    setProject,
+  } = useProjectContext();
 
   const currentMetrics = project.currentMetrics?.[0];
+
+  if (showDetailsWindow) {
+    return <ProjectDetails />;
+  }
 
   return (
     <div
       style={{
-        position: "fixed", // or 'fixed'
+        position: "fixed",
         top: "50%",
         left: "50%",
         transform: "translate(-50%, -50%)",
@@ -119,7 +130,12 @@ export const ProjectBreakdown = () => {
               </div>
             </div>
             <br />
-            <button className="btn btn-primary">Details</button>
+            <button
+              onClick={() => setShowDetailsWindow(true)}
+              className="btn btn-primary"
+            >
+              Details
+            </button>
           </div>
           <div className="border rounded flex-grow-1 p-3">
             <h4 className="text-center">
