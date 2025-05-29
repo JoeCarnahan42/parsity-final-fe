@@ -94,7 +94,11 @@ export const BoardOverview = () => {
             <div className="row">
               <div
                 className="d-flex align-items-center justify-content-center border rounded w-25"
-                style={{ height: "45px", backgroundColor: "aqua" }}
+                style={{
+                  height: "45px",
+                  backgroundColor: "aqua",
+                  fontSize: "xx-large",
+                }}
               >
                 <p className="mb-0">Hello, {loggedInUser.firstName}!</p>
               </div>
