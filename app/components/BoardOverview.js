@@ -22,6 +22,7 @@ export const BoardOverview = () => {
   const loggedInUser = user.user;
 
   const [isLoading, setLoading] = useState(true);
+  const [rawData, setRawData] = useState([]);
   const [projects, setProjects] = useState([]);
   const [error, setError] = useState(null);
 
@@ -48,7 +49,7 @@ export const BoardOverview = () => {
         withCredentials: true,
       })
       .then((response) => {
-        setProjects(response.data);
+        setRawData(response.data);
         setLoading(false);
       })
       .catch((err) => {
@@ -56,6 +57,20 @@ export const BoardOverview = () => {
         setLoading(false);
       });
   }, []);
+
+  useEffect(() => {
+    if (activeView === "Builds") {
+      const transformData = rawData.filter((data) => {
+        return data.type === "Build";
+      });
+      setProjects(transformData);
+    } else {
+      const transformData = rawData.filter((data) => {
+        return data.type === "Production Run";
+      });
+      setProjects(transformData);
+    }
+  }, [activeView, rawData]);
 
   if (error) {
     return (

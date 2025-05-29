@@ -1,11 +1,11 @@
 "use client";
-import { useState } from "react";
+import { useToggleView } from "../context/ViewContext";
 
 export const ToggleButton = () => {
-  const [activeTab, setActiveTab] = useState("Jobs");
+  const { activeView, setActiveView } = useToggleView();
 
   const handleClick = (tab) => {
-    setActiveTab(tab);
+    setActiveView(tab);
   };
 
   return (
@@ -16,14 +16,14 @@ export const ToggleButton = () => {
     >
       <button
         type="button"
-        className={`btn ${activeTab === "Jobs" ? "active" : ""}`}
-        onClick={() => handleClick("Jobs")}
+        className={`btn ${activeView === "Jobs" ? "active" : ""}`}
+        onClick={() => handleClick("Builds")}
       >
         Builds
       </button>
       <button
         type="button"
-        className={`btn ${activeTab === "Prod. Runs" ? "active" : ""}`}
+        className={`btn ${activeView === "Prod. Runs" ? "active" : ""}`}
         onClick={() => handleClick("Prod. Runs")}
       >
         Prod. Runs
