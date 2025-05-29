@@ -2,7 +2,7 @@
 import { useProjectContext } from "../context/ProjectContext";
 
 export const ProjectDetails = () => {
-  const { setShowDetailsWindow, project } = useProjectContext();
+  const { setShowDetailsWindow, project, materials } = useProjectContext();
 
   return (
     <div
@@ -42,6 +42,7 @@ export const ProjectDetails = () => {
       <div>
         {console.log("PURCHASE LIST ---", project.purchaseList)}
         {console.log("TASKS ---", project.tasks)}
+        {console.log("MATERIALS ---", materials)}
         {/* TODO - populate window with project info */}
       </div>
     </div>
