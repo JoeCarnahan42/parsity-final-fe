@@ -41,8 +41,6 @@ export const BoardOverview = () => {
   const shippingProjects = projects.filter((proj) => proj.state === "Shipping");
   const installProjects = projects.filter((proj) => proj.state === "Install");
 
-  // TODO - Make sure newly created projects appear on board
-
   useEffect(() => {
     axios
       .get("https://parsity-final-be.onrender.com/projects/", {
