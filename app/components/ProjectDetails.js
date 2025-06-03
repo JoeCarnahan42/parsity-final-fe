@@ -2,7 +2,7 @@
 import { useProjectContext } from "../context/ProjectContext";
 
 export const ProjectDetails = () => {
-  const { setShowWindow, project, materials } = useProjectContext();
+  const { setShowDetails, project, materials } = useProjectContext();
 
   // TODO - add a back button to return to ProjectBreakdown.js
 
@@ -116,6 +116,9 @@ export const ProjectDetails = () => {
             })}
           </ul>
           {/* TODO - add section for total spent to date and outstanding items */}
+          <button onClick={() => setShowDetails(false)}>
+            Back to overview
+          </button>
         </div>
       </div>
     </div>
