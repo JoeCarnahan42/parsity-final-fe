@@ -7,8 +7,14 @@ const ProjectContext = createContext();
 export const ProjectContextProvider = ({ children }) => {
   const [project, setProject] = useState(null);
   const [showWindow, setShowWindow] = useState(false);
-  const [showDetailsWindow, setShowDetailsWindow] = useState(false);
+  const [showDetails, setShowDetails] = useState(false);
   const [materials, setMaterials] = useState([]);
+
+  const closeWindow = () => {
+    setShowDetails(false);
+    setProject(null);
+    setShowWindow(false);
+  };
 
   useEffect(() => {
     if (project) {
@@ -36,9 +42,10 @@ export const ProjectContextProvider = ({ children }) => {
         setProject,
         showWindow,
         setShowWindow,
-        showDetailsWindow,
-        setShowDetailsWindow,
         materials,
+        showDetails,
+        setShowDetails,
+        closeWindow,
       }}
     >
       {children}

@@ -5,12 +5,12 @@ import { useAuthCheck } from "../hooks/useAuthCheck";
 import { useProjectContext } from "../context/ProjectContext";
 import { useAuth } from "../context/AuthContext";
 import { useToggleView } from "../context/ViewContext";
-import { ProjectBreakdown } from "./ProjectBreakdown";
 
 // Components
 import { ProjectBtn } from "./ProjectBtn";
 import { LogoutButton } from "./LogoutButton";
 import { ToggleButton } from "./ToggleButton";
+import { Window } from "./Window";
 
 export const BoardOverview = () => {
   const sessionExpired = useAuthCheck();
@@ -18,6 +18,7 @@ export const BoardOverview = () => {
   // TODO - add logic for only showing selected job type
   const { activeView } = useToggleView();
   const { showWindow } = useProjectContext();
+  // const { showNewProjectWindow } = useToggleView();
   const { user } = useAuth();
   const loggedInUser = user.user;
 
@@ -88,7 +89,7 @@ export const BoardOverview = () => {
   }
 
   if (showWindow) {
-    return <ProjectBreakdown />;
+    return <Window />;
   }
 
   return (
