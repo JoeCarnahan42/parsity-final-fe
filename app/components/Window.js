@@ -2,16 +2,24 @@ import { useProjectContext } from "../context/ProjectContext";
 import { useWindowContext } from "../context/WindowContext";
 import { ProjectBreakdown } from "./ProjectBreakdown";
 import { ProjectDetails } from "./ProjectDetails";
+import { ProjectForm } from "./ProjectForm";
 
 export const Window = () => {
   const { project } = useProjectContext();
-  const { showDetails, closeWindow } = useWindowContext();
+  const { showDetails, showNewProjForm, showBreakdown, closeWindow } =
+    useWindowContext();
 
   const renderComponent = () => {
     if (showDetails) {
       return <ProjectDetails />;
-    } else {
+    }
+
+    if (showBreakdown) {
       return <ProjectBreakdown />;
+    }
+
+    if (showNewProjForm) {
+      return <ProjectForm />;
     }
     // TODO - add other forms here
   };

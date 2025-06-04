@@ -5,7 +5,7 @@ import { useWindowContext } from "../context/WindowContext";
 
 export const ProjectBtn = (props) => {
   const { setProject } = useProjectContext();
-  const { setShowWindow } = useWindowContext();
+  const { setShowWindow, setShowBreakdown } = useWindowContext();
 
   const getProject = async (e) => {
     try {
@@ -17,6 +17,7 @@ export const ProjectBtn = (props) => {
       );
       setProject(response.data);
       setShowWindow(true);
+      setShowBreakdown(true);
     } catch (err) {
       console.error("Failed to retrieve project.", err);
     }
