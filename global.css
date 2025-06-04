@@ -1,5 +1,5 @@
 .toggle-group .btn {
-  background-color: #a95600; /* brownish-orange */
+  background-color: #a95600;
   color: white;
   border: 1px solid #a95600;
 }
@@ -15,9 +15,9 @@
 }
 
 .toggle-group .btn:not(:last-child) {
-  border-right: 1px solid #fff; /* divider between buttons */
+  border-right: 1px solid #fff;
 }
 
 .toggle-group .btn.active {
-  background-color: #874400; /* darker when active */
+  background-color: #874400;
 }
