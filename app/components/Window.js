@@ -39,7 +39,6 @@ export const Window = () => {
         </button>
       </div>
       {showDetails ? <ProjectDetails /> : <ProjectBreakdown />}
-      {console.log(showDetails)}
     </div>
   );
 };

@@ -4,8 +4,8 @@ import { useToggleView } from "../context/ViewContext";
 export const ToggleButton = () => {
   const { activeView, setActiveView } = useToggleView();
 
-  const handleClick = (tab) => {
-    setActiveView(tab);
+  const handleClick = (type) => {
+    setActiveView(type);
   };
 
   return (
@@ -16,17 +16,17 @@ export const ToggleButton = () => {
     >
       <button
         type="button"
-        className={`btn ${activeView === "Jobs" ? "active" : ""}`}
+        className={`btn ${activeView === "Builds" ? "active" : ""}`}
         onClick={() => handleClick("Builds")}
       >
         Builds
       </button>
       <button
         type="button"
-        className={`btn ${activeView === "Prod. Runs" ? "active" : ""}`}
-        onClick={() => handleClick("Prod. Runs")}
+        className={`btn ${activeView === "Batches" ? "active" : ""}`}
+        onClick={() => handleClick("Batches")}
       >
-        Prod. Runs
+        Batches
       </button>
     </div>
   );
