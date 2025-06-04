@@ -3,6 +3,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { useAuthCheck } from "../hooks/useAuthCheck";
 import { useProjectContext } from "../context/ProjectContext";
+import { useWindowContext } from "../context/WindowContext";
 import { useAuth } from "../context/AuthContext";
 import { useToggleView } from "../context/ViewContext";
 
@@ -17,30 +18,38 @@ export const BoardOverview = () => {
 
   // TODO - add logic for only showing selected job type
   const { activeView } = useToggleView();
-  const { showWindow } = useProjectContext();
-  // const { showNewProjectWindow } = useToggleView();
+  const { showWindow } = useWindowContext();
+  const { projectPool, setProjectPool } = useProjectContext();
+
   const { user } = useAuth();
   const loggedInUser = user.user;
 
   const [isLoading, setLoading] = useState(true);
   const [rawData, setRawData] = useState([]);
-  const [projects, setProjects] = useState([]);
   const [error, setError] = useState(null);
 
-  const quotingProjects = projects.filter((proj) => proj.state === "Quoting");
-  const processingProjects = projects.filter(
+  const quotingProjects = projectPool.filter(
+    (proj) => proj.state === "Quoting"
+  );
+  const processingProjects = projectPool.filter(
     (proj) => proj.state === "Processing"
   );
-  const kickedOffProjects = projects.filter(
+  const kickedOffProjects = projectPool.filter(
     (proj) => proj.state === "Kicked Off"
   );
-  const inProdProjects = projects.filter(
+  const inProdProjects = projectPool.filter(
     (proj) => proj.state === "In Production"
   );
-  const debugProjects = projects.filter((proj) => proj.state === "Debugging");
-  const runoffProjects = projects.filter((proj) => proj.state === "Runoff");
-  const shippingProjects = projects.filter((proj) => proj.state === "Shipping");
-  const installProjects = projects.filter((proj) => proj.state === "Install");
+  const debugProjects = projectPool.filter(
+    (proj) => proj.state === "Debugging"
+  );
+  const runoffProjects = projectPool.filter((proj) => proj.state === "Runoff");
+  const shippingProjects = projectPool.filter(
+    (proj) => proj.state === "Shipping"
+  );
+  const installProjects = projectPool.filter(
+    (proj) => proj.state === "Install"
+  );
 
   useEffect(() => {
     axios
@@ -62,14 +71,14 @@ export const BoardOverview = () => {
       const transformData = rawData.filter((data) => {
         return data.type === "Build";
       });
-      setProjects(transformData);
+      setProjectPool(transformData);
     } else {
       const transformData = rawData.filter((data) => {
         return data.type === "Production Run";
       });
-      setProjects(transformData);
+      setProjectPool(transformData);
     }
-  }, [activeView, rawData]);
+  }, [activeView, rawData, setProjectPool]);
 
   if (error) {
     return (

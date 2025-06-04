@@ -1,9 +1,11 @@
 "use client";
 import axios from "axios";
 import { useProjectContext } from "../context/ProjectContext";
+import { useWindowContext } from "../context/WindowContext";
 
 export const ProjectBtn = (props) => {
-  const { setProject, setShowWindow } = useProjectContext();
+  const { setProject } = useProjectContext();
+  const { setShowWindow } = useWindowContext();
 
   const getProject = async (e) => {
     try {

@@ -1,12 +1,13 @@
 "use client";
 import { useProjectContext } from "../context/ProjectContext";
+import { useWindowContext } from "../context/WindowContext";
 
 export const ProjectBreakdown = () => {
   const { project } = useProjectContext();
 
   const currentMetrics = project.currentMetrics?.[0];
 
-  const { setShowDetails } = useProjectContext();
+  const { setShowDetails } = useWindowContext();
 
   return (
     <div>

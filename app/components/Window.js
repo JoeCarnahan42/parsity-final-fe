@@ -1,9 +1,20 @@
 import { useProjectContext } from "../context/ProjectContext";
+import { useWindowContext } from "../context/WindowContext";
 import { ProjectBreakdown } from "./ProjectBreakdown";
 import { ProjectDetails } from "./ProjectDetails";
 
 export const Window = () => {
-  const { project, showDetails, closeWindow } = useProjectContext();
+  const { project } = useProjectContext();
+  const { showDetails, closeWindow } = useWindowContext();
+
+  const renderComponent = () => {
+    if (showDetails) {
+      return <ProjectDetails />;
+    } else {
+      return <ProjectBreakdown />;
+    }
+    // TODO - add other forms here
+  };
 
   return (
     <div
@@ -38,7 +49,7 @@ export const Window = () => {
           X
         </button>
       </div>
-      {showDetails ? <ProjectDetails /> : <ProjectBreakdown />}
+      {renderComponent()}
     </div>
   );
 };

@@ -1,8 +1,10 @@
 "use client";
 import { useProjectContext } from "../context/ProjectContext";
+import { useWindowContext } from "../context/WindowContext";
 
 export const ProjectDetails = () => {
-  const { setShowDetails, project, materials } = useProjectContext();
+  const { project, materials } = useProjectContext();
+  const { setShowDetails } = useWindowContext();
 
   // TODO - add a back button to return to ProjectBreakdown.js
 

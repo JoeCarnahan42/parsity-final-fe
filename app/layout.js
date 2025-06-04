@@ -3,6 +3,7 @@ import "../global.css";
 import { AuthProvider } from "./context/AuthContext";
 import { ProjectContextProvider } from "./context/ProjectContext";
 import { ToggleViewProvider } from "./context/ViewContext";
+import { WindowContextProvider } from "./context/WindowContext";
 
 export default function RootLayout({ children }) {
   return (
@@ -10,7 +11,9 @@ export default function RootLayout({ children }) {
       <body>
         <ToggleViewProvider>
           <ProjectContextProvider>
-            <AuthProvider>{children}</AuthProvider>
+            <WindowContextProvider>
+              <AuthProvider>{children}</AuthProvider>
+            </WindowContextProvider>
           </ProjectContextProvider>
         </ToggleViewProvider>
       </body>

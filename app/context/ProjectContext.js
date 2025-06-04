@@ -5,16 +5,9 @@ import { createContext, useContext, useEffect, useState } from "react";
 const ProjectContext = createContext();
 
 export const ProjectContextProvider = ({ children }) => {
+  const [projectPool, setProjectPool] = useState([]);
   const [project, setProject] = useState(null);
-  const [showWindow, setShowWindow] = useState(false);
-  const [showDetails, setShowDetails] = useState(false);
   const [materials, setMaterials] = useState([]);
-
-  const closeWindow = () => {
-    setShowDetails(false);
-    setProject(null);
-    setShowWindow(false);
-  };
 
   useEffect(() => {
     if (project) {
@@ -38,14 +31,11 @@ export const ProjectContextProvider = ({ children }) => {
   return (
     <ProjectContext.Provider
       value={{
+        projectPool,
+        setProjectPool,
         project,
         setProject,
-        showWindow,
-        setShowWindow,
         materials,
-        showDetails,
-        setShowDetails,
-        closeWindow,
       }}
     >
       {children}
