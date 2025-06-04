@@ -16,9 +16,8 @@ import { Window } from "./Window";
 export const BoardOverview = () => {
   const sessionExpired = useAuthCheck();
 
-  // TODO - add logic for only showing selected job type
   const { activeView } = useToggleView();
-  const { showWindow } = useWindowContext();
+  const { showWindow, setShowWindow, setShowNewProjForm } = useWindowContext();
   const { projectPool, setProjectPool } = useProjectContext();
 
   const { user } = useAuth();
@@ -50,6 +49,11 @@ export const BoardOverview = () => {
   const installProjects = projectPool.filter(
     (proj) => proj.state === "Install"
   );
+
+  const openNewProjForm = () => {
+    setShowNewProjForm(true);
+    setShowWindow(true);
+  };
 
   useEffect(() => {
     axios
@@ -329,7 +333,12 @@ export const BoardOverview = () => {
             <br />
             <div>
               {/* TODO - Add logic for opening the form for proj creation */}
-              <button className="btn btn-primary">Create a new project</button>
+              <button
+                onClick={() => openNewProjForm()}
+                className="btn btn-primary"
+              >
+                Create a new project
+              </button>
               <LogoutButton />
             </div>
           </div>

@@ -24,6 +24,16 @@ export const Window = () => {
     // TODO - add other forms here
   };
 
+  const windowTitle = () => {
+    if (project) {
+      return <span>{project.title}</span>;
+    }
+
+    if (showNewProjForm) {
+      return <span>Create New Project</span>;
+    }
+  };
+
   return (
     <div
       style={{
@@ -48,7 +58,7 @@ export const Window = () => {
           justifyContent: "space-between",
         }}
       >
-        <span>{project.title}</span>
+        {windowTitle()}
         <button
           onClick={() => {
             closeWindow();
