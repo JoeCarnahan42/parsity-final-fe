@@ -1,7 +1,7 @@
 // TODO - add buttons to add more purchase-items/tasks
 // TODO - make inputs that have specific values dropdowns
 "use client";
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 export const ProjectForm = () => {
   const [projectData, setProjectData] = useState({
@@ -10,9 +10,18 @@ export const ProjectForm = () => {
     state: "",
     type: "",
     description: "",
-    projectManagers: [{ name: "", title: "" }],
-    tasks: [{ title: "", partNumber: "", material: "", hours: "", status: "" }],
-    projMetrics: [{ money: "", hours: "", due: "" }],
+    projectManagers: [{ name: "", title: "", canDelete: false }],
+    tasks: [
+      {
+        title: "",
+        partNumber: "",
+        material: "",
+        hours: "",
+        status: "",
+        canDelete: false,
+      },
+    ],
+    projMetrics: [{ money: "", hours: "", due: "", canDelete: false }],
     purchaseList: [
       {
         title: "",
@@ -25,30 +34,44 @@ export const ProjectForm = () => {
     ],
   });
 
+  // Used to delete the correct field
+  const iRef = useRef(0);
+
   const addField = (e) => {
     const field = e.target.id;
 
     if (field === "project-manager") {
+      const identifier = iRef.current++;
       setProjectData((projectData) => ({
         ...projectData,
         projectManagers: [
           ...projectData.projectManagers,
-          { name: "", title: "" },
+          { name: "", title: "", canDelete: true, identifier },
         ],
       }));
     }
 
     if (field === "tasks") {
+      const identifier = iRef.current++;
       setProjectData((projectData) => ({
         ...projectData,
         tasks: [
           ...projectData.tasks,
-          { title: "", partNumber: "", material: "", hours: "", status: "" },
+          {
+            title: "",
+            partNumber: "",
+            material: "",
+            hours: "",
+            status: "",
+            canDelete: true,
+            identifier,
+          },
         ],
       }));
     }
 
     if (field === "purchase-item") {
+      const identifier = iRef.current++;
       setProjectData((projectData) => ({
         ...projectData,
         purchaseList: [
@@ -60,9 +83,62 @@ export const ProjectForm = () => {
             orderedOn: "",
             price: "",
             quantity: "",
+            canDelete: true,
+            identifier,
           },
         ],
       }));
+    }
+  };
+
+  const deleteField = (e) => {
+    // remove field
+    const id = Number(e.target.id);
+    const field = e.target.name;
+
+    if (field === "project-manager") {
+      // find and delete
+      const arr = "projectManagers";
+      setProjectData((projectData) => {
+        const updatedArray = projectData[arr].filter(
+          (item) => item.identifier !== id
+        );
+
+        return {
+          ...projectData,
+          [arr]: updatedArray,
+        };
+      });
+    }
+
+    if (field === "task") {
+      // find and delete
+      const arr = "tasks";
+      setProjectData((projectData) => {
+        const updatedArray = projectData[arr].filter(
+          (item) => item.identifier !== id
+        );
+
+        return {
+          ...projectData,
+          [arr]: updatedArray,
+        };
+      });
+    }
+
+    if (field === "item") {
+      // find and delete
+      const arr = "purchaseList";
+      setProjectData((projectData) => {
+        const updatedArray = projectData[arr].filter(
+          (item) => item.identifier !== id
+        );
+
+        return {
+          ...projectData,
+          [arr]: updatedArray,
+        };
+      });
     }
   };
 
@@ -206,6 +282,17 @@ export const ProjectForm = () => {
                 placeholder="Mechanical Lead"
                 className="form-control"
               />
+              {pm.canDelete === true && (
+                <button
+                  type="button"
+                  name="project-manager"
+                  id={pm.identifier}
+                  onClick={(e) => deleteField(e)}
+                  className="btn btn-danger"
+                >
+                  Delete
+                </button>
+              )}
               <hr style={{ border: "1px solid black" }} />
             </div>
           ))}
@@ -276,6 +363,17 @@ export const ProjectForm = () => {
                 placeholder="Choose One"
                 className="form-control"
               />
+              {task.canDelete === true && (
+                <button
+                  type="button"
+                  name="task"
+                  id={task.identifier}
+                  onClick={(e) => deleteField(e)}
+                  className="btn btn-danger"
+                >
+                  Delete
+                </button>
+              )}
               <hr style={{ border: "1px solid black" }} />
             </div>
           ))}
@@ -398,6 +496,17 @@ export const ProjectForm = () => {
                 placeholder="5"
                 className="form-control"
               />
+              {item.canDelete === true && (
+                <button
+                  type="button"
+                  name="item"
+                  id={item.identifier}
+                  onClick={(e) => deleteField(e)}
+                  className="btn btn-danger"
+                >
+                  Delete
+                </button>
+              )}
               <hr style={{ border: "1px solid black" }} />
             </div>
           ))}

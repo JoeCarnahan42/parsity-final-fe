@@ -332,7 +332,6 @@ export const BoardOverview = () => {
             </div>
             <br />
             <div>
-              {/* TODO - Add logic for opening the form for proj creation */}
               <button
                 onClick={() => openNewProjForm()}
                 className="btn btn-primary"
