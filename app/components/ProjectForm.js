@@ -25,6 +25,47 @@ export const ProjectForm = () => {
     ],
   });
 
+  const addField = (e) => {
+    const field = e.target.id;
+
+    if (field === "project-manager") {
+      setProjectData((projectData) => ({
+        ...projectData,
+        projectManagers: [
+          ...projectData.projectManagers,
+          { name: "", title: "" },
+        ],
+      }));
+    }
+
+    if (field === "tasks") {
+      setProjectData((projectData) => ({
+        ...projectData,
+        tasks: [
+          ...projectData.tasks,
+          { title: "", partNumber: "", material: "", hours: "", status: "" },
+        ],
+      }));
+    }
+
+    if (field === "purchase-item") {
+      setProjectData((projectData) => ({
+        ...projectData,
+        purchaseList: [
+          ...projectData.purchaseList,
+          {
+            title: "",
+            partNumber: "",
+            description: "",
+            orderedOn: "",
+            price: "",
+            quantity: "",
+          },
+        ],
+      }));
+    }
+  };
+
   const handleChange = (e) => {
     setProjectData({
       ...projectData,
@@ -165,8 +206,17 @@ export const ProjectForm = () => {
                 placeholder="Mechanical Lead"
                 className="form-control"
               />
+              <hr style={{ border: "1px solid black" }} />
             </div>
           ))}
+          <button
+            id="project-manager"
+            onClick={(e) => addField(e)}
+            className="btn btn-secondary"
+            type="button"
+          >
+            Add Another Project Manager
+          </button>
 
           <h3
             style={{ backgroundColor: "cornflowerblue" }}
@@ -226,8 +276,17 @@ export const ProjectForm = () => {
                 placeholder="Choose One"
                 className="form-control"
               />
+              <hr style={{ border: "1px solid black" }} />
             </div>
           ))}
+          <button
+            id="tasks"
+            onClick={(e) => addField(e)}
+            className="btn btn-secondary"
+            type="button"
+          >
+            Add Another Task
+          </button>
 
           <h3
             style={{ backgroundColor: "cornflowerblue" }}
@@ -339,8 +398,17 @@ export const ProjectForm = () => {
                 placeholder="5"
                 className="form-control"
               />
+              <hr style={{ border: "1px solid black" }} />
             </div>
           ))}
+          <button
+            id="purchase-item"
+            onClick={(e) => addField(e)}
+            className="btn btn-secondary"
+            type="button"
+          >
+            Add Another Item
+          </button>
         </form>
       </div>
       <div>
