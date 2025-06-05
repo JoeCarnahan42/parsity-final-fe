@@ -29,9 +29,7 @@ export const useAuthCheck = (intervalMs = 5 * 60 * 1000) => {
           setUser(null);
           setSessionExpired(true);
           console.log("Session expired. User logged out.");
-          setTimeout(() => {
-            router.push("/");
-          }, 3000);
+          setTimeout(() => {}, 3000);
         }
       }
     };
