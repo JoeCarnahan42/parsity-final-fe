@@ -34,7 +34,7 @@ export const ProjectForm = () => {
     ],
   });
 
-  // Used to delete the correct field
+  // Used to set identifier to delete the correct field
   const iRef = useRef(0);
 
   const addField = (e) => {
@@ -92,12 +92,10 @@ export const ProjectForm = () => {
   };
 
   const deleteField = (e) => {
-    // remove field
     const id = Number(e.target.id);
     const field = e.target.name;
 
     if (field === "project-manager") {
-      // find and delete
       const arr = "projectManagers";
       setProjectData((projectData) => {
         const updatedArray = projectData[arr].filter(
@@ -112,7 +110,6 @@ export const ProjectForm = () => {
     }
 
     if (field === "task") {
-      // find and delete
       const arr = "tasks";
       setProjectData((projectData) => {
         const updatedArray = projectData[arr].filter(
@@ -127,7 +124,6 @@ export const ProjectForm = () => {
     }
 
     if (field === "item") {
-      // find and delete
       const arr = "purchaseList";
       setProjectData((projectData) => {
         const updatedArray = projectData[arr].filter(
