@@ -68,85 +68,127 @@ export const ProjectForm = () => {
 
   return (
     <>
-      <div style={{ maxWidth: "1000px", maxHeight: "575px", overflow: "auto" }}>
+      <div
+        className="text-center"
+        style={{ maxWidth: "1000px", maxHeight: "575px", overflow: "auto" }}
+      >
         <form onSubmit={handleSubmit} className="container py-3">
-          <h2 className="mb-3">Project Details</h2>
-          <div className="mb-3">
+          <h2
+            style={{ backgroundColor: "cornflowerblue" }}
+            className="mb-3 w-50 m-auto"
+          >
+            Project Details
+          </h2>
+          <div className="mb-3 w-50 m-auto">
             <input
               name="title"
               value={projectData.title}
               onChange={handleChange}
-              placeholder="Title"
+              placeholder="Form Roller"
               className="form-control"
             />
           </div>
-          <div className="mb-3">
+          <div className="mb-3 w-50 m-auto">
+            <label>
+              <u>Customer</u>
+            </label>
             <input
               name="customer"
               value={projectData.customer}
               onChange={handleChange}
-              placeholder="Customer"
+              placeholder="Company Name"
               className="form-control"
             />
           </div>
-          <div className="mb-3">
+          <div className="mb-3 w-50 m-auto">
+            <label>
+              <u>Project State</u>
+            </label>
             <input
               name="state"
               value={projectData.state}
               onChange={handleChange}
-              placeholder="State"
+              placeholder="Choose One"
               className="form-control"
             />
           </div>
-          <div className="mb-3">
+          <div className="mb-3 w-50 m-auto">
+            <label>
+              <u>Job Type</u>
+            </label>
             <input
               name="type"
               value={projectData.type}
               onChange={handleChange}
-              placeholder="Type"
+              placeholder="Choose One"
               className="form-control"
             />
           </div>
-          <div className="mb-3">
+          <div className="mb-3 w-50 m-auto">
+            <label>
+              <u>Project Description</u>
+            </label>
             <textarea
               name="description"
               value={projectData.description}
               onChange={handleChange}
-              placeholder="Description"
+              placeholder="'Small machine that makes this thing...'"
               className="form-control"
             />
           </div>
 
-          <h3 className="mt-4 mb-2">Project Managers</h3>
+          <h3
+            style={{ backgroundColor: "cornflowerblue" }}
+            className="mt-4 mb-2 w-50 m-auto"
+          >
+            Project Managers
+          </h3>
           {projectData.projectManagers.map((pm, idx) => (
-            <div key={idx} className="mb-3">
+            <div key={idx} className="mb-3 w-50 m-auto">
+              <label>
+                <u>Full Name</u>
+              </label>
               <input
                 name="name"
                 value={pm.name}
                 onChange={(e) => handleArrayChange(idx, e, "projectManagers")}
-                placeholder="Name"
+                placeholder="John Doe"
                 className="form-control mb-2"
               />
+              <label>
+                <u>Title</u>
+              </label>
               <input
                 name="title"
                 value={pm.title}
                 onChange={(e) => handleArrayChange(idx, e, "projectManagers")}
-                placeholder="Title"
+                placeholder="Mechanical Lead"
                 className="form-control"
               />
             </div>
           ))}
 
-          <h3 className="mt-4 mb-2">Tasks</h3>
+          <h3
+            style={{ backgroundColor: "cornflowerblue" }}
+            className="mt-4 mb-2 w-50 m-auto"
+          >
+            Tasks
+          </h3>
           {projectData.tasks.map((task, idx) => (
-            <div key={idx} className="mb-3">
+            <div key={idx} className="mb-3 w-50 m-auto">
+              <label>
+                <u>Task Title</u>
+              </label>
               <input
                 name="title"
                 value={task.title}
                 onChange={(e) => handleArrayChange(idx, e, "tasks")}
-                placeholder="Task Title"
+                placeholder="Machine Rollers"
                 className="form-control mb-2"
               />
+              <label>
+                <u>Part Number</u>
+              </label>
               <input
                 name="partNumber"
                 value={task.partNumber}
@@ -154,13 +196,19 @@ export const ProjectForm = () => {
                 placeholder="Part Number"
                 className="form-control mb-2"
               />
+              <label>
+                <u>Material</u>
+              </label>
               <input
                 name="material"
                 value={task.material}
                 onChange={(e) => handleArrayChange(idx, e, "tasks")}
-                placeholder="Material"
+                placeholder="Stainless Steel"
                 className="form-control mb-2"
               />
+              <label>
+                <u>Expected Hours</u>
+              </label>
               <input
                 name="hours"
                 value={task.hours}
@@ -168,33 +216,50 @@ export const ProjectForm = () => {
                 placeholder="Hours"
                 className="form-control mb-2"
               />
+              <label>
+                <u>Current Status</u>
+              </label>
               <input
                 name="status"
                 value={task.status}
                 onChange={(e) => handleArrayChange(idx, e, "tasks")}
-                placeholder="Status"
+                placeholder="Choose One"
                 className="form-control"
               />
             </div>
           ))}
 
-          <h3 className="mt-4 mb-2">Projected Metrics</h3>
+          <h3
+            style={{ backgroundColor: "cornflowerblue" }}
+            className="mt-4 mb-2 w-50 m-auto"
+          >
+            Projected Metrics
+          </h3>
           {projectData.projMetrics.map((metric, idx) => (
-            <div key={idx} className="mb-3">
+            <div key={idx} className="mb-3 w-50 m-auto">
+              <label>
+                <u>Monetary Budget</u>
+              </label>
               <input
                 name="money"
                 value={metric.money}
                 onChange={(e) => handleArrayChange(idx, e, "projMetrics")}
-                placeholder="Budget ($)"
+                placeholder="$10000"
                 className="form-control mb-2"
               />
+              <label>
+                <u>Hours Budget</u>
+              </label>
               <input
                 name="hours"
                 value={metric.hours}
                 onChange={(e) => handleArrayChange(idx, e, "projMetrics")}
-                placeholder="Budget Hours"
+                placeholder="300"
                 className="form-control mb-2"
               />
+              <label>
+                <u>Estimated Completion Date</u>
+              </label>
               <input
                 type="date"
                 name="due"
@@ -205,16 +270,27 @@ export const ProjectForm = () => {
             </div>
           ))}
 
-          <h3 className="mt-4 mb-2">Purchase List</h3>
+          <h3
+            className="mt-4 mb-2 w-50 m-auto"
+            style={{ backgroundColor: "cornflowerblue" }}
+          >
+            Purchase List
+          </h3>
           {projectData.purchaseList.map((item, idx) => (
-            <div key={idx} className="mb-3">
+            <div key={idx} className="mb-3 w-50 m-auto">
+              <label>
+                <u>Item Name</u>
+              </label>
               <input
                 name="title"
                 value={item.title}
                 onChange={(e) => handleArrayChange(idx, e, "purchaseList")}
-                placeholder="Item Title"
+                placeholder="2 inch X 5 inch pneumatic cylinder"
                 className="form-control mb-2"
               />
+              <label>
+                <u>Part Number</u>
+              </label>
               <input
                 name="partNumber"
                 value={item.partNumber}
@@ -222,13 +298,19 @@ export const ProjectForm = () => {
                 placeholder="Part Number"
                 className="form-control mb-2"
               />
+              <label>
+                <u>Item Description</u>
+              </label>
               <input
                 name="description"
                 value={item.description}
                 onChange={(e) => handleArrayChange(idx, e, "purchaseList")}
-                placeholder="Description"
+                placeholder="Cylinder for lift gate"
                 className="form-control mb-2"
               />
+              <label>
+                <u>Date Ordered</u>
+              </label>
               <input
                 type="date"
                 name="orderedOn"
@@ -236,19 +318,25 @@ export const ProjectForm = () => {
                 onChange={(e) => handleArrayChange(idx, e, "purchaseList")}
                 className="form-control mb-2"
               />
+              <label>
+                <u>Item Price</u>
+              </label>
               <input
                 name="price"
                 value={item.price}
                 onChange={(e) => handleArrayChange(idx, e, "purchaseList")}
-                placeholder="Price ($)"
+                placeholder="$300"
                 className="form-control mb-2"
               />
+              <label>
+                <u>Item Quantity</u>
+              </label>
               <input
                 type="number"
                 name="quantity"
                 value={item.quantity}
                 onChange={(e) => handleArrayChange(idx, e, "purchaseList")}
-                placeholder="Quantity"
+                placeholder="5"
                 className="form-control"
               />
             </div>
