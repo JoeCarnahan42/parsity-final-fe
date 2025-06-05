@@ -1,9 +1,13 @@
-// TODO - add buttons to add more purchase-items/tasks
 // TODO - make inputs that have specific values dropdowns
 "use client";
 import { useRef, useState } from "react";
+import axios from "axios";
+import { useProjectContext } from "../context/ProjectContext";
 
 export const ProjectForm = () => {
+  const { setProjectPool } = useProjectContext();
+
+  const [confirmationMsg, setConfirmationMsg] = useState("");
   const [projectData, setProjectData] = useState({
     title: "",
     customer: "",
@@ -151,32 +155,53 @@ export const ProjectForm = () => {
     setProjectData({ ...projectData, [field]: updatedArray });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Submitting project data:", projectData);
-    // TODO - make request to server
-    setProjectData({
-      title: "",
-      customer: "",
-      state: "",
-      type: "",
-      description: "",
-      projectManagers: [{ name: "", title: "" }],
-      tasks: [
-        { title: "", partNumber: "", material: "", hours: "", status: "" },
-      ],
-      projMetrics: [{ money: "", hours: "", due: "" }],
-      purchaseList: [
+
+    try {
+      const response = await axios.post(
+        "https://parsity-final-be.onrender.com/projects/",
+        projectData,
         {
-          title: "",
-          partNumber: "",
-          description: "",
-          orderedOn: "",
-          price: "",
-          quantity: "",
-        },
-      ],
-    });
+          withCredentials: true,
+        }
+      );
+
+      const newProject = response.data;
+
+      setProjectPool((projectPool) => [...projectPool, newProject]);
+
+      setConfirmationMsg("Project added successfully!");
+
+      setTimeout(() => {
+        setConfirmationMsg("");
+      }, 3000);
+
+      setProjectData({
+        title: "",
+        customer: "",
+        state: "",
+        type: "",
+        description: "",
+        projectManagers: [{ name: "", title: "" }],
+        tasks: [
+          { title: "", partNumber: "", material: "", hours: "", status: "" },
+        ],
+        projMetrics: [{ money: "", hours: "", due: "" }],
+        purchaseList: [
+          {
+            title: "",
+            partNumber: "",
+            description: "",
+            orderedOn: "",
+            price: "",
+            quantity: "",
+          },
+        ],
+      });
+    } catch (err) {
+      console.error("Error submitting project", err);
+    }
   };
 
   return (
@@ -217,25 +242,37 @@ export const ProjectForm = () => {
             <label>
               <u>Project State</u>
             </label>
-            <input
+            <select
               name="state"
               value={projectData.state}
               onChange={handleChange}
-              placeholder="Choose One"
-              className="form-control"
-            />
+              className="form-select"
+            >
+              <option value="">Choose One</option>
+              <option value="Quoting">Quoting</option>
+              <option value="Processing">Processing</option>
+              <option value="Kicked Off">Kicked-Off</option>
+              <option value="In Production">In-Production</option>
+              <option value="Debugging">Debugging</option>
+              <option value="Runoff">Runoff</option>
+              <option value="Shipping">Shipping</option>
+              <option value="Install">Installing</option>
+            </select>
           </div>
           <div className="mb-3 w-50 m-auto">
             <label>
               <u>Job Type</u>
             </label>
-            <input
+            <select
               name="type"
               value={projectData.type}
               onChange={handleChange}
-              placeholder="Choose One"
-              className="form-control"
-            />
+              className="form-select"
+            >
+              <option value="">Choose One</option>
+              <option value="Build">Build</option>
+              <option value="Batch">Batch</option>
+            </select>
           </div>
           <div className="mb-3 w-50 m-auto">
             <label>
@@ -352,13 +389,17 @@ export const ProjectForm = () => {
               <label>
                 <u>Current Status</u>
               </label>
-              <input
+              <select
                 name="status"
                 value={task.status}
                 onChange={(e) => handleArrayChange(idx, e, "tasks")}
-                placeholder="Choose One"
-                className="form-control"
-              />
+                className="form-select"
+              >
+                <option value="">Choose One</option>
+                <option value="Pending">Pending</option>
+                <option value="In Progress">In Progress</option>
+                <option value="Completed">Completed</option>
+              </select>
               {task.canDelete === true && (
                 <button
                   type="button"
@@ -525,6 +566,11 @@ export const ProjectForm = () => {
           Submit Project
         </button>
       </div>
+      {confirmationMsg && (
+        <div className="alert alert-success text-center fade show" role="alert">
+          {confirmationMsg}
+        </div>
+      )}
     </>
   );
 };

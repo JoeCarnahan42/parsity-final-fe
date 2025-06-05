@@ -18,6 +18,7 @@ export const BoardOverview = () => {
 
   const { activeView } = useToggleView();
   const { showWindow, setShowWindow, setShowNewProjForm } = useWindowContext();
+  // TODO - figure out why this is not rendering new projects
   const { projectPool, setProjectPool } = useProjectContext();
 
   const { user } = useAuth();
