@@ -21,7 +21,8 @@ export const BoardOverview = () => {
   const { projectPool, setProjectPool } = useProjectContext();
 
   const { user } = useAuth();
-  const loggedInUser = user.user;
+  const loggedInUser = user;
+  console.log("logged in user", loggedInUser);
 
   const [isLoading, setLoading] = useState(true);
   const [rawData, setRawData] = useState([]);
@@ -127,7 +128,7 @@ export const BoardOverview = () => {
                   fontSize: "xx-large",
                 }}
               >
-                <p className="mb-0">Hello, {loggedInUser.firstName}!</p>
+                <p className="mb-0">Hello, {loggedInUser.first_name}!</p>
               </div>
               <div
                 className="d-flex align-items-center justify-content-center border rounded w-25"
@@ -154,18 +155,18 @@ export const BoardOverview = () => {
                 className="border border-2 rounded-2 p-2 w-25 d-flex flex-column"
                 style={{ height: "250px" }}
               >
-                <div
+                <div //THIS DIV
                   style={{ overflowY: "auto", maxHeight: "100%" }}
                   className="flex-grow-1 mb-2"
                 >
                   {quotingProjects.length > 0 ? (
                     quotingProjects.map((project) => (
-                      <>
-                        <div key={project.id}>
+                      <div key={project.id}>
+                        <div>
                           <ProjectBtn project={project} />
                         </div>
                         <br />
-                      </>
+                      </div>
                     ))
                   ) : (
                     <p>No projects being quoted</p>
@@ -185,12 +186,12 @@ export const BoardOverview = () => {
                 >
                   {processingProjects.length > 0 ? (
                     processingProjects.map((project) => (
-                      <>
+                      <div key={project.id}>
                         <div key={project.id}>
                           <ProjectBtn project={project} />
                         </div>
                         <br />
-                      </>
+                      </div>
                     ))
                   ) : (
                     <p>No projects being processed</p>
@@ -210,12 +211,12 @@ export const BoardOverview = () => {
                 >
                   {kickedOffProjects.length > 0 ? (
                     kickedOffProjects.map((project) => (
-                      <>
+                      <div key={project.id}>
                         <div key={project.id}>
                           <ProjectBtn project={project} />
                         </div>
                         <br />
-                      </>
+                      </div>
                     ))
                   ) : (
                     <p>No projects kicked off</p>
@@ -235,12 +236,12 @@ export const BoardOverview = () => {
                 >
                   {inProdProjects.length > 0 ? (
                     inProdProjects.map((project) => (
-                      <>
+                      <div key={project.id}>
                         <div key={project.id}>
                           <ProjectBtn project={project} />
                         </div>
                         <br />
-                      </>
+                      </div>
                     ))
                   ) : (
                     <p>No projects in production</p>
@@ -263,12 +264,12 @@ export const BoardOverview = () => {
                 >
                   {debugProjects.length > 0 ? (
                     debugProjects.map((project) => (
-                      <>
+                      <div key={project.id}>
                         <div key={project.id}>
                           <ProjectBtn project={project} />
                         </div>
                         <br />
-                      </>
+                      </div>
                     ))
                   ) : (
                     <p>No projects being debugged</p>
@@ -288,12 +289,12 @@ export const BoardOverview = () => {
                 >
                   {runoffProjects.length > 0 ? (
                     runoffProjects.map((project) => (
-                      <>
+                      <div key={project.id}>
                         <div key={project.id}>
                           <ProjectBtn project={project} />
                         </div>
                         <br />
-                      </>
+                      </div>
                     ))
                   ) : (
                     <p>No projects being Ran-Off</p>
@@ -313,12 +314,12 @@ export const BoardOverview = () => {
                 >
                   {shippingProjects.length > 0 ? (
                     shippingProjects.map((project) => (
-                      <>
+                      <div key={project.id}>
                         <div key={project.id}>
                           <ProjectBtn project={project} />
                         </div>
                         <br />
-                      </>
+                      </div>
                     ))
                   ) : (
                     <p>No projects being shipped</p>
@@ -338,12 +339,12 @@ export const BoardOverview = () => {
                 >
                   {installProjects.length > 0 ? (
                     installProjects.map((project) => (
-                      <>
+                      <div key={project.id}>
                         <div key={project.id}>
                           <ProjectBtn project={project} />
                         </div>
                         <br />
-                      </>
+                      </div>
                     ))
                   ) : (
                     <p>No projects being installed</p>

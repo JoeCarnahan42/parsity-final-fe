@@ -1,10 +1,12 @@
 "use client";
 import { useAuth } from "../context/AuthContext";
 import { useState, useRef, useEffect } from "react";
+import { useAuthCheck } from "../hooks/useAuthCheck";
 
 export const AuthForm = () => {
+  const sessionExpired = useAuthCheck();
   const { login } = useAuth();
-  const { sessionExpired, setSessionExpired, setAuthMode } = useAuth();
+  const { setSessionExpired, setAuthMode } = useAuth();
 
   const emailRef = useRef();
   const passwordRef = useRef();

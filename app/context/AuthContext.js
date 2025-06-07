@@ -1,11 +1,11 @@
 "use client";
 import axios from "axios";
-
-const { createContext, useState, useContext } = require("react");
+import { createContext, useState, useContext, useEffect } from "react";
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
+  useEffect(() => {});
   const [user, setUser] = useState(false);
   const [sessionExpired, setSessionExpired] = useState(false);
   const [authMode, setAuthMode] = useState("login");

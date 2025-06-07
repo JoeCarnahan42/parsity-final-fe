@@ -1,11 +1,9 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import axios from "axios";
 import { useAuth } from "../context/AuthContext";
-import { useRouter } from "next/navigation";
 
 export const useAuthCheck = (intervalMs = 5 * 60 * 1000) => {
-  const router = useRouter();
   const { setUser, setSessionExpired } = useAuth();
 
   useEffect(() => {
@@ -19,11 +17,11 @@ export const useAuthCheck = (intervalMs = 5 * 60 * 1000) => {
             withCredentials: true,
           }
         );
-        setUser(res.data);
         setSessionExpired(false);
         if (timeoutId) {
           clearTimeout(timeoutId);
         }
+        setUser(res.data.user);
       } catch (err) {
         if (err.response?.status === 401) {
           setUser(null);
@@ -37,5 +35,5 @@ export const useAuthCheck = (intervalMs = 5 * 60 * 1000) => {
     checkAuth();
     const interval = setInterval(checkAuth, intervalMs);
     return () => clearInterval(interval);
-  }, [setUser, intervalMs, router, setSessionExpired]);
+  }, [setUser, intervalMs, setSessionExpired]);
 };

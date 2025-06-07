@@ -1,11 +1,8 @@
 "use client";
 import { useEffect } from "react";
 import axios from "axios";
-import { useRouter } from "next/navigation";
 
 export const useInitialAuth = () => {
-  const router = useRouter();
-
   useEffect(() => {
     const checkAndRedirect = async () => {
       try {
@@ -16,12 +13,11 @@ export const useInitialAuth = () => {
           }
         );
         if (res.status === 200) {
-          router.push("/");
         }
       } catch (err) {
         // Not authenticated — do nothing
       }
     };
     checkAndRedirect();
-  }, [router]);
+  }, []);
 };

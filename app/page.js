@@ -1,5 +1,6 @@
 "use client";
 import { useInitialAuth } from "./hooks/useInitialAuth";
+import { useAuthCheck } from "./hooks/useAuthCheck";
 import { useAuth } from "./context/AuthContext";
 
 // Components
@@ -9,7 +10,9 @@ import { BoardOverview } from "./components/BoardOverview";
 
 export default function MainAuth() {
   useInitialAuth();
+  useAuthCheck();
   const { user, authMode, setAuthMode } = useAuth();
+  console.log(user);
 
   return (
     <div className="text-center mt-5">
