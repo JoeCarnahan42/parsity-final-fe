@@ -160,9 +160,12 @@ export const BoardOverview = () => {
                 >
                   {quotingProjects.length > 0 ? (
                     quotingProjects.map((project) => (
-                      <div key={project.id}>
-                        <ProjectBtn project={project} />
-                      </div>
+                      <>
+                        <div key={project.id}>
+                          <ProjectBtn project={project} />
+                        </div>
+                        <br />
+                      </>
                     ))
                   ) : (
                     <p>No projects being quoted</p>
@@ -182,9 +185,12 @@ export const BoardOverview = () => {
                 >
                   {processingProjects.length > 0 ? (
                     processingProjects.map((project) => (
-                      <div key={project.id}>
-                        <ProjectBtn project={project} />
-                      </div>
+                      <>
+                        <div key={project.id}>
+                          <ProjectBtn project={project} />
+                        </div>
+                        <br />
+                      </>
                     ))
                   ) : (
                     <p>No projects being processed</p>
@@ -204,9 +210,12 @@ export const BoardOverview = () => {
                 >
                   {kickedOffProjects.length > 0 ? (
                     kickedOffProjects.map((project) => (
-                      <div key={project.id}>
-                        <ProjectBtn project={project} />
-                      </div>
+                      <>
+                        <div key={project.id}>
+                          <ProjectBtn project={project} />
+                        </div>
+                        <br />
+                      </>
                     ))
                   ) : (
                     <p>No projects kicked off</p>
@@ -226,9 +235,12 @@ export const BoardOverview = () => {
                 >
                   {inProdProjects.length > 0 ? (
                     inProdProjects.map((project) => (
-                      <div key={project.id}>
-                        <ProjectBtn project={project} />
-                      </div>
+                      <>
+                        <div key={project.id}>
+                          <ProjectBtn project={project} />
+                        </div>
+                        <br />
+                      </>
                     ))
                   ) : (
                     <p>No projects in production</p>
@@ -251,9 +263,12 @@ export const BoardOverview = () => {
                 >
                   {debugProjects.length > 0 ? (
                     debugProjects.map((project) => (
-                      <div key={project.id}>
-                        <ProjectBtn project={project} />
-                      </div>
+                      <>
+                        <div key={project.id}>
+                          <ProjectBtn project={project} />
+                        </div>
+                        <br />
+                      </>
                     ))
                   ) : (
                     <p>No projects being debugged</p>
@@ -273,9 +288,12 @@ export const BoardOverview = () => {
                 >
                   {runoffProjects.length > 0 ? (
                     runoffProjects.map((project) => (
-                      <div key={project.id}>
-                        <ProjectBtn project={project} />
-                      </div>
+                      <>
+                        <div key={project.id}>
+                          <ProjectBtn project={project} />
+                        </div>
+                        <br />
+                      </>
                     ))
                   ) : (
                     <p>No projects being Ran-Off</p>
@@ -295,9 +313,12 @@ export const BoardOverview = () => {
                 >
                   {shippingProjects.length > 0 ? (
                     shippingProjects.map((project) => (
-                      <div key={project.id}>
-                        <ProjectBtn project={project} />
-                      </div>
+                      <>
+                        <div key={project.id}>
+                          <ProjectBtn project={project} />
+                        </div>
+                        <br />
+                      </>
                     ))
                   ) : (
                     <p>No projects being shipped</p>
@@ -317,9 +338,12 @@ export const BoardOverview = () => {
                 >
                   {installProjects.length > 0 ? (
                     installProjects.map((project) => (
-                      <div key={project.id}>
-                        <ProjectBtn project={project} />
-                      </div>
+                      <>
+                        <div key={project.id}>
+                          <ProjectBtn project={project} />
+                        </div>
+                        <br />
+                      </>
                     ))
                   ) : (
                     <p>No projects being installed</p>
