@@ -22,7 +22,6 @@ export const BoardOverview = () => {
 
   const { user } = useAuth();
   const loggedInUser = user;
-  console.log("logged in user", loggedInUser);
 
   const [isLoading, setLoading] = useState(true);
   const [rawData, setRawData] = useState([]);
