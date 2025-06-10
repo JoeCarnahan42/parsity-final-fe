@@ -11,10 +11,13 @@ import { BoardOverview } from "./components/BoardOverview";
 export default function MainAuth() {
   useInitialAuth();
   useAuthCheck();
-  const { user, authMode, setAuthMode } = useAuth();
+  const { user, authMode, setAuthMode, sessionExpired } = useAuth();
 
   return (
     <div className="text-center mt-5">
+      {sessionExpired === true && (
+        <p style={{ color: "red" }}>Session Expired</p>
+      )}
       {!user && (
         <>
           {authMode === "login" && (

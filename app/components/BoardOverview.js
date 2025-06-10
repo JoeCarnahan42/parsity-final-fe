@@ -56,18 +56,22 @@ export const BoardOverview = () => {
   };
 
   useEffect(() => {
-    axios
-      .get("https://parsity-final-be.onrender.com/projects/", {
-        withCredentials: true,
-      })
-      .then((response) => {
+    async function fetch() {
+      try {
+        const response = await axios.get(
+          "https://parsity-final-be.onrender.com/projects/",
+          {
+            withCredentials: true,
+          }
+        );
         setRawData(response.data);
         setLoading(false);
-      })
-      .catch((err) => {
+      } catch (err) {
         setError(err.message);
         setLoading(false);
-      });
+      }
+    }
+    fetch();
   }, []);
 
   useEffect(() => {
@@ -89,14 +93,6 @@ export const BoardOverview = () => {
       <div className="text-center mt-5 text-danger">
         <h2>Error Loading Projects</h2>
         <p>{error}</p>
-      </div>
-    );
-  }
-
-  if (sessionExpired) {
-    return (
-      <div style={{ textAlign: "center", marginTop: "2rem", color: "red" }}>
-        Session expired, redirecting to log in page...
       </div>
     );
   }

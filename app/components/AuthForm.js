@@ -32,6 +32,7 @@ export const AuthForm = () => {
     setAuthMode(null);
 
     try {
+      setLoading(true);
       await login({ email, password });
     } catch (err) {
       setError(err?.response?.data?.message || "Login failed.");

@@ -4,9 +4,13 @@ import axios from "axios";
 import { useAuth } from "../context/AuthContext";
 
 export const useAuthCheck = (intervalMs = 5 * 60 * 1000) => {
-  const { setUser, setSessionExpired } = useAuth();
+  const { setUser, setSessionExpired, isSessionActive } = useAuth();
 
   useEffect(() => {
+    if (!isSessionActive) {
+      return;
+    }
+
     let timeoutId;
 
     const checkAuth = async () => {
@@ -35,5 +39,5 @@ export const useAuthCheck = (intervalMs = 5 * 60 * 1000) => {
     checkAuth();
     const interval = setInterval(checkAuth, intervalMs);
     return () => clearInterval(interval);
-  }, [setUser, intervalMs, setSessionExpired]);
+  }, [setUser, intervalMs, setSessionExpired, isSessionActive]);
 };

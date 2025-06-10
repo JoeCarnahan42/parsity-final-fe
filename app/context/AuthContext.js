@@ -7,6 +7,7 @@ const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   useEffect(() => {});
   const [user, setUser] = useState(false);
+  const [isSessionActive, setIsSessionActive] = useState(false);
   const [sessionExpired, setSessionExpired] = useState(false);
   const [authMode, setAuthMode] = useState("login");
 
@@ -20,6 +21,7 @@ export const AuthProvider = ({ children }) => {
         }
       );
       setUser(res.data);
+      setIsSessionActive(true);
     } catch (err) {
       console.error("Login failed:", err);
       throw err;
@@ -34,6 +36,7 @@ export const AuthProvider = ({ children }) => {
     );
     setUser(null);
     setAuthMode("login");
+    setIsSessionActive(false);
   };
 
   return (
