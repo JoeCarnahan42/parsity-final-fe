@@ -14,7 +14,7 @@ export const ProjectForm = () => {
     state: "",
     type: "",
     description: "",
-    projectManagers: [{ name: "", title: "", canDelete: false }],
+    projectManagers: [{ name: "", title: "" }],
     tasks: [
       {
         title: "",
@@ -22,10 +22,9 @@ export const ProjectForm = () => {
         material: "",
         hours: "",
         status: "",
-        canDelete: false,
       },
     ],
-    projMetrics: [{ money: "", hours: "", due: "", canDelete: false }],
+    projMetrics: [{ money: "", hours: "", due: "" }],
     purchaseList: [
       {
         title: "",
@@ -34,6 +33,14 @@ export const ProjectForm = () => {
         orderedOn: "",
         price: "",
         quantity: "",
+      },
+    ],
+    materials: [
+      {
+        description: "",
+        forPartNumber: "",
+        orderedOn: "",
+        price: "",
       },
     ],
   });
@@ -93,6 +100,24 @@ export const ProjectForm = () => {
         ],
       }));
     }
+
+    if (field === "material") {
+      const identifier = iRef.current++;
+      setProjectData((projectData) => ({
+        ...projectData,
+        materials: [
+          ...projectData.materials,
+          {
+            description: "",
+            forPartNumber: "",
+            orderedOn: "",
+            price: "",
+            canDelete: true,
+            identifier,
+          },
+        ],
+      }));
+    }
   };
 
   const deleteField = (e) => {
@@ -132,6 +157,20 @@ export const ProjectForm = () => {
       setProjectData((projectData) => {
         const updatedArray = projectData[arr].filter(
           (item) => item.identifier !== id
+        );
+
+        return {
+          ...projectData,
+          [arr]: updatedArray,
+        };
+      });
+    }
+
+    if (field === "material") {
+      const arr = "materials";
+      setProjectData((projectData) => {
+        const updatedArray = projectData[arr].filter(
+          (material) => material.identifier !== id
         );
 
         return {
@@ -196,6 +235,14 @@ export const ProjectForm = () => {
             orderedOn: "",
             price: "",
             quantity: "",
+          },
+        ],
+        materials: [
+          {
+            description: "",
+            forPartNumber: "",
+            orderedOn: "",
+            price: "",
           },
         ],
       });
@@ -549,6 +596,76 @@ export const ProjectForm = () => {
           ))}
           <button
             id="purchase-item"
+            onClick={(e) => addField(e)}
+            className="btn btn-secondary"
+            type="button"
+          >
+            Add Another Item
+          </button>
+          <h3
+            className="mt-4 mb-2 w-50 m-auto"
+            style={{ backgroundColor: "cornflowerblue" }}
+          >
+            Material Purchase List
+          </h3>
+          {projectData.materials.map((material, idx) => (
+            <div key={idx} className="mb-3 w-50 m-auto">
+              <label>
+                <u>Description</u>
+              </label>
+              <input
+                name="description"
+                value={material.description}
+                onChange={(e) => handleArrayChange(idx, e, "materials")}
+                placeholder="Cold Rolled Steel"
+                className="form-control mb-2"
+              />
+              <label>
+                <u>For Part Number</u>
+              </label>
+              <input
+                name="forPartNumber"
+                value={material.forPartNumber}
+                onChange={(e) => handleArrayChange(idx, e, "materials")}
+                placeholder="Part Number"
+                className="form-control mb-2"
+              />
+              <label>
+                <u>Price</u>
+              </label>
+              <input
+                name="price"
+                value={material.price}
+                onChange={(e) => handleArrayChange(idx, e, "materials")}
+                placeholder="$50"
+                className="form-control mb-2"
+              />
+              <label>
+                <u>Date Ordered</u>
+              </label>
+              <input
+                type="date"
+                name="orderedOn"
+                value={material.orderedOn}
+                onChange={(e) => handleArrayChange(idx, e, "materials")}
+                className="form-control mb-2"
+              />
+              {material.canDelete === true && (
+                <button
+                  type="button"
+                  name="material"
+                  id={material.identifier}
+                  onClick={(e) => deleteField(e)}
+                  className="btn btn-danger"
+                >
+                  Delete
+                </button>
+              )}
+              <hr style={{ border: "1px solid black" }} />
+            </div>
+          ))}
+          <button
+            id="material"
             onClick={(e) => addField(e)}
             className="btn btn-secondary"
             type="button"
