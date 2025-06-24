@@ -11,6 +11,7 @@ export const WindowContextProvider = ({ children }) => {
   const [showBreakdown, setShowBreakdown] = useState(false);
   const [showDetails, setShowDetails] = useState(false);
   const [showNewProjForm, setShowNewProjForm] = useState(false);
+  const [showUpdateForm, setShowUpdateForm] = useState(false);
 
   const closeWindow = () => {
     setShowDetails(false);
@@ -18,6 +19,7 @@ export const WindowContextProvider = ({ children }) => {
     setShowWindow(false);
     setShowNewProjForm(false);
     setShowBreakdown(false);
+    setShowUpdateForm(false);
   };
 
   return (
@@ -32,6 +34,8 @@ export const WindowContextProvider = ({ children }) => {
         setShowNewProjForm,
         setShowBreakdown,
         showBreakdown,
+        showUpdateForm,
+        setShowUpdateForm,
       }}
     >
       {children}

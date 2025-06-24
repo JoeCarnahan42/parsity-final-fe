@@ -3,16 +3,12 @@ import { useProjectContext } from "../context/ProjectContext";
 import { useWindowContext } from "../context/WindowContext";
 
 export const ProjectDetails = () => {
-  const { project, materials } = useProjectContext();
+  const { project } = useProjectContext();
   const { setShowDetails } = useWindowContext();
-
-  // TODO - add a back button to return to ProjectBreakdown.js
 
   return (
     <div className="d-flex w-100 p-3">
       {console.log("PURCHASE LIST ---", project.purchaseList)}
-      {console.log("TASKS ---", project.tasks)}
-      {console.log("MATERIALS ---", materials)}
       {/* TODO - populate window with project info */}
       <div style={{ width: "300px" }} className="me-3 d-flex flex-column gap-3">
         <div className="border rounded p-2">
@@ -67,7 +63,7 @@ export const ProjectDetails = () => {
             }}
             className="p-3"
           >
-            {materials.map((mat) => {
+            {project.materials.map((mat) => {
               return (
                 <li key={mat.id} style={{ backgroundColor: "lightgrey" }}>
                   <u>{mat.description}</u>

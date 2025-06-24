@@ -5,13 +5,16 @@ import { createContext, useState, useContext, useEffect } from "react";
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
+  // TODO - Handle setloading here!
   useEffect(() => {});
   const [user, setUser] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [isSessionActive, setIsSessionActive] = useState(false);
   const [sessionExpired, setSessionExpired] = useState(false);
   const [authMode, setAuthMode] = useState("login");
 
   const login = async (credentials) => {
+    setLoading(true);
     try {
       const res = await axios.post(
         "https://parsity-final-be.onrender.com/login/",
@@ -20,6 +23,7 @@ export const AuthProvider = ({ children }) => {
           withCredentials: true,
         }
       );
+      setLoading(false);
       setUser(res.data);
       setIsSessionActive(true);
     } catch (err) {
@@ -44,6 +48,8 @@ export const AuthProvider = ({ children }) => {
       value={{
         user,
         setUser,
+        loading,
+        setLoading,
         login,
         logout,
         sessionExpired,

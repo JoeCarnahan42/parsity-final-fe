@@ -1,7 +1,6 @@
 "use client";
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { useAuthCheck } from "../hooks/useAuthCheck";
 import { useProjectContext } from "../context/ProjectContext";
 import { useWindowContext } from "../context/WindowContext";
 import { useAuth } from "../context/AuthContext";
@@ -14,18 +13,18 @@ import { ToggleButton } from "./ToggleButton";
 import { Window } from "./Window";
 
 export const BoardOverview = () => {
-  const sessionExpired = useAuthCheck();
-
   const { activeView } = useToggleView();
   const { showWindow, setShowWindow, setShowNewProjForm } = useWindowContext();
   const { projectPool, setProjectPool } = useProjectContext();
 
-  const { user } = useAuth();
+  const { user, loading, setLoading } = useAuth();
   const loggedInUser = user;
 
-  const [isLoading, setLoading] = useState(true);
   const [rawData, setRawData] = useState([]);
   const [error, setError] = useState(null);
+  // TODO - set comments and blockers in global state / find out how to update the comments/blockers after a new one it posted
+  const [allComments, setAllComments] = useState(0);
+  const [allBlockers, setAllBlockers] = useState(0);
 
   const quotingProjects = projectPool.filter(
     (proj) => proj.state === "Quoting"
@@ -57,6 +56,7 @@ export const BoardOverview = () => {
 
   useEffect(() => {
     async function fetch() {
+      setLoading(true);
       try {
         const response = await axios.get(
           "https://parsity-final-be.onrender.com/projects/",
@@ -64,7 +64,16 @@ export const BoardOverview = () => {
             withCredentials: true,
           }
         );
+
+        const getCommentsAndBlockers = await axios.get(
+          "https://parsity-final-be.onrender.com/comments/comments&blockers",
+          {
+            withCredentials: true,
+          }
+        );
         setRawData(response.data);
+        setAllComments(getCommentsAndBlockers.data.comments.length);
+        setAllBlockers(getCommentsAndBlockers.data.blockers.length);
         setLoading(false);
       } catch (err) {
         setError(err.message);
@@ -103,7 +112,7 @@ export const BoardOverview = () => {
 
   return (
     <>
-      {isLoading ? (
+      {loading ? (
         <div className="text-center mt-5">
           <h2>Loading Projects...</h2>
         </div>
@@ -129,13 +138,17 @@ export const BoardOverview = () => {
                 className="d-flex align-items-center justify-content-center border rounded w-25"
                 style={{ height: "45px", backgroundColor: "lavender" }}
               >
-                <p className="mb-0">Total Blockers: 0</p>
+                <p className="mb-0">
+                  Total Blockers: <strong>{allBlockers}</strong>
+                </p>
               </div>
               <div
                 className="d-flex align-items-center justify-content-center border rounded w-25"
                 style={{ height: "45px", backgroundColor: "forestgreen" }}
               >
-                <p className="mb-0">Total Comments: 0</p>
+                <p className="mb-0">
+                  Total Comments: <strong>{allComments}</strong>
+                </p>
               </div>
               <div
                 className="d-flex align-items-center justify-content-center w-25"
@@ -150,7 +163,7 @@ export const BoardOverview = () => {
                 className="border border-2 rounded-2 p-2 w-25 d-flex flex-column"
                 style={{ height: "250px" }}
               >
-                <div //THIS DIV
+                <div
                   style={{ overflowY: "auto", maxHeight: "100%" }}
                   className="flex-grow-1 mb-2"
                 >

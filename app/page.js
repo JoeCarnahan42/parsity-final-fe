@@ -9,15 +9,17 @@ import { RegForm } from "./components/RegForm";
 import { BoardOverview } from "./components/BoardOverview";
 
 export default function MainAuth() {
+  // TODO - look in to ngx-currency
   useInitialAuth();
   useAuthCheck();
-  const { user, authMode, setAuthMode, sessionExpired } = useAuth();
+  const { user, authMode, setAuthMode, sessionExpired, loading } = useAuth();
 
   return (
     <div className="text-center mt-5">
       {sessionExpired === true && (
         <p style={{ color: "red" }}>Session Expired</p>
       )}
+      {loading === true && <h1>Loading, please wait...</h1>}
       {!user && (
         <>
           {authMode === "login" && (

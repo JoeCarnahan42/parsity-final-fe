@@ -1,15 +1,27 @@
 import { useProjectContext } from "../context/ProjectContext";
 import { useWindowContext } from "../context/WindowContext";
+
+// Components
 import { ProjectBreakdown } from "./ProjectBreakdown";
 import { ProjectDetails } from "./ProjectDetails";
 import { ProjectForm } from "./ProjectForm";
+import { UpdateForm } from "./UpdateForm";
 
 export const Window = () => {
   const { project } = useProjectContext();
-  const { showDetails, showNewProjForm, showBreakdown, closeWindow } =
-    useWindowContext();
+  const {
+    showDetails,
+    showNewProjForm,
+    showBreakdown,
+    closeWindow,
+    showUpdateForm,
+  } = useWindowContext();
 
   const renderComponent = () => {
+    if (showUpdateForm) {
+      return <UpdateForm />;
+    }
+
     if (showDetails) {
       return <ProjectDetails />;
     }
@@ -21,12 +33,25 @@ export const Window = () => {
     if (showNewProjForm) {
       return <ProjectForm />;
     }
+
     // TODO - add other forms here
   };
 
   const windowTitle = () => {
+    if (showUpdateForm) {
+      return (
+        <span>
+          Updating <strong>{project.title}</strong>
+        </span>
+      );
+    }
+
     if (project) {
-      return <span>{project.title}</span>;
+      return (
+        <span>
+          <strong>{project.title}</strong>
+        </span>
+      );
     }
 
     if (showNewProjForm) {

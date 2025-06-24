@@ -7,12 +7,11 @@ export const ProjectBreakdown = () => {
 
   const currentMetrics = project.currentMetrics?.[0];
 
-  const { setShowDetails } = useWindowContext();
+  const { setShowDetails, setShowUpdateForm } = useWindowContext();
 
   return (
     <div>
-      {/*console.log(project)*/}
-      {/* TODO - populate window with project info */}
+      {console.log(project)}
       <br />
       <div className="container d-flex justify-content-between align-items-center gap-2 my-3">
         <button
@@ -109,6 +108,13 @@ export const ProjectBreakdown = () => {
               <p>Current Metrics have not been uploaded.</p>
             </div>
           )}
+          <button
+            id={project.id}
+            onClick={() => setShowUpdateForm(true)}
+            className="btn btn-secondary"
+          >
+            Update Project
+          </button>
         </div>
       </div>
     </div>

@@ -1,4 +1,3 @@
-// TODO - make inputs that have specific values dropdowns
 "use client";
 import { useRef, useState } from "react";
 import axios from "axios";
