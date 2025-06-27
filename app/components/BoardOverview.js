@@ -15,16 +15,19 @@ import { Window } from "./Window";
 export const BoardOverview = () => {
   const { activeView } = useToggleView();
   const { showWindow, setShowWindow, setShowNewProjForm } = useWindowContext();
-  const { projectPool, setProjectPool } = useProjectContext();
+  const {
+    projectPool,
+    setProjectPool,
+    allBlockers,
+    allComments,
+    setAllBlockers,
+    setAllComments,
+  } = useProjectContext();
 
   const { user, loading, setLoading } = useAuth();
-  const loggedInUser = user;
 
   const [rawData, setRawData] = useState([]);
   const [error, setError] = useState(null);
-  // TODO - set comments and blockers in global state / find out how to update the comments/blockers after a new one it posted
-  const [allComments, setAllComments] = useState(0);
-  const [allBlockers, setAllBlockers] = useState(0);
 
   const quotingProjects = projectPool.filter(
     (proj) => proj.state === "Quoting"
@@ -132,7 +135,7 @@ export const BoardOverview = () => {
                   fontSize: "xx-large",
                 }}
               >
-                <p className="mb-0">Hello, {loggedInUser.first_name}!</p>
+                <p className="mb-0">Hello, {user.first_name}!</p>
               </div>
               <div
                 className="d-flex align-items-center justify-content-center border rounded w-25"

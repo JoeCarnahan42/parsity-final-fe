@@ -63,7 +63,7 @@ export const ProjectDetails = () => {
             }}
             className="p-3"
           >
-            {project.materials.map((mat) => {
+            {project.material.map((mat) => {
               return (
                 <li key={mat.id} style={{ backgroundColor: "lightgrey" }}>
                   <u>{mat.description}</u>

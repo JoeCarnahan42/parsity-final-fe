@@ -5,11 +5,15 @@ import { useWindowContext } from "../context/WindowContext";
 import { useProjectContext } from "../context/ProjectContext";
 
 export const UpdateForm = () => {
-  const { setShowUpdateForm } = useWindowContext();
+  const { setShowUpdateForm, whatToUpdate, setWhatToUpdate } =
+    useWindowContext();
   const { project, setAllComments, setAllBlockers } = useProjectContext();
-  const [whatToUpdate, setWhatToUpdate] = useState(null);
   const [commentInput, setCommentInput] = useState({
     comment: "",
+    date: "",
+  });
+  const [blockerInput, setBlockerInput] = useState({
+    blocker: "",
     date: "",
   });
 
@@ -20,20 +24,27 @@ export const UpdateForm = () => {
         [e.target.name]: e.target.value,
       });
     }
+
+    if (whatToUpdate === "Blocker") {
+      setBlockerInput({
+        ...blockerInput,
+        [e.target.name]: e.target.value,
+      });
+    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!commentInput.comment || !commentInput.date) {
-      console.error("Missing required fields");
-      return;
-    }
-
     const projectId = project.id;
     // TODO - add conformation message
     // TODO - axios POST request
     if (whatToUpdate === "Comment") {
+      if (!commentInput.comment || !commentInput.date) {
+        console.error("Missing required fields");
+        return;
+      }
+
       try {
         const res = await axios.post(
           `https://parsity-final-be.onrender.com/comments/${projectId}/comments`,
@@ -54,6 +65,11 @@ export const UpdateForm = () => {
     }
 
     if (whatToUpdate === "Blocker") {
+      if (!blockerInput.blocker || !blockerInput.date) {
+        console.error("Missing required fields");
+        return;
+      }
+
       try {
         const res = await axios.post(
           `https://parsity-final-be.onrender.com/comments/${projectId}/blockers`,
@@ -144,6 +160,37 @@ export const UpdateForm = () => {
                 <br />
                 <button type="submit" className="btn btn-success">
                   Post Comment
+                </button>
+              </div>
+            )}
+            {whatToUpdate === "Blocker" && (
+              <div className="mb-3 w-50 m-auto">
+                <h3>Add a Blocker</h3>
+                <label>
+                  <u>Blocker:</u>
+                </label>
+                <input
+                  onChange={handleChange}
+                  placeholder="Waiting for material."
+                  className="form-control"
+                  type="text"
+                  name="blocker"
+                  value={blockerInput.blocker}
+                />
+                <br />
+                <label>
+                  <u>Todays Date:</u>
+                </label>
+                <input
+                  onChange={handleChange}
+                  value={blockerInput.date}
+                  name="date"
+                  className="form-control"
+                  type="date"
+                />
+                <br />
+                <button type="submit" className="btn btn-success">
+                  Post Blocker
                 </button>
               </div>
             )}
