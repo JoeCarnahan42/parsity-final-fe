@@ -13,7 +13,9 @@ export const UpdateForm = () => {
     date: "",
   });
   const [blockerInput, setBlockerInput] = useState({
-    blocker: "",
+    description: "",
+    severity: "",
+    status: "",
     date: "",
   });
 
@@ -79,8 +81,10 @@ export const UpdateForm = () => {
           }
         );
         setAllBlockers(res.data);
-        setCommentInput({
-          blocker: "",
+        setBlockerInput({
+          description: "",
+          severity: "",
+          status: "",
           date: "",
         });
         setWhatToUpdate(null);
@@ -167,7 +171,7 @@ export const UpdateForm = () => {
               <div className="mb-3 w-50 m-auto">
                 <h3>Add a Blocker</h3>
                 <label>
-                  <u>Blocker:</u>
+                  <u>Description:</u>
                 </label>
                 <input
                   onChange={handleChange}
@@ -175,9 +179,10 @@ export const UpdateForm = () => {
                   className="form-control"
                   type="text"
                   name="blocker"
-                  value={blockerInput.blocker}
+                  value={blockerInput.description}
                 />
                 <br />
+                {/* TODO - add other blocker field inputs. DONT FORGET TO ADD THEM TO STATE  */}
                 <label>
                   <u>Todays Date:</u>
                 </label>

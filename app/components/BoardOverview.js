@@ -61,22 +61,22 @@ export const BoardOverview = () => {
     async function fetch() {
       setLoading(true);
       try {
-        const response = await axios.get(
+        const responseOne = await axios.get(
           "https://parsity-final-be.onrender.com/projects/",
           {
             withCredentials: true,
           }
         );
 
-        const getCommentsAndBlockers = await axios.get(
+        const responseTwo = await axios.get(
           "https://parsity-final-be.onrender.com/comments/comments&blockers",
           {
             withCredentials: true,
           }
         );
-        setRawData(response.data);
-        setAllComments(getCommentsAndBlockers.data.comments.length);
-        setAllBlockers(getCommentsAndBlockers.data.blockers.length);
+        setRawData(responseOne.data);
+        setAllComments(responseTwo.data.comments.length);
+        setAllBlockers(responseTwo.data.blockers.length);
         setLoading(false);
       } catch (err) {
         setError(err.message);
