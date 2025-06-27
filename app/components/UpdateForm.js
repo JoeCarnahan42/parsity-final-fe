@@ -6,7 +6,7 @@ import { useProjectContext } from "../context/ProjectContext";
 
 export const UpdateForm = () => {
   const { setShowUpdateForm } = useWindowContext();
-  const { project } = useProjectContext();
+  const { project, setAllComments, setAllBlockers } = useProjectContext();
   const [whatToUpdate, setWhatToUpdate] = useState(null);
   const [commentInput, setCommentInput] = useState({
     comment: "",
@@ -31,7 +31,7 @@ export const UpdateForm = () => {
     }
 
     const projectId = project.id;
-    // TODO - add loading state????
+    // TODO - add conformation message
     // TODO - axios POST request
     if (whatToUpdate === "Comment") {
       try {
@@ -42,9 +42,29 @@ export const UpdateForm = () => {
             withCredentials: true,
           }
         );
-        project.comments.push(res.data);
+        setAllComments(res.data);
         setCommentInput({
           comment: "",
+          date: "",
+        });
+        setWhatToUpdate(null);
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    if (whatToUpdate === "Blocker") {
+      try {
+        const res = await axios.post(
+          `https://parsity-final-be.onrender.com/comments/${projectId}/blockers`,
+          commentInput,
+          {
+            withCredentials: true,
+          }
+        );
+        setAllBlockers(res.data);
+        setCommentInput({
+          blocker: "",
           date: "",
         });
         setWhatToUpdate(null);

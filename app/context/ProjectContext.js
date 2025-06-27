@@ -6,6 +6,8 @@ const ProjectContext = createContext();
 export const ProjectContextProvider = ({ children }) => {
   const [projectPool, setProjectPool] = useState([]);
   const [project, setProject] = useState(null);
+  const [allComments, setAllComments] = useState(0);
+  const [allBlockers, setAllBlockers] = useState(0);
 
   return (
     <ProjectContext.Provider
@@ -14,6 +16,10 @@ export const ProjectContextProvider = ({ children }) => {
         setProjectPool,
         project,
         setProject,
+        allBlockers,
+        allComments,
+        setAllBlockers,
+        setAllComments,
       }}
     >
       {children}
