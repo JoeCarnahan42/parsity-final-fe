@@ -56,6 +56,7 @@ export const AuthProvider = ({ children }) => {
         setSessionExpired,
         authMode,
         setAuthMode,
+        isSessionActive,
       }}
     >
       {children}

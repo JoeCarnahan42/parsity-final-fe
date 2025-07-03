@@ -4,6 +4,8 @@ import { createContext, useContext, useState } from "react";
 const ProjectContext = createContext();
 
 export const ProjectContextProvider = ({ children }) => {
+  // TODO - Add a state that tracks budget info hold the sum of
+  // various purchase information to track total spending and budget comparison
   const [projectPool, setProjectPool] = useState([]);
   const [project, setProject] = useState(null);
   const [allComments, setAllComments] = useState(0);
