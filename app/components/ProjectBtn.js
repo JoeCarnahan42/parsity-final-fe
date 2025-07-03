@@ -8,7 +8,7 @@ export const ProjectBtn = (props) => {
   const { setShowWindow, setShowBreakdown } = useWindowContext();
 
   const getProject = async (e) => {
-    // TODO - make button color red if there is an active blocker
+    // TODO - make button color red if there is an active blocker or add small indicator
     try {
       const response = await axios.get(
         `https://parsity-final-be.onrender.com/projects/${e.target.id}`,
