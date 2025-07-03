@@ -500,6 +500,7 @@ export const ProjectForm = () => {
               <label>
                 <u>Estimated Completion Date</u>
               </label>
+              {/* TODO - dont allow date to be BEFORE current date */}
               <input
                 type="date"
                 name="due"
@@ -551,6 +552,7 @@ export const ProjectForm = () => {
               <label>
                 <u>Date Ordered</u>
               </label>
+              {/* TODO - dont allow date to be AFTER current date */}
               <input
                 type="date"
                 name="orderedOn"
@@ -642,6 +644,7 @@ export const ProjectForm = () => {
               <label>
                 <u>Date Ordered</u>
               </label>
+              {/* TODO - dont allow date to be AFTER current date */}
               <input
                 type="date"
                 name="orderedOn"
