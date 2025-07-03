@@ -53,6 +53,7 @@ export const ProjectDetails = () => {
           <h3 className="mt-0">
             <u>Material Purchase List</u>
           </h3>
+          {/* TODO - remove bullet points from ALL lists */}
           <ul
             style={{
               height: "250px",

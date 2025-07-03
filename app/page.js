@@ -10,6 +10,7 @@ import { BoardOverview } from "./components/BoardOverview";
 
 export default function MainAuth() {
   // TODO - look in to ngx-currency
+  // TODO - stop session expired message from displaying when the user logs out
   useInitialAuth();
   useAuthCheck();
   const { user, authMode, setAuthMode, sessionExpired, loading } = useAuth();

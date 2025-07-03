@@ -6,6 +6,8 @@ import { ProjectBreakdown } from "./ProjectBreakdown";
 import { ProjectDetails } from "./ProjectDetails";
 import { ProjectForm } from "./ProjectForm";
 import { UpdateForm } from "./UpdateForm";
+import { Blockers } from "./Blockers";
+import { Comments } from "./Comments";
 
 export const Window = () => {
   const { project } = useProjectContext();
@@ -15,11 +17,21 @@ export const Window = () => {
     showBreakdown,
     closeWindow,
     showUpdateForm,
+    showBlockers,
+    showComments,
   } = useWindowContext();
 
   const renderComponent = () => {
     if (showUpdateForm) {
       return <UpdateForm />;
+    }
+
+    if (showBlockers) {
+      return <Blockers />;
+    }
+
+    if (showComments) {
+      return <Comments />;
     }
 
     if (showDetails) {

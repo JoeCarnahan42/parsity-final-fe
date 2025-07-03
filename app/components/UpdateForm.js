@@ -5,18 +5,22 @@ import { useWindowContext } from "../context/WindowContext";
 import { useProjectContext } from "../context/ProjectContext";
 
 export const UpdateForm = () => {
+  const [confirmationMsg, setConfirmationMsg] = useState("");
   const { setShowUpdateForm, whatToUpdate, setWhatToUpdate } =
     useWindowContext();
-  const { project, setAllComments, setAllBlockers } = useProjectContext();
+  const { project, setAllComments, setAllBlockers, allBlockers, allComments } =
+    useProjectContext();
   const [commentInput, setCommentInput] = useState({
     comment: "",
     date: "",
+    name: "",
   });
   const [blockerInput, setBlockerInput] = useState({
     description: "",
     severity: "",
     status: "",
     date: "",
+    name: "",
   });
 
   const handleChange = (e) => {
@@ -55,12 +59,13 @@ export const UpdateForm = () => {
             withCredentials: true,
           }
         );
-        setAllComments(res.data);
+        setAllComments([...allComments, res.data]);
         setCommentInput({
           comment: "",
           date: "",
+          name: "",
         });
-        setWhatToUpdate(null);
+        setConfirmationMsg("Posted successfully!");
       } catch (err) {
         console.error(err);
       }
@@ -75,19 +80,20 @@ export const UpdateForm = () => {
       try {
         const res = await axios.post(
           `https://parsity-final-be.onrender.com/comments/${projectId}/blockers`,
-          commentInput,
+          blockerInput,
           {
             withCredentials: true,
           }
         );
-        setAllBlockers(res.data);
+        setAllBlockers([...allBlockers, res.data]);
         setBlockerInput({
           description: "",
           severity: "",
           status: "",
           date: "",
+          name: "",
         });
-        setWhatToUpdate(null);
+        setConfirmationMsg("Posted successfully!");
       } catch (err) {
         console.error(err);
       }
@@ -162,6 +168,17 @@ export const UpdateForm = () => {
                   type="date"
                 />
                 <br />
+                <label>
+                  <u>Name:</u>
+                </label>
+                <input
+                  onChange={handleChange}
+                  value={commentInput.name}
+                  name="name"
+                  className="form-control"
+                  placeholder="John Doe"
+                />
+                <br />
                 <button type="submit" className="btn btn-success">
                   Post Comment
                 </button>
@@ -178,11 +195,41 @@ export const UpdateForm = () => {
                   placeholder="Waiting for material."
                   className="form-control"
                   type="text"
-                  name="blocker"
+                  name="description"
                   value={blockerInput.description}
                 />
                 <br />
-                {/* TODO - add other blocker field inputs. DONT FORGET TO ADD THEM TO STATE  */}
+                {/* TODO - add other blocker field inputs.(severity etc...) DONT FORGET TO ADD THEM TO STATE  */}
+                <label>
+                  <u>Severity:</u>
+                </label>
+                <select
+                  onChange={handleChange}
+                  className="form-select"
+                  value={blockerInput.severity}
+                  name="severity"
+                >
+                  <option value="">Choose One</option>
+                  <option value="low">Low</option>
+                  <option value="medium">Medium</option>
+                  <option value="high">High</option>
+                </select>
+                <br />
+                <label>
+                  <u>Status:</u>
+                </label>
+                <select
+                  onChange={handleChange}
+                  className="form-select"
+                  value={blockerInput.severity}
+                  name="severity"
+                >
+                  <option value="">Choose One</option>
+                  <option value="pending">Pending</option>
+                  <option value="in-progress">In Progress</option>
+                  <option value="resolved">Resolved</option>
+                </select>
+                <br />
                 <label>
                   <u>Todays Date:</u>
                 </label>
@@ -194,9 +241,28 @@ export const UpdateForm = () => {
                   type="date"
                 />
                 <br />
+                <label>
+                  <u>Name:</u>
+                </label>
+                <input
+                  onChange={handleChange}
+                  value={blockerInput.name}
+                  name="name"
+                  className="form-control"
+                  placeholder="John Doe"
+                />
+                <br />
                 <button type="submit" className="btn btn-success">
                   Post Blocker
                 </button>
+              </div>
+            )}
+            {confirmationMsg && (
+              <div
+                className="alert alert-success text-center fade show"
+                role="alert"
+              >
+                {confirmationMsg}
               </div>
             )}
           </>

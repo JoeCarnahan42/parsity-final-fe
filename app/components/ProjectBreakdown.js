@@ -7,10 +7,16 @@ export const ProjectBreakdown = () => {
 
   const currentMetrics = project.currentMetrics?.[0];
 
-  const { setShowDetails, setShowUpdateForm } = useWindowContext();
+  const {
+    setShowDetails,
+    setShowUpdateForm,
+    setShowBlockers,
+    setShowComments,
+  } = useWindowContext();
 
   return (
     <div>
+      {/* TODO - delete console log */}
       {console.log(project)}
       <br />
       <div className="container d-flex justify-content-between align-items-center gap-2 my-3">
@@ -25,8 +31,9 @@ export const ProjectBreakdown = () => {
           Status: <strong>{project.state}</strong>
         </button>
         <button
+          onClick={() => setShowBlockers(true)}
           style={{
-            backgroundColor: "lavender",
+            backgroundColor: "orange",
             height: "50px",
             fontSize: "x-large",
           }}
@@ -35,6 +42,7 @@ export const ProjectBreakdown = () => {
           Blockers: {project.blockers?.length || 0}
         </button>
         <button
+          onClick={() => setShowComments(true)}
           style={{
             backgroundColor: "forestgreen",
             height: "50px",

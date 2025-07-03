@@ -9,6 +9,8 @@ export const WindowContextProvider = ({ children }) => {
 
   const [showWindow, setShowWindow] = useState(false);
   const [showBreakdown, setShowBreakdown] = useState(false);
+  const [showBlockers, setShowBlockers] = useState(false);
+  const [showComments, setShowComments] = useState(false);
   const [showDetails, setShowDetails] = useState(false);
   const [showNewProjForm, setShowNewProjForm] = useState(false);
   const [showUpdateForm, setShowUpdateForm] = useState(false);
@@ -31,6 +33,10 @@ export const WindowContextProvider = ({ children }) => {
         setShowWindow,
         showDetails,
         setShowDetails,
+        showBlockers,
+        setShowBlockers,
+        showComments,
+        setShowComments,
         closeWindow,
         showNewProjForm,
         setShowNewProjForm,
