@@ -8,8 +8,14 @@ export const UpdateForm = () => {
   const [confirmationMsg, setConfirmationMsg] = useState("");
   const { setShowUpdateForm, whatToUpdate, setWhatToUpdate } =
     useWindowContext();
-  const { project, setAllComments, setAllBlockers, allBlockers, allComments } =
-    useProjectContext();
+  const {
+    project,
+    setProject,
+    setAllComments,
+    setAllBlockers,
+    allBlockers,
+    allComments,
+  } = useProjectContext();
   const [commentInput, setCommentInput] = useState({
     comment: "",
     date: "",
@@ -59,7 +65,10 @@ export const UpdateForm = () => {
             withCredentials: true,
           }
         );
-        setAllComments([...allComments, res.data]);
+        setProject((prevProject) => ({
+          ...prevProject,
+          comments: [...prevProject.comments, res.data],
+        }));
         setCommentInput({
           comment: "",
           date: "",
@@ -68,11 +77,12 @@ export const UpdateForm = () => {
         setConfirmationMsg("Posted successfully!");
       } catch (err) {
         console.error(err);
+        setConfirmationMsg("Error");
       }
     }
 
     if (whatToUpdate === "Blocker") {
-      if (!blockerInput.blocker || !blockerInput.date) {
+      if (!blockerInput.description || !blockerInput.date) {
         console.error("Missing required fields");
         return;
       }
@@ -85,7 +95,10 @@ export const UpdateForm = () => {
             withCredentials: true,
           }
         );
-        setAllBlockers([...allBlockers, res.data]);
+        setProject((prevProject) => ({
+          ...prevProject,
+          blockers: [...prevProject.blockers, res.data],
+        }));
         setBlockerInput({
           description: "",
           severity: "",
@@ -96,6 +109,7 @@ export const UpdateForm = () => {
         setConfirmationMsg("Posted successfully!");
       } catch (err) {
         console.error(err);
+        setConfirmationMsg("Error");
       }
     }
 
@@ -221,8 +235,8 @@ export const UpdateForm = () => {
                 <select
                   onChange={handleChange}
                   className="form-select"
-                  value={blockerInput.severity}
-                  name="severity"
+                  value={blockerInput.status}
+                  name="status"
                 >
                   <option value="">Choose One</option>
                   <option value="pending">Pending</option>
