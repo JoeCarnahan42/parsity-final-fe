@@ -18,10 +18,12 @@ export const BoardOverview = () => {
   const {
     projectPool,
     setProjectPool,
-    allBlockers,
-    allComments,
     setAllBlockers,
     setAllComments,
+    setNumOfComments,
+    setNumOfBlockers,
+    numOfBlockers,
+    numOfComments,
   } = useProjectContext();
 
   const { user, loading, setLoading } = useAuth();
@@ -75,8 +77,10 @@ export const BoardOverview = () => {
           }
         );
         setRawData(responseOne.data);
-        setAllComments(responseTwo.data.comments.length);
-        setAllBlockers(responseTwo.data.blockers.length);
+        setAllComments(responseTwo.data.comments);
+        setAllBlockers(responseTwo.data.blockers);
+        setNumOfComments(responseTwo.data.comments.length);
+        setNumOfBlockers(responseTwo.data.blockers.length);
         setLoading(false);
       } catch (err) {
         setError(err.message);
@@ -142,7 +146,7 @@ export const BoardOverview = () => {
                 style={{ height: "45px", backgroundColor: "lavender" }}
               >
                 <p className="mb-0">
-                  Total Blockers: <strong>{allBlockers}</strong>
+                  Total Blockers: <strong>{numOfBlockers}</strong>
                 </p>
               </div>
               <div
@@ -150,7 +154,7 @@ export const BoardOverview = () => {
                 style={{ height: "45px", backgroundColor: "forestgreen" }}
               >
                 <p className="mb-0">
-                  Total Comments: <strong>{allComments}</strong>
+                  Total Comments: <strong>{numOfComments}</strong>
                 </p>
               </div>
               <div

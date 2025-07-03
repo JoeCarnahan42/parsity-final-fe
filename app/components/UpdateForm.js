@@ -11,10 +11,14 @@ export const UpdateForm = () => {
   const {
     project,
     setProject,
+    allComments,
+    allBlockers,
     setAllComments,
     setAllBlockers,
-    allBlockers,
-    allComments,
+    numOfComments,
+    numOfBlockers,
+    setNumOfBlockers,
+    setNumOfComments,
   } = useProjectContext();
   const [commentInput, setCommentInput] = useState({
     comment: "",
@@ -69,6 +73,8 @@ export const UpdateForm = () => {
           ...prevProject,
           comments: [...prevProject.comments, res.data],
         }));
+        setNumOfComments(numOfComments + 1);
+        setAllComments([...allComments, res.data]);
         setCommentInput({
           comment: "",
           date: "",
@@ -99,6 +105,8 @@ export const UpdateForm = () => {
           ...prevProject,
           blockers: [...prevProject.blockers, res.data],
         }));
+        setNumOfBlockers(numOfBlockers + 1);
+        setAllBlockers([...allBlockers, res.data]);
         setBlockerInput({
           description: "",
           severity: "",

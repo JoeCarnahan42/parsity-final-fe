@@ -4,10 +4,14 @@ import axios from "axios";
 import { useAuth } from "../context/AuthContext";
 
 export const useAuthCheck = (intervalMs = 5 * 60 * 1000) => {
-  const { setUser, setSessionExpired, isSessionActive } = useAuth();
+  const { setUser, user, setSessionExpired, isSessionActive } = useAuth();
 
   useEffect(() => {
     let timeoutId;
+
+    if (!user) {
+      return;
+    }
 
     const checkAuth = async () => {
       try {

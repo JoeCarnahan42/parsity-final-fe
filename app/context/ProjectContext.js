@@ -8,8 +8,10 @@ export const ProjectContextProvider = ({ children }) => {
   // various purchase information to track total spending and budget comparison
   const [projectPool, setProjectPool] = useState([]);
   const [project, setProject] = useState(null);
-  const [allComments, setAllComments] = useState(0);
-  const [allBlockers, setAllBlockers] = useState(0);
+  const [numOfComments, setNumOfComments] = useState(0);
+  const [numOfBlockers, setNumOfBlockers] = useState(0);
+  const [allComments, setAllComments] = useState([]);
+  const [allBlockers, setAllBlockers] = useState([]);
 
   return (
     <ProjectContext.Provider
@@ -22,6 +24,10 @@ export const ProjectContextProvider = ({ children }) => {
         allComments,
         setAllBlockers,
         setAllComments,
+        numOfBlockers,
+        numOfComments,
+        setNumOfBlockers,
+        setNumOfComments,
       }}
     >
       {children}
