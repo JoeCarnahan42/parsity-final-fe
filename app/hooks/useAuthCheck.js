@@ -22,7 +22,6 @@ export const useAuthCheck = (intervalMs = 5 * 60 * 1000) => {
           clearTimeout(timeoutId);
         }
         setUser(res.data.user);
-        console.log(res.data.user);
       } catch (err) {
         if (err.response?.status === 401) {
           setUser(null);
