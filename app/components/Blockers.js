@@ -15,7 +15,15 @@ export const Blockers = () => {
     <>
       <h1>Blockers</h1>
       <hr />
-      <div className="container">
+      <div
+        style={{
+          overflowY: "auto",
+          overflowX: "hidden",
+          whiteSpace: "pre-wrap",
+          height: "500px",
+        }}
+        className="container"
+      >
         {project.blockers.map((blocker) => (
           <div
             className={`border rounded ${
@@ -29,9 +37,15 @@ export const Blockers = () => {
               {blocker.name}
             </p>
             <p>Description: {blocker.description}</p>
+            <div className="row justify-content-center">
+              <button className="col-1 btn btn-secondary">Update</button>
+              <br />
+              <button className="col-1 btn btn-danger">Delete</button>
+            </div>
           </div>
         ))}
       </div>
+      <br />
       <button onClick={() => setShowBlockers(false)} className="btn btn-danger">
         Close
       </button>

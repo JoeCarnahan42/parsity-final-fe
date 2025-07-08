@@ -9,7 +9,15 @@ export const Comments = () => {
     <>
       <h1>Comments</h1>
       <hr />
-      <div className="container">
+      <div
+        style={{
+          overflowY: "auto",
+          overflowX: "hidden",
+          whiteSpace: "pre-wrap",
+          height: "500px",
+        }}
+        className="container"
+      >
         {project.comments.map((comment) => (
           <p key={comment.id}>
             {comment.date} - {comment.comment} -{" "}
@@ -18,6 +26,7 @@ export const Comments = () => {
         ))}
         {/* TODO - remove "NO NAME PROVIDED once name fields have been populated." */}
       </div>
+      <br />
       <button onClick={() => setShowComments(false)} className="btn btn-danger">
         Close
       </button>
