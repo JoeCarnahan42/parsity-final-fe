@@ -24,6 +24,8 @@ export const WindowContextProvider = ({ children }) => {
     setShowBreakdown(false);
     setShowUpdateForm(false);
     setWhatToUpdate(null);
+    setShowBlockers(false);
+    setShowComments(false);
   };
 
   return (
