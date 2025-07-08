@@ -1,9 +1,42 @@
+"use client";
+import { useState } from "react";
+
 import { useProjectContext } from "../context/ProjectContext";
 import { useWindowContext } from "../context/WindowContext";
 
 export const Comments = () => {
-  const { project } = useProjectContext();
+  const [confirmationMsg, setConfirmationMsg] = useState("");
+  const {
+    project,
+    setProject,
+    setAllComments,
+    allComments,
+    numOfComments,
+    setNumOfComments,
+  } = useProjectContext();
   const { setShowComments } = useWindowContext();
+
+  const projectId = project.id;
+
+  const deleteComment = async (id) => {
+    try {
+      await axios.delete(
+        `https://parsity-final-be.onrender.com/comments/${projectId}/comments/${id}`,
+        {
+          withCredentials: true,
+        }
+      );
+      setAllComments([...allComments.filter((comment) => comment.id !== id)]);
+      setNumOfComments(numOfComments - 1);
+      setProject({
+        ...project,
+        comments: project.comments.filter((comment) => comment.id !== id),
+      });
+      setConfirmationMsg("Comment Deleted");
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   return (
     <>
@@ -19,10 +52,27 @@ export const Comments = () => {
         className="container"
       >
         {project.comments.map((comment) => (
-          <p key={comment.id}>
-            {comment.date} - {comment.comment} -{" "}
-            {comment.name || "NO NAME PROVIDED"}
-          </p>
+          <>
+            <p key={comment.id}>
+              {comment.date} - {comment.comment} -{" "}
+              {comment.name || "NO NAME PROVIDED"}
+            </p>
+            <div className="row justify-content-center">
+              <button
+                onClick={() => updateComment(comment.id)}
+                className="col-1 btn btn-secondary"
+              >
+                Update
+              </button>
+              <br />
+              <button
+                onClick={() => deleteComment(comment.id)}
+                className="col-1 btn btn-danger"
+              >
+                Delete
+              </button>
+            </div>
+          </>
         ))}
         {/* TODO - remove "NO NAME PROVIDED once name fields have been populated." */}
       </div>
@@ -30,6 +80,11 @@ export const Comments = () => {
       <button onClick={() => setShowComments(false)} className="btn btn-danger">
         Close
       </button>
+      {confirmationMsg && (
+        <div className="alert alert-success text-center fade show" role="alert">
+          {confirmationMsg}
+        </div>
+      )}
     </>
   );
 };
