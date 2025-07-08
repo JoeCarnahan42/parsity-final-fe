@@ -39,7 +39,7 @@ export const ProjectBtn = (props) => {
         </span>
         <span
           className={`text-center ${
-            numBlockers > 0 ? "bg-danger" : "bg-light"
+            numBlockers > 0 ? "bg-danger" : "bg-success"
           } ${numBlockers > 0 ? "text-light" : "text-dark"}`}
           style={{
             minWidth: "32px",
