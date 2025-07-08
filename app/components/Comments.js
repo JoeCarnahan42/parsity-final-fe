@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import axios from "axios";
 
 import { useProjectContext } from "../context/ProjectContext";
 import { useWindowContext } from "../context/WindowContext";
@@ -47,13 +48,13 @@ export const Comments = () => {
           overflowY: "auto",
           overflowX: "hidden",
           whiteSpace: "pre-wrap",
-          height: "500px",
+          height: "425px",
         }}
         className="container"
       >
         {project.comments.map((comment) => (
-          <>
-            <p key={comment.id}>
+          <div key={comment.id} className="container">
+            <p>
               {comment.date} - {comment.comment} -{" "}
               {comment.name || "NO NAME PROVIDED"}
             </p>
@@ -72,19 +73,19 @@ export const Comments = () => {
                 Delete
               </button>
             </div>
-          </>
+          </div>
         ))}
         {/* TODO - remove "NO NAME PROVIDED once name fields have been populated." */}
       </div>
       <br />
-      <button onClick={() => setShowComments(false)} className="btn btn-danger">
-        Close
-      </button>
       {confirmationMsg && (
         <div className="alert alert-success text-center fade show" role="alert">
           {confirmationMsg}
         </div>
       )}
+      <button onClick={() => setShowComments(false)} className="btn btn-danger">
+        Close
+      </button>
     </>
   );
 };

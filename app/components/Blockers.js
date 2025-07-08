@@ -56,7 +56,7 @@ export const Blockers = () => {
           overflowY: "auto",
           overflowX: "hidden",
           whiteSpace: "pre-wrap",
-          height: "500px",
+          height: "425px",
         }}
         className="container"
       >
@@ -95,14 +95,14 @@ export const Blockers = () => {
         ))}
       </div>
       <br />
-      <button onClick={() => setShowBlockers(false)} className="btn btn-danger">
-        Close
-      </button>
       {confirmationMsg && (
         <div className="alert alert-success text-center fade show" role="alert">
           {confirmationMsg}
         </div>
       )}
+      <button onClick={() => setShowBlockers(false)} className="btn btn-danger">
+        Close
+      </button>
     </>
   );
 };
