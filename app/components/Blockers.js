@@ -1,10 +1,13 @@
+"use client";
 import axios from "axios";
+import { useState } from "react";
 
 // components
 import { useProjectContext } from "../context/ProjectContext";
 import { useWindowContext } from "../context/WindowContext";
 
 export const Blockers = () => {
+  const [confirmationMsg, setConfirmationMsg] = useState("");
   const {
     project,
     setProject,
@@ -38,6 +41,7 @@ export const Blockers = () => {
         ...project,
         blockers: project.blockers.filter((blocker) => blocker.id !== id),
       });
+      setConfirmationMsg("Blocker Deleted");
     } catch (err) {
       console.error(err);
     }
@@ -94,6 +98,11 @@ export const Blockers = () => {
       <button onClick={() => setShowBlockers(false)} className="btn btn-danger">
         Close
       </button>
+      {confirmationMsg && (
+        <div className="alert alert-success text-center fade show" role="alert">
+          {confirmationMsg}
+        </div>
+      )}
     </>
   );
 };
