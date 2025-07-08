@@ -1,14 +1,46 @@
+import axios from "axios";
+
+// components
 import { useProjectContext } from "../context/ProjectContext";
 import { useWindowContext } from "../context/WindowContext";
 
 export const Blockers = () => {
-  const { project } = useProjectContext();
+  const {
+    project,
+    setProject,
+    setAllBlockers,
+    allBlockers,
+    numOfBlockers,
+    setNumOfBlockers,
+  } = useProjectContext();
   const { setShowBlockers } = useWindowContext();
 
+  // Sets color coding based on severity
   const severityClassMap = {
     high: "border-danger text-danger",
     medium: "border-warning text-warning",
     low: "border-success text-success",
+  };
+
+  const projectId = project.id;
+
+  const deleteBlocker = async (id) => {
+    try {
+      await axios.delete(
+        `https://parsity-final-be.onrender.com/comments/${projectId}/blockers/${id}`,
+        {
+          withCredentials: true,
+        }
+      );
+      setAllBlockers([...allBlockers.filter((blocker) => blocker.id !== id)]);
+      setNumOfBlockers(numOfBlockers - 1);
+      setProject({
+        ...project,
+        blockers: project.blockers.filter((blocker) => blocker.id !== id),
+      });
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   return (
@@ -33,15 +65,28 @@ export const Blockers = () => {
             key={blocker.id}
           >
             <p>
-              {blocker.date} - {blocker.severity} - {blocker.status} -{" "}
-              {blocker.name}
+              {blocker.date} - <u>Severity</u>: {blocker.severity} -{" "}
+              <u>Status</u>: {blocker.status} - {blocker.name}
             </p>
-            <p>Description: {blocker.description}</p>
+            <p>
+              <u>Description</u>: {blocker.description}
+            </p>
             <div className="row justify-content-center">
-              <button className="col-1 btn btn-secondary">Update</button>
+              <button
+                onClick={() => updateBlocker(blocker.id)}
+                className="col-1 btn btn-secondary"
+              >
+                Update
+              </button>
               <br />
-              <button className="col-1 btn btn-danger">Delete</button>
+              <button
+                onClick={() => deleteBlocker(blocker.id)}
+                className="col-1 btn btn-danger"
+              >
+                Delete
+              </button>
             </div>
+            <br />
           </div>
         ))}
       </div>
