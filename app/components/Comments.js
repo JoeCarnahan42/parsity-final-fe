@@ -41,6 +41,7 @@ export const Comments = () => {
 
   return (
     <>
+      {/* TODO - add edit button to comments that updates whatToEdit state */}
       <h1>Comments</h1>
       <hr />
       <div

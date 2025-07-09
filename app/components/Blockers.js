@@ -49,6 +49,7 @@ export const Blockers = () => {
 
   return (
     <>
+      {/* TODO - add edit button to blockers that updates whatToEdit state */}
       <h1>Blockers</h1>
       <hr />
       <div

@@ -11,7 +11,6 @@ export const ProjectBtn = (props) => {
   const numBlockers = blockers.length;
 
   const getProject = async (e) => {
-    // TODO - make button color red if there is an active blocker or add small indicator
     try {
       const response = await axios.get(
         `https://parsity-final-be.onrender.com/projects/${e.currentTarget.id}`,
