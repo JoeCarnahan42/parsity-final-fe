@@ -5,7 +5,6 @@ import { useWindowContext } from "../context/WindowContext";
 import { useProjectContext } from "../context/ProjectContext";
 
 export const UpdateForm = () => {
-  const [confirmationMsg, setConfirmationMsg] = useState("");
   const { setShowUpdateForm, whatToUpdate, setWhatToUpdate } =
     useWindowContext();
   const {
@@ -20,6 +19,9 @@ export const UpdateForm = () => {
     setNumOfBlockers,
     setNumOfComments,
   } = useProjectContext();
+
+  // Local States
+  const [confirmationMsg, setConfirmationMsg] = useState("");
   const [commentInput, setCommentInput] = useState({
     comment: "",
     date: "",
@@ -32,6 +34,7 @@ export const UpdateForm = () => {
     date: "",
     name: "",
   });
+  const [projectInput, setProjectInput] = useState({});
 
   const handleChange = (e) => {
     if (whatToUpdate === "Comment") {
@@ -47,14 +50,19 @@ export const UpdateForm = () => {
         [e.target.name]: e.target.value,
       });
     }
+
+    if (whatToUpdate === "State") {
+      setProjectInput({
+        ...projectInput,
+        [e.target.name]: e.target.value,
+      });
+    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const projectId = project.id;
-    // TODO - add conformation message
-    // TODO - axios POST request
     if (whatToUpdate === "Comment") {
       if (!commentInput.comment || !commentInput.date) {
         console.error("Missing required fields");
@@ -121,12 +129,39 @@ export const UpdateForm = () => {
       }
     }
 
+    if (whatToUpdate === "State") {
+      if (!projectInput.state) {
+        console.error("Missing updated state");
+      }
+
+      try {
+        await axios.put(
+          `https://parsity-final-be.onrender.com/projects/${projectId}`,
+          projectInput,
+          {
+            withCredentials: true,
+          }
+        );
+        setProject((prevProject) => ({
+          ...prevProject,
+          ...projectInput,
+        }));
+        setProjectInput({});
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
     // TODO - next potential fields
   };
 
   const cancelUpdates = () => {
     setWhatToUpdate(null);
     setShowUpdateForm(false);
+  };
+
+  const deselectOption = () => {
+    setWhatToUpdate(null);
   };
 
   const options = ["Metrics", "State", "Comment", "Blocker"];
@@ -137,30 +172,24 @@ export const UpdateForm = () => {
       style={{ maxWidth: "1000px", maxHeight: "575px", overflow: "auto" }}
     >
       <div className="row">
-        {whatToUpdate === null && (
-          <>
-            <h1>What needs updated?</h1>
-            {options.map((option) => {
-              return (
-                <div
-                  className="col-3 d-flex justify-content-center"
-                  key={option}
+        <>
+          <h1>What needs updated?</h1>
+          {options.map((option) => {
+            return (
+              <div className="col-3 d-flex justify-content-center" key={option}>
+                <button
+                  onClick={() => setWhatToUpdate(option)}
+                  className="btn btn-secondary w-75"
+                  type="button"
                 >
-                  <button
-                    onClick={() => setWhatToUpdate(option)}
-                    className="btn btn-secondary w-75"
-                    type="button"
-                  >
-                    {option}
-                  </button>
-                </div>
-              );
-            })}
-            <hr className="my-3" />
-          </>
-        )}
+                  {option}
+                </button>
+              </div>
+            );
+          })}
+          <hr className="my-3" />
+        </>
       </div>
-      <br />
       <form onSubmit={handleSubmit} className="container py-3">
         {whatToUpdate !== null && (
           <>
@@ -221,7 +250,6 @@ export const UpdateForm = () => {
                   value={blockerInput.description}
                 />
                 <br />
-                {/* TODO - add other blocker field inputs.(severity etc...) DONT FORGET TO ADD THEM TO STATE  */}
                 <label>
                   <u>Severity:</u>
                 </label>
@@ -279,6 +307,36 @@ export const UpdateForm = () => {
                 </button>
               </div>
             )}
+            {whatToUpdate === "State" && (
+              <div className="mb-3 w-50 m-auto">
+                <h3>Update Project</h3>
+                <p>
+                  <u>Current State</u>: {project.state}
+                </p>
+                <label>New State:</label>
+                <select
+                  onChange={handleChange}
+                  className="form-select"
+                  value={projectInput.state}
+                  name="state"
+                >
+                  <option value="">Choose One</option>
+                  <option value="quotin">Quoting</option>
+                  <option value="processing">Processing</option>
+                  <option value="kicked-off">Kicked-Off</option>
+                  <option value="in-production">In-Production</option>
+                  <option value="debugging">Debugging</option>
+                  <option value="runoff">Runoff</option>
+                  <option value="shipping">Shipping</option>
+                  <option value="installation">Installation</option>
+                  <option value="completed">Completed</option>
+                </select>
+                <br />
+                <button type="submit" className="btn btn-success">
+                  Update State
+                </button>
+              </div>
+            )}
             {confirmationMsg && (
               <div
                 className="alert alert-success text-center fade show"
@@ -299,13 +357,23 @@ export const UpdateForm = () => {
           textAlign: "center",
         }}
       >
-        <button
-          type="button"
-          onClick={() => cancelUpdates()}
-          className="btn btn-danger"
-        >
-          Cancel
-        </button>
+        {whatToUpdate === null ? (
+          <button
+            type="button"
+            onClick={() => cancelUpdates()}
+            className="btn btn-danger"
+          >
+            Cancel
+          </button>
+        ) : (
+          <button
+            type="button"
+            onClick={() => deselectOption()}
+            className="btn btn-danger"
+          >
+            Cancel
+          </button>
+        )}
       </div>
     </div>
   );

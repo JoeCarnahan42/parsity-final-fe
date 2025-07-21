@@ -49,7 +49,6 @@ export const Blockers = () => {
 
   return (
     <>
-      {/* TODO - add edit button to blockers that updates whatToEdit state */}
       <h1>Blockers</h1>
       <hr />
       <div
@@ -57,7 +56,7 @@ export const Blockers = () => {
           overflowY: "auto",
           overflowX: "hidden",
           whiteSpace: "pre-wrap",
-          height: "425px",
+          height: "450px",
         }}
         className="container"
       >

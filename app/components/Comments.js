@@ -7,6 +7,7 @@ import { useWindowContext } from "../context/WindowContext";
 
 export const Comments = () => {
   const [confirmationMsg, setConfirmationMsg] = useState("");
+
   const {
     project,
     setProject,
@@ -15,6 +16,7 @@ export const Comments = () => {
     numOfComments,
     setNumOfComments,
   } = useProjectContext();
+
   const { setShowComments } = useWindowContext();
 
   const projectId = project.id;
@@ -41,7 +43,6 @@ export const Comments = () => {
 
   return (
     <>
-      {/* TODO - add edit button to comments that updates whatToEdit state */}
       <h1>Comments</h1>
       <hr />
       <div
@@ -56,8 +57,7 @@ export const Comments = () => {
         {project.comments.map((comment) => (
           <div key={comment.id} className="container">
             <p>
-              {comment.date} - {comment.comment} -{" "}
-              {comment.name || "NO NAME PROVIDED"}
+              {comment.date} - {comment.comment} - {comment.name}
             </p>
             <div className="row justify-content-center">
               <button
@@ -76,7 +76,6 @@ export const Comments = () => {
             </div>
           </div>
         ))}
-        {/* TODO - remove "NO NAME PROVIDED once name fields have been populated." */}
       </div>
       <br />
       {confirmationMsg && (

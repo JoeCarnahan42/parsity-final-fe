@@ -21,10 +21,8 @@ export const WindowContextProvider = ({ children }) => {
   const [showNewProjForm, setShowNewProjForm] = useState(false);
   // State for wether or not the update form is visible
   const [showUpdateForm, setShowUpdateForm] = useState(false);
-  // TODO - rename this. State for which new data is being added. EX. comments/blockers/current metrics
+  // State for which new data is being added. EX. comments/blockers/current metrics
   const [whatToUpdate, setWhatToUpdate] = useState(null);
-  // State for choosing which project detail needs edited. EX. state, title, customer...
-  const [whatToEdit, setWhatToEdit] = useState(null);
 
   const closeWindow = () => {
     setShowDetails(false);
@@ -36,7 +34,6 @@ export const WindowContextProvider = ({ children }) => {
     setWhatToUpdate(null);
     setShowBlockers(false);
     setShowComments(false);
-    setWhatToEdit(null);
   };
 
   return (
@@ -59,8 +56,6 @@ export const WindowContextProvider = ({ children }) => {
         setShowUpdateForm,
         whatToUpdate,
         setWhatToUpdate,
-        whatToEdit,
-        setWhatToEdit,
       }}
     >
       {children}

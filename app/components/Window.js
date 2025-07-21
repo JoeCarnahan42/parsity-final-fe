@@ -8,7 +8,6 @@ import { ProjectForm } from "./ProjectForm";
 import { UpdateForm } from "./UpdateForm";
 import { Blockers } from "./Blockers";
 import { Comments } from "./Comments";
-import { EditForm } from "./EditForm";
 
 export const Window = () => {
   const { project } = useProjectContext();
@@ -25,10 +24,6 @@ export const Window = () => {
 
   // TODO - find a way to refactor this to avoid unexpected overlapping
   const renderComponent = () => {
-    if (whatToEdit) {
-      return <EditForm />;
-    }
-
     if (showUpdateForm) {
       return <UpdateForm />;
     }
