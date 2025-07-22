@@ -18,6 +18,7 @@ export const UpdateForm = () => {
     numOfBlockers,
     setNumOfBlockers,
     setNumOfComments,
+    setProjectPool,
   } = useProjectContext();
 
   // Local States
@@ -146,6 +147,11 @@ export const UpdateForm = () => {
           ...prevProject,
           ...projectInput,
         }));
+        setProjectPool((prevPool) =>
+          prevPool.map((project) =>
+            project.id === projectId ? { ...project, ...projectInput } : project
+          )
+        );
         setProjectInput({});
       } catch (err) {
         console.error(err);
@@ -321,20 +327,29 @@ export const UpdateForm = () => {
                   name="state"
                 >
                   <option value="">Choose One</option>
-                  <option value="quotin">Quoting</option>
-                  <option value="processing">Processing</option>
-                  <option value="kicked-off">Kicked-Off</option>
-                  <option value="in-production">In-Production</option>
-                  <option value="debugging">Debugging</option>
-                  <option value="runoff">Runoff</option>
-                  <option value="shipping">Shipping</option>
-                  <option value="installation">Installation</option>
-                  <option value="completed">Completed</option>
+                  <option value="Quoting">Quoting</option>
+                  <option value="Processing">Processing</option>
+                  <option value="Kicked Off">Kicked-Off</option>
+                  <option value="In Production">In-Production</option>
+                  <option value="Debug">Debugging</option>
+                  <option value="Runoff">Runoff</option>
+                  <option value="Shipping">Shipping</option>
+                  <option value="Install">Installation</option>
+                  {/* TODO - Implement completion and archiving */}
+                  {/*<option value="completed">Completed</option>*/}
                 </select>
                 <br />
                 <button type="submit" className="btn btn-success">
                   Update State
                 </button>
+                {confirmationMsg && (
+                  <div
+                    className="alert alert-success text-center fade show"
+                    role="alert"
+                  >
+                    {confirmationMsg}
+                  </div>
+                )}
               </div>
             )}
             {confirmationMsg && (
