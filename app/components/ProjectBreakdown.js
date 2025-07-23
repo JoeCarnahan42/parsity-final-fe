@@ -1,6 +1,7 @@
 "use client";
 import { useProjectContext } from "../context/ProjectContext";
 import { useWindowContext } from "../context/WindowContext";
+import { Sparklines, SparklinesBars } from "react-sparklines";
 
 export const ProjectBreakdown = () => {
   const { project } = useProjectContext();
@@ -114,6 +115,58 @@ export const ProjectBreakdown = () => {
               </p>
               <p>Total Spent: {project.currentMetrics[0].budget_money}</p>
               {/* TODO - Add more metrics, finish component/ Comments and Blockers */}
+              <div className="container">
+                <div className="row justify-content-center">
+                  <div className="col-4">
+                    <label>
+                      <u>Hours</u>
+                    </label>
+                    <Sparklines
+                      data={[
+                        project.projectedMetrics[0].budget_hours,
+                        project.currentMetrics[0].budget_hours,
+                      ]}
+                      width={30}
+                      height={15}
+                    >
+                      <SparklinesBars style={{ fill: "#41c3f9" }} />
+                    </Sparklines>
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                        fontSize: "0.75rem",
+                      }}
+                    >
+                      <span>Budgeted</span>
+                      <span>Used</span>
+                    </div>
+                  </div>
+                  <div className="col-4">
+                    <u>Money</u>
+                    <Sparklines
+                      data={[
+                        project.projectedMetrics[0].budget_money,
+                        project.currentMetrics[0].budget_money,
+                      ]}
+                      width={30}
+                      height={15}
+                    >
+                      <SparklinesBars style={{ fill: "#41c3f9" }} />
+                    </Sparklines>
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                        fontSize: "0.75rem",
+                      }}
+                    >
+                      <span>Budgeted</span>
+                      <span>Used</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
               <button
                 id={project.id}
                 onClick={() => setShowUpdateForm(true)}
