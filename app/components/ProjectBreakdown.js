@@ -5,13 +5,12 @@ import { useWindowContext } from "../context/WindowContext";
 export const ProjectBreakdown = () => {
   const { project } = useProjectContext();
 
-  const currentMetrics = project.currentMetrics?.[0];
-
   const {
     setShowDetails,
     setShowUpdateForm,
     setShowBlockers,
     setShowComments,
+    setShowNewMetrics,
   } = useWindowContext();
 
   return (
@@ -105,24 +104,36 @@ export const ProjectBreakdown = () => {
           <h4 className="text-center">
             <u>Current Metrics</u>
           </h4>
-          {currentMetrics ? (
+          {project.currentMetrics[0] ? (
             <div>
-              <p>Estimated Completion: {currentMetrics.expected_date}</p>
-              <p>Total Spent: {currentMetrics.budget_money}</p>
+              <p>
+                Estimated Completion: {project.currentMetrics[0].expected_date}
+              </p>
+              <p>
+                Current Hours Spent: {project.currentMetrics[0].budget_hours}
+              </p>
+              <p>Total Spent: {project.currentMetrics[0].budget_money}</p>
               {/* TODO - Add more metrics, finish component/ Comments and Blockers */}
+              <button
+                id={project.id}
+                onClick={() => setShowUpdateForm(true)}
+                className="btn btn-secondary"
+              >
+                Update Project
+              </button>
             </div>
           ) : (
             <div className="text-center">
               <p>Current Metrics have not been uploaded.</p>
+              <button
+                id={project.id}
+                onClick={() => setShowNewMetrics(true)}
+                className="btn btn-secondary"
+              >
+                Add Updated Metrics
+              </button>
             </div>
           )}
-          <button
-            id={project.id}
-            onClick={() => setShowUpdateForm(true)}
-            className="btn btn-secondary"
-          >
-            Update Project
-          </button>
         </div>
       </div>
     </div>

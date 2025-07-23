@@ -23,6 +23,8 @@ export const UpdateForm = () => {
 
   // Local States
   const [confirmationMsg, setConfirmationMsg] = useState("");
+
+  // These states could be reduced to one dynamic state
   const [commentInput, setCommentInput] = useState({
     comment: "",
     date: "",
@@ -36,7 +38,9 @@ export const UpdateForm = () => {
     name: "",
   });
   const [projectInput, setProjectInput] = useState({});
+  const [metricInput, setMetricInput] = useState({});
 
+  // This function does not need all the conditionals if the input state is dynamic
   const handleChange = (e) => {
     if (whatToUpdate === "Comment") {
       setCommentInput({
@@ -55,6 +59,13 @@ export const UpdateForm = () => {
     if (whatToUpdate === "State") {
       setProjectInput({
         ...projectInput,
+        [e.target.name]: e.target.value,
+      });
+    }
+
+    if (whatToUpdate === "Metrics") {
+      setMetricInput({
+        ...metricInput,
         [e.target.name]: e.target.value,
       });
     }
@@ -153,6 +164,32 @@ export const UpdateForm = () => {
           )
         );
         setProjectInput({});
+        setConfirmationMsg("State Updated!");
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    if (whatToUpdate === "Metrics") {
+      try {
+        await axios.put(
+          `https://parsity-final-be.onrender.com/metrics/${projectId}/current-metrics`,
+          metricInput,
+          {
+            withCredentials: true,
+          }
+        );
+        setProject((prevProject) => ({
+          ...prevProject,
+          currentMetrics: [
+            {
+              ...prevProject.currentMetrics[0],
+              ...metricInput,
+            },
+          ],
+        }));
+        setMetricInput({});
+        setConfirmationMsg("Metrics Updated!");
       } catch (err) {
         console.error(err);
       }
@@ -342,14 +379,58 @@ export const UpdateForm = () => {
                 <button type="submit" className="btn btn-success">
                   Update State
                 </button>
-                {confirmationMsg && (
-                  <div
-                    className="alert alert-success text-center fade show"
-                    role="alert"
-                  >
-                    {confirmationMsg}
-                  </div>
-                )}
+              </div>
+            )}
+            {whatToUpdate === "Metrics" && (
+              <div className="mb-3 w-50 m-auto">
+                <h3>Update Current Project Metrics</h3>
+                <p>
+                  <u>Current Metrics</u>:
+                </p>
+                <p>
+                  Estimated Completion:{" "}
+                  {project.currentMetrics?.[0]?.expected_date || "Not Set"}
+                </p>
+                <p>
+                  Total Hours Spent:{" "}
+                  {project.currentMetrics?.[0]?.budget_hours || "Not Set"}
+                </p>
+                <p>
+                  Total Spending:{" "}
+                  {project.currentMetrics?.[0]?.budget_money || "Not Set"}
+                </p>
+                <hr />
+                <br />
+                <label>Change Date:</label>
+                <input
+                  onChange={handleChange}
+                  type="date"
+                  name="expected_date"
+                  className="form-control"
+                  value={metricInput.expected_date ?? ""}
+                />
+                <label>Update Hours:</label>
+                <input
+                  onChange={handleChange}
+                  type="number"
+                  placeholder="500"
+                  name="budget_hours"
+                  className="form-control"
+                  value={metricInput.budget_hours ?? ""}
+                />
+                <label>Update Spending:</label>
+                <input
+                  onChange={handleChange}
+                  type="text"
+                  name="budget_money"
+                  placeholder="$1,000,000"
+                  className="form-control"
+                  value={metricInput.budget_money ?? ""}
+                />
+                <br />
+                <button type="submit" className="btn btn-success">
+                  Update Metrics
+                </button>
               </div>
             )}
             {confirmationMsg && (

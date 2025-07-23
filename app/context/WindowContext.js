@@ -23,6 +23,8 @@ export const WindowContextProvider = ({ children }) => {
   const [showUpdateForm, setShowUpdateForm] = useState(false);
   // State for which new data is being added. EX. comments/blockers/current metrics
   const [whatToUpdate, setWhatToUpdate] = useState(null);
+  // State for wether or not the form for ADDING new updated metrics is visible
+  const [showNewMetrics, setShowNewMetrics] = useState(false);
 
   const closeWindow = () => {
     setShowDetails(false);
@@ -34,6 +36,7 @@ export const WindowContextProvider = ({ children }) => {
     setWhatToUpdate(null);
     setShowBlockers(false);
     setShowComments(false);
+    setShowNewMetrics(false);
   };
 
   return (
@@ -56,6 +59,8 @@ export const WindowContextProvider = ({ children }) => {
         setShowUpdateForm,
         whatToUpdate,
         setWhatToUpdate,
+        showNewMetrics,
+        setShowNewMetrics,
       }}
     >
       {children}

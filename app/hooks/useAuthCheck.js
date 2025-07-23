@@ -5,6 +5,7 @@ import { useAuth } from "../context/AuthContext";
 
 export const useAuthCheck = (intervalMs = 5 * 60 * 1000) => {
   const { setUser, user, setSessionExpired, isSessionActive } = useAuth();
+  // TODO - import application state and reset everything when session expires
 
   useEffect(() => {
     let timeoutId;
