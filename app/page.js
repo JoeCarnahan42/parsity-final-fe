@@ -10,6 +10,7 @@ import { BoardOverview } from "./components/BoardOverview";
 
 export default function MainAuth() {
   // TODO - look in to ngx-currency
+  // TODO - fix numbers in db to not contain ($) and (,) Figure out how to add them visually
   useInitialAuth();
   useAuthCheck();
   const { user, authMode, setAuthMode, sessionExpired, loading } = useAuth();
