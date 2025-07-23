@@ -1,13 +1,40 @@
 "use client";
 import { useState } from "react";
 import { useProjectContext } from "../context/ProjectContext";
+import axios from "axios";
 
 export const NewMetricForm = () => {
   const { project, setProject } = useProjectContext();
   const [newMetric, setNewMetric] = useState({});
+  const [confirmationMsg, setConfirmationMsg] = useState("");
 
-  const handleSubmit = (e) => {
-    // submission logic
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const projectId = project.id;
+
+    try {
+      const res = await axios.post(
+        `https://parsity-final-be.onrender.com/metrics/${projectId}/current-metrics`,
+        newMetric,
+        {
+          withCredentials: true,
+        }
+      );
+      setProject((prevProject) => ({
+        ...prevProject,
+        currentMetrics: [
+          {
+            ...prevProject.currentMetrics[0],
+            ...newMetric,
+          },
+        ],
+      }));
+      setNewMetric({});
+      setConfirmationMsg("Metrics Posted!");
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   const handleChange = (e) => {
@@ -38,6 +65,7 @@ export const NewMetricForm = () => {
           </h3>
           <label>Estimated Completion:</label>
           <input
+            required={true}
             onChange={handleChange}
             type="date"
             className="form-control"
@@ -46,6 +74,7 @@ export const NewMetricForm = () => {
           />
           <label>Current Used Hours:</label>
           <input
+            required={true}
             onChange={handleChange}
             type="number"
             className="form-control"
@@ -54,6 +83,7 @@ export const NewMetricForm = () => {
           />
           <label>Money Spent:</label>
           <input
+            required={true}
             onChange={handleChange}
             type="text"
             className="form-control"
@@ -65,6 +95,14 @@ export const NewMetricForm = () => {
         <button type="submit" className="btn btn-success">
           Update Metrics
         </button>
+        {confirmationMsg && (
+          <div
+            className="alert alert-success text-center fade show"
+            role="alert"
+          >
+            {confirmationMsg}
+          </div>
+        )}
       </form>
       <button
         type="button"
