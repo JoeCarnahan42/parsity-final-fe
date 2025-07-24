@@ -265,7 +265,9 @@ export const ProjectForm = () => {
           </h2>
           <div className="mb-3 w-50 m-auto">
             <input
+              required
               name="title"
+              type="text"
               value={projectData.title}
               onChange={handleChange}
               placeholder="Form Roller"
@@ -277,7 +279,9 @@ export const ProjectForm = () => {
               <u>Customer</u>
             </label>
             <input
+              required
               name="customer"
+              type="text"
               value={projectData.customer}
               onChange={handleChange}
               placeholder="Company Name"
@@ -289,6 +293,7 @@ export const ProjectForm = () => {
               <u>Project State</u>
             </label>
             <select
+              required
               name="state"
               value={projectData.state}
               onChange={handleChange}
@@ -310,6 +315,7 @@ export const ProjectForm = () => {
               <u>Job Type</u>
             </label>
             <select
+              required
               name="type"
               value={projectData.type}
               onChange={handleChange}
@@ -325,6 +331,7 @@ export const ProjectForm = () => {
               <u>Project Description</u>
             </label>
             <textarea
+              required
               name="description"
               value={projectData.description}
               onChange={handleChange}
@@ -345,7 +352,9 @@ export const ProjectForm = () => {
                 <u>Full Name</u>
               </label>
               <input
+                required
                 name="name"
+                type="text"
                 value={pm.name}
                 onChange={(e) => handleArrayChange(idx, e, "projectManagers")}
                 placeholder="John Doe"
@@ -355,7 +364,9 @@ export const ProjectForm = () => {
                 <u>Title</u>
               </label>
               <input
+                required
                 name="title"
+                type="text"
                 value={pm.title}
                 onChange={(e) => handleArrayChange(idx, e, "projectManagers")}
                 placeholder="Mechanical Lead"
@@ -396,7 +407,9 @@ export const ProjectForm = () => {
                 <u>Task Title</u>
               </label>
               <input
+                required
                 name="title"
+                type="text"
                 value={task.title}
                 onChange={(e) => handleArrayChange(idx, e, "tasks")}
                 placeholder="Machine Rollers"
@@ -406,7 +419,9 @@ export const ProjectForm = () => {
                 <u>Part Number</u>
               </label>
               <input
+                required
                 name="partNumber"
+                type="text"
                 value={task.partNumber}
                 onChange={(e) => handleArrayChange(idx, e, "tasks")}
                 placeholder="Part Number"
@@ -416,7 +431,9 @@ export const ProjectForm = () => {
                 <u>Material</u>
               </label>
               <input
+                required
                 name="material"
+                type="text"
                 value={task.material}
                 onChange={(e) => handleArrayChange(idx, e, "tasks")}
                 placeholder="Stainless Steel"
@@ -426,7 +443,9 @@ export const ProjectForm = () => {
                 <u>Expected Hours</u>
               </label>
               <input
+                required
                 name="hours"
+                type="number"
                 value={task.hours}
                 onChange={(e) => handleArrayChange(idx, e, "tasks")}
                 placeholder="Hours"
@@ -436,6 +455,7 @@ export const ProjectForm = () => {
                 <u>Current Status</u>
               </label>
               <select
+                required
                 name="status"
                 value={task.status}
                 onChange={(e) => handleArrayChange(idx, e, "tasks")}
@@ -481,17 +501,21 @@ export const ProjectForm = () => {
                 <u>Monetary Budget</u>
               </label>
               <input
+                required
                 name="money"
+                type="number"
                 value={metric.money}
                 onChange={(e) => handleArrayChange(idx, e, "projMetrics")}
-                placeholder="$10000"
+                placeholder="10000"
                 className="form-control mb-2"
               />
               <label>
                 <u>Hours Budget</u>
               </label>
               <input
+                required
                 name="hours"
+                type="number"
                 value={metric.hours}
                 onChange={(e) => handleArrayChange(idx, e, "projMetrics")}
                 placeholder="300"
@@ -502,6 +526,7 @@ export const ProjectForm = () => {
               </label>
               {/* TODO - dont allow date to be BEFORE current date */}
               <input
+                required
                 type="date"
                 name="due"
                 value={metric.due}
@@ -523,7 +548,9 @@ export const ProjectForm = () => {
                 <u>Item Name</u>
               </label>
               <input
+                required
                 name="title"
+                type="text"
                 value={item.title}
                 onChange={(e) => handleArrayChange(idx, e, "purchaseList")}
                 placeholder="2 inch X 5 inch pneumatic cylinder"
@@ -533,7 +560,9 @@ export const ProjectForm = () => {
                 <u>Part Number</u>
               </label>
               <input
+                required
                 name="partNumber"
+                type="text"
                 value={item.partNumber}
                 onChange={(e) => handleArrayChange(idx, e, "purchaseList")}
                 placeholder="Part Number"
@@ -543,7 +572,9 @@ export const ProjectForm = () => {
                 <u>Item Description</u>
               </label>
               <input
+                required
                 name="description"
+                type="text"
                 value={item.description}
                 onChange={(e) => handleArrayChange(idx, e, "purchaseList")}
                 placeholder="Cylinder for lift gate"
@@ -554,6 +585,7 @@ export const ProjectForm = () => {
               </label>
               {/* TODO - dont allow date to be AFTER current date */}
               <input
+                required
                 type="date"
                 name="orderedOn"
                 value={item.orderedOn}
@@ -564,16 +596,19 @@ export const ProjectForm = () => {
                 <u>Item Price</u>
               </label>
               <input
+                required
                 name="price"
+                type="number"
                 value={item.price}
                 onChange={(e) => handleArrayChange(idx, e, "purchaseList")}
-                placeholder="$300"
+                placeholder="300"
                 className="form-control mb-2"
               />
               <label>
                 <u>Item Quantity</u>
               </label>
               <input
+                required
                 type="number"
                 name="quantity"
                 value={item.quantity}
@@ -615,7 +650,9 @@ export const ProjectForm = () => {
                 <u>Description</u>
               </label>
               <input
+                required
                 name="description"
+                type="text"
                 value={material.description}
                 onChange={(e) => handleArrayChange(idx, e, "materials")}
                 placeholder="Cold Rolled Steel"
@@ -625,7 +662,9 @@ export const ProjectForm = () => {
                 <u>For Part Number</u>
               </label>
               <input
+                required
                 name="forPartNumber"
+                type="text"
                 value={material.forPartNumber}
                 onChange={(e) => handleArrayChange(idx, e, "materials")}
                 placeholder="Part Number"
@@ -635,10 +674,12 @@ export const ProjectForm = () => {
                 <u>Price</u>
               </label>
               <input
+                required
                 name="price"
+                type="number"
                 value={material.price}
                 onChange={(e) => handleArrayChange(idx, e, "materials")}
-                placeholder="$50"
+                placeholder="50"
                 className="form-control mb-2"
               />
               <label>
@@ -646,6 +687,7 @@ export const ProjectForm = () => {
               </label>
               {/* TODO - dont allow date to be AFTER current date */}
               <input
+                required
                 type="date"
                 name="orderedOn"
                 value={material.orderedOn}

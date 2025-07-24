@@ -1,10 +1,55 @@
 "use client";
 import { useProjectContext } from "../context/ProjectContext";
 import { useWindowContext } from "../context/WindowContext";
-import { Sparklines, SparklinesBars } from "react-sparklines";
+import { PieChart } from "./MetricsChart";
 
 export const ProjectBreakdown = () => {
   const { project } = useProjectContext();
+  const materialList = project.material;
+
+  const purchaseItemCost = project.purchaseList.map(
+    (item) => JSON.parse(item.price) + JSON.parse(item.price)
+  );
+
+  const getMaterialCost = () => {
+    if (materialList.length > 0) {
+      const materialCost = materialList.map(
+        (material) => JSON.parse(material.price) + JSON.parse(material.price)
+      );
+      return materialCost[0];
+    } else {
+      return 0;
+    }
+  };
+
+  const getProjectProfit = () => {
+    if (project.currentMetrics) {
+      const projectProfit =
+        project.sale_price -
+        purchaseItemCost -
+        getMaterialCost() -
+        project.currentMetrics[0].budget_money;
+      return projectProfit;
+    } else {
+      return;
+    }
+  };
+  const getTotalCost = () => {
+    if (project.currentMetrics) {
+      const totalCost =
+        purchaseItemCost[0] +
+        JSON.parse(project.currentMetrics[0].budget_money);
+      return totalCost;
+    } else {
+      return;
+    }
+  };
+
+  const getProfitColor = (profit) => {
+    if (profit >= 0.3) return "text-success"; // green
+    if (profit >= 0.2) return "text-warning"; // yellow
+    return "text-danger"; // red
+  };
 
   const {
     setShowDetails,
@@ -89,7 +134,7 @@ export const ProjectBreakdown = () => {
               }}
             >
               <p>Due: {project.projectedMetrics[0].due_date}</p>
-              <p>Budget: {project.projectedMetrics[0].budget_money}</p>
+              <p>Budget: ${project.projectedMetrics[0].budget_money}</p>
               <p>Est. Hours: {project.projectedMetrics[0].budget_hours}</p>
             </div>
           </div>
@@ -106,75 +151,86 @@ export const ProjectBreakdown = () => {
             <u>Current Metrics</u>
           </h4>
           {project.currentMetrics[0] ? (
-            <div>
-              <p>
-                Estimated Completion: {project.currentMetrics[0].expected_date}
-              </p>
-              <p>
-                Current Hours Spent: {project.currentMetrics[0].budget_hours}
-              </p>
-              <p>Total Spent: {project.currentMetrics[0].budget_money}</p>
-              {/* TODO - Add more metrics, finish component/ Comments and Blockers */}
+            <>
               <div className="container">
-                <div className="row justify-content-center">
-                  <div className="col-4">
-                    <label>
-                      <u>Hours</u>
-                    </label>
-                    <Sparklines
-                      data={[
-                        project.projectedMetrics[0].budget_hours,
-                        project.currentMetrics[0].budget_hours,
-                      ]}
-                      width={30}
-                      height={15}
-                    >
-                      <SparklinesBars style={{ fill: "#41c3f9" }} />
-                    </Sparklines>
-                    <div
-                      style={{
-                        display: "flex",
-                        justifyContent: "space-between",
-                        fontSize: "0.75rem",
-                      }}
-                    >
-                      <span>Budgeted</span>
-                      <span>Used</span>
-                    </div>
+                <div className="row">
+                  <div className="col-6">
+                    <p>
+                      Estimated Completion:{" "}
+                      {project.currentMetrics[0].expected_date}
+                    </p>
+                    <p>
+                      Current Hours Spent:{" "}
+                      {project.currentMetrics[0].budget_hours}
+                    </p>
+                    <p>Total Spent: ${getTotalCost()}</p>
                   </div>
-                  <div className="col-4">
-                    <u>Money</u>
-                    <Sparklines
-                      data={[
-                        project.projectedMetrics[0].budget_money,
-                        project.currentMetrics[0].budget_money,
-                      ]}
-                      width={30}
-                      height={15}
-                    >
-                      <SparklinesBars style={{ fill: "#41c3f9" }} />
-                    </Sparklines>
-                    <div
-                      style={{
-                        display: "flex",
-                        justifyContent: "space-between",
-                        fontSize: "0.75rem",
-                      }}
-                    >
-                      <span>Budgeted</span>
-                      <span>Used</span>
-                    </div>
+                  <div className="col-6">
+                    <p>Sale Price: ${project.sale_price}</p>
+                    <p>
+                      Current Profit:{" "}
+                      <span className={getProfitColor(getProjectProfit)}>
+                        ${getProjectProfit()}
+                      </span>
+                    </p>
                   </div>
                 </div>
               </div>
-              <button
-                id={project.id}
-                onClick={() => setShowUpdateForm(true)}
-                className="btn btn-secondary"
-              >
-                Update Project
-              </button>
-            </div>
+              <div className="">
+                <div className="container">
+                  <div className="row justify-content-center">
+                    <div className="col-4">
+                      <div
+                        style={{
+                          width: "200px",
+                          height: "200px",
+                          margin: "2rem auto",
+                        }}
+                      >
+                        <p>
+                          <u>Hours</u>
+                        </p>
+                        <PieChart
+                          used={JSON.parse(
+                            project.currentMetrics[0].budget_hours
+                          )}
+                          budgeted={JSON.parse(
+                            project.projectedMetrics[0].budget_hours
+                          )}
+                          title={"Hours"}
+                        />
+                      </div>
+                    </div>
+                    <div className="col-4">
+                      <div
+                        style={{
+                          width: "200px",
+                          height: "200px",
+                          margin: "2rem auto",
+                        }}
+                      >
+                        <p>
+                          <u>Money</u>
+                        </p>
+                        <PieChart
+                          used={getTotalCost()}
+                          budgeted={project.projectedMetrics[0].budget_money}
+                          title={"Money"}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <br />
+                <button
+                  id={project.id}
+                  onClick={() => setShowUpdateForm(true)}
+                  className="btn btn-secondary"
+                >
+                  Update Project
+                </button>
+              </div>
+            </>
           ) : (
             <div className="text-center">
               <p>Current Metrics have not been uploaded.</p>

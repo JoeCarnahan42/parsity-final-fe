@@ -85,10 +85,10 @@ export const NewMetricForm = () => {
           <input
             required={true}
             onChange={handleChange}
-            type="text"
+            type="number"
             className="form-control"
             name="budget_money"
-            placeholder="$500"
+            placeholder="500"
             value={newMetric.budget_money ?? ""}
           />
         </div>

@@ -9,6 +9,7 @@ export const ProjectDetails = () => {
   return (
     <div className="d-flex w-100 p-3">
       {console.log("PURCHASE LIST ---", project.purchaseList)}
+      {console.log("MATERIAL LIST ---", project.material)}
       {/* TODO - populate window with project info */}
       <div style={{ width: "300px" }} className="me-3 d-flex flex-column gap-3">
         <div className="border rounded p-2">
@@ -29,7 +30,11 @@ export const ProjectDetails = () => {
             {/* TODO - create functionality for updating task state */}
             {project.tasks.map((task) => {
               return (
-                <li key={task.id} style={{ backgroundColor: "lightgrey" }}>
+                <li
+                  className="list-group"
+                  key={task.id}
+                  style={{ backgroundColor: "lightgrey" }}
+                >
                   <u>{task.title}</u>
                   <p>
                     <u>Part Number:</u> {task.partnumber}
@@ -66,7 +71,11 @@ export const ProjectDetails = () => {
           >
             {project.material.map((mat) => {
               return (
-                <li key={mat.id} style={{ backgroundColor: "lightgrey" }}>
+                <li
+                  className="list-group"
+                  key={mat.id}
+                  style={{ backgroundColor: "lightgrey" }}
+                >
                   <u>{mat.description}</u>
                   <p>
                     <u>For Part Number:</u> {mat.for_partnumber}
@@ -91,7 +100,11 @@ export const ProjectDetails = () => {
           <ul>
             {project.purchaseList.map((item) => {
               return (
-                <li style={{ backgroundColor: "lightgrey" }} key={item.id}>
+                <li
+                  className="list-group"
+                  style={{ backgroundColor: "lightgrey" }}
+                  key={item.id}
+                >
                   <p>
                     <u>Item:</u> {item.title}
                   </p>
