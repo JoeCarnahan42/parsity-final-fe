@@ -389,15 +389,18 @@ export const UpdateForm = () => {
                 </p>
                 <p>
                   Estimated Completion:{" "}
-                  {project.currentMetrics?.[0]?.expected_date || "Not Set"}
+                  {project.currentMetrics?.[0]?.expected_date ||
+                    project.projectedMetrics[0].due_date}
                 </p>
                 <p>
                   Total Hours Spent:{" "}
-                  {project.currentMetrics?.[0]?.budget_hours || "Not Set"}
+                  {project.currentMetrics?.[0]?.budget_hours ||
+                    `Not Set | Budgeted Hours = ${project.projectedMetrics[0].budget_hours}`}
                 </p>
                 <p>
                   Total Spending:{" "}
-                  {project.currentMetrics?.[0]?.budget_money || "Not Set"}
+                  {project.currentMetrics?.[0]?.budget_money ||
+                    `Not Set | Budget = $${project.projectedMetrics[0].budget_money}`}
                 </p>
                 <hr />
                 <br />

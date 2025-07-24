@@ -8,7 +8,6 @@ import { ProjectForm } from "./ProjectForm";
 import { UpdateForm } from "./UpdateForm";
 import { Blockers } from "./Blockers";
 import { Comments } from "./Comments";
-import { NewMetricForm } from "./NewMetricForm";
 
 export const Window = () => {
   const { project } = useProjectContext();
@@ -20,14 +19,10 @@ export const Window = () => {
     showUpdateForm,
     showBlockers,
     showComments,
-    showNewMetrics,
   } = useWindowContext();
 
   // TODO - find a way to refactor this to avoid unexpected overlapping
   const renderComponent = () => {
-    if (showNewMetrics) {
-      return <NewMetricForm />;
-    }
     if (showUpdateForm) {
       return <UpdateForm />;
     }

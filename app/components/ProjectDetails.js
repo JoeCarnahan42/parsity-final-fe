@@ -31,7 +31,7 @@ export const ProjectDetails = () => {
             {project.tasks.map((task) => {
               return (
                 <li
-                  className="list-group"
+                  className="list-group border border-black"
                   key={task.id}
                   style={{ backgroundColor: "lightgrey" }}
                 >
@@ -72,7 +72,7 @@ export const ProjectDetails = () => {
             {project.material.map((mat) => {
               return (
                 <li
-                  className="list-group"
+                  className="list-group border border-black"
                   key={mat.id}
                   style={{ backgroundColor: "lightgrey" }}
                 >
@@ -97,11 +97,20 @@ export const ProjectDetails = () => {
           <u>Purchase Items / Outsource</u>
         </h4>
         <div>
-          <ul>
+          <ul
+            style={{
+              height: "500px",
+              overflowY: "auto",
+              overflowX: "hidden",
+              whiteSpace: "pre-wrap",
+              fontSize: "large",
+            }}
+            className="p-3"
+          >
             {project.purchaseList.map((item) => {
               return (
                 <li
-                  className="list-group"
+                  className="list-group border border-black"
                   style={{ backgroundColor: "lightgrey" }}
                   key={item.id}
                 >

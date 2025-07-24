@@ -13,6 +13,7 @@ export const ProjectForm = () => {
     state: "",
     type: "",
     description: "",
+    salePrice: "",
     projectManagers: [{ name: "", title: "" }],
     tasks: [
       {
@@ -221,6 +222,7 @@ export const ProjectForm = () => {
         state: "",
         type: "",
         description: "",
+        salePrice: "",
         projectManagers: [{ name: "", title: "" }],
         tasks: [
           { title: "", partNumber: "", material: "", hours: "", status: "" },
@@ -250,6 +252,8 @@ export const ProjectForm = () => {
     }
   };
 
+  console.log(projectData);
+
   return (
     <>
       <div
@@ -264,6 +268,9 @@ export const ProjectForm = () => {
             Project Details
           </h2>
           <div className="mb-3 w-50 m-auto">
+            <label>
+              <u>Title</u>
+            </label>
             <input
               required
               name="title"
@@ -325,6 +332,20 @@ export const ProjectForm = () => {
               <option value="Build">Build</option>
               <option value="Batch">Batch</option>
             </select>
+          </div>
+          <div className="mb-3 w-50 m-auto">
+            <label>
+              <u>Sale Price</u>
+            </label>
+            <input
+              required
+              name="salePrice"
+              type="number"
+              value={projectData.salePrice}
+              onChange={handleChange}
+              placeholder="200"
+              className="form-control"
+            />
           </div>
           <div className="mb-3 w-50 m-auto">
             <label>

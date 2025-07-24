@@ -45,18 +45,11 @@ export const ProjectBreakdown = () => {
     }
   };
 
-  const getProfitColor = (profit) => {
-    if (profit >= 0.3) return "text-success"; // green
-    if (profit >= 0.2) return "text-warning"; // yellow
-    return "text-danger"; // red
-  };
-
   const {
     setShowDetails,
     setShowUpdateForm,
     setShowBlockers,
     setShowComments,
-    setShowNewMetrics,
   } = useWindowContext();
 
   return (
@@ -168,10 +161,7 @@ export const ProjectBreakdown = () => {
                   <div className="col-6">
                     <p>Sale Price: ${project.sale_price}</p>
                     <p>
-                      Current Profit:{" "}
-                      <span className={getProfitColor(getProjectProfit)}>
-                        ${getProjectProfit()}
-                      </span>
+                      Current Profit: <span>${getProjectProfit()}</span>
                     </p>
                   </div>
                 </div>
@@ -236,7 +226,7 @@ export const ProjectBreakdown = () => {
               <p>Current Metrics have not been uploaded.</p>
               <button
                 id={project.id}
-                onClick={() => setShowNewMetrics(true)}
+                onClick={() => setShowUpdateForm(true)}
                 className="btn btn-secondary"
               >
                 Add Updated Metrics
