@@ -2,9 +2,10 @@
 import { useProjectContext } from "../context/ProjectContext";
 import { useWindowContext } from "../context/WindowContext";
 import { PieChart } from "./MetricsChart";
+import { ProjDeleteBtn } from "./ProjDeleteBtn";
 
 export const ProjectBreakdown = () => {
-  const { project } = useProjectContext();
+  const { project, setProject, setProjectPool } = useProjectContext();
   const materialList = project.material;
 
   const purchaseItemCost = project.purchaseList.map(
@@ -50,6 +51,8 @@ export const ProjectBreakdown = () => {
     setShowUpdateForm,
     setShowBlockers,
     setShowComments,
+    setShowBreakdown,
+    setShowWindow,
   } = useWindowContext();
 
   return (
@@ -136,6 +139,18 @@ export const ProjectBreakdown = () => {
           >
             Details
           </button>
+          <ProjDeleteBtn
+            projectId={project.id}
+            onDelete={() => {
+              alert("Project Deleted");
+              setShowWindow(false);
+              setShowBreakdown(false);
+              setProject(null);
+              setProjectPool((prevPool) =>
+                prevPool.filter((p) => p.id !== project.id)
+              );
+            }}
+          />
         </div>
         <div className="border rounded flex-grow-1 p-3">
           <div className="container">
