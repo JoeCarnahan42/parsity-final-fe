@@ -5,7 +5,7 @@ export const Archives = () => {
   const { projectPool } = useProjectContext();
 
   const projects = projectPool.filter((proj) => proj.state === "Completed");
-  // populates component with completed projects from project pool
+  // TODO - implement job type toggle for archives
   if (projects.length < 1) {
     return <h1>No Archived Projects (yet...)</h1>;
   }

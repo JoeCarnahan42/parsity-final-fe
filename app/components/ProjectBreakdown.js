@@ -22,8 +22,6 @@ export const ProjectBreakdown = () => {
     }
   };
 
-  // TODO - show breakdown of profit calculation
-
   const getProjectProfit = () => {
     if (project.currentMetrics) {
       const projectProfit =
@@ -56,8 +54,6 @@ export const ProjectBreakdown = () => {
 
   return (
     <div>
-      {/* TODO - delete console log */}
-      {console.log(project)}
       <br />
       <div className="container d-flex justify-content-between align-items-center gap-2 my-3">
         <button
@@ -142,27 +138,26 @@ export const ProjectBreakdown = () => {
           </button>
         </div>
         <div className="border rounded flex-grow-1 p-3">
-          <h4 className="text-center">
-            <u>Current Metrics</u>
-          </h4>
+          <div className="container">
+            <div className="row">
+              <div className="col-4">
+                <h4>
+                  <u>Cost Breakdown</u>
+                </h4>
+              </div>
+              <div className="col-8">
+                <h4>
+                  <u>Current Metrics</u>
+                </h4>
+              </div>
+            </div>
+          </div>
           {project.currentMetrics[0] ? (
             <>
               <div className="container">
                 <div className="row">
                   <div className="col-4">
-                    <p>
-                      Estimated Completion:{" "}
-                      {project.currentMetrics[0].expected_date}
-                    </p>
-                    <p>
-                      Current Hours Spent:{" "}
-                      {project.currentMetrics[0].budget_hours}
-                    </p>
-                    <p>Total Spent: ${getTotalCost()}</p>
-                  </div>
-                  <div className="col-4">
                     <div className="container">
-                      <h6 className="card-title text-center">Cost Breakdown</h6>
                       <table
                         className="table table-bordered table-sm"
                         style={{ fontSize: "0.8rem", width: "auto" }}
@@ -198,6 +193,17 @@ export const ProjectBreakdown = () => {
                         </tbody>
                       </table>
                     </div>
+                  </div>
+                  <div className="col-4">
+                    <p>
+                      Estimated Completion:{" "}
+                      {project.currentMetrics[0].expected_date}
+                    </p>
+                    <p>
+                      Current Hours Spent:{" "}
+                      {project.currentMetrics[0].budget_hours}
+                    </p>
+                    <p>Total Spent: ${getTotalCost()}</p>
                   </div>
                   <div className="col-4">
                     <p>Sale Price: ${project.sale_price}</p>

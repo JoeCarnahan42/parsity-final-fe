@@ -6,8 +6,7 @@ import { useWindowContext } from "../context/WindowContext";
 import { useAuth } from "../context/AuthContext";
 import { useToggleView } from "../context/ViewContext";
 
-// TODO - Add an archives button to view all completed projects
-// TODO - Add a "completed" state to projects for archived rendering
+// TODO - add ability to delete projects, must cascade to delete all related tables rows. Also needs to remove project from projectPool.
 
 // BIG TODO - implement Google OAuth
 // BIG TODO - implement Google Calendar meeting scheduling
