@@ -2,15 +2,21 @@
 import axios from "axios";
 import { useProjectContext } from "../context/ProjectContext";
 import { useWindowContext } from "../context/WindowContext";
+import { useAuth } from "../context/AuthContext";
 
 export const ProjectBtn = (props) => {
   const { setProject, allBlockers } = useProjectContext();
-  const { setShowWindow, setShowBreakdown } = useWindowContext();
+  const { setShowWindow, setShowBreakdown, setShowArchives } =
+    useWindowContext();
+  const { setLoading } = useAuth();
   const id = props.project.id;
   const blockers = allBlockers.filter((blocker) => blocker.project_id === id);
   const numBlockers = blockers.length;
 
   const getProject = async (e) => {
+    setLoading(true);
+    setShowWindow(true);
+    setShowArchives(false);
     try {
       const response = await axios.get(
         `https://parsity-final-be.onrender.com/projects/${e.currentTarget.id}`,
@@ -19,8 +25,8 @@ export const ProjectBtn = (props) => {
         }
       );
       setProject(response.data);
-      setShowWindow(true);
       setShowBreakdown(true);
+      setLoading(false);
     } catch (err) {
       console.error("Failed to retrieve project.", err);
     }
@@ -44,7 +50,7 @@ export const ProjectBtn = (props) => {
             minWidth: "32px",
             height: "24px",
             lineHeight: "24px",
-            fontSize: "0.8rem",
+            fontSize: "0.6rem",
             borderRadius: "4px",
             paddingLeft: "2px",
             paddingRight: "2px",

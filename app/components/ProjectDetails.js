@@ -134,10 +134,13 @@ export const ProjectDetails = () => {
             })}
           </ul>
           {/* TODO - add section for total spent to date and outstanding items */}
-          <button onClick={() => setShowDetails(false)}>
-            Back to overview
-          </button>
         </div>
+        <button
+          className="btn btn-primary"
+          onClick={() => setShowDetails(false)}
+        >
+          Back to overview
+        </button>
       </div>
     </div>
   );

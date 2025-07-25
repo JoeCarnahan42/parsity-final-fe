@@ -5,7 +5,7 @@ export function LogoutButton() {
   const { logout } = useAuth();
 
   return (
-    <button className="btn btn-danger" onClick={logout}>
+    <button className="btn btn-danger col-6" onClick={logout}>
       Logout
     </button>
   );

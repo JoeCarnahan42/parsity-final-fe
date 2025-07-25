@@ -372,8 +372,7 @@ export const UpdateForm = () => {
                   <option value="Runoff">Runoff</option>
                   <option value="Shipping">Shipping</option>
                   <option value="Install">Installation</option>
-                  {/* TODO - Implement completion and archiving */}
-                  {/*<option value="completed">Completed</option>*/}
+                  <option value="Completed">Completed</option>
                 </select>
                 <br />
                 <button type="submit" className="btn btn-success">

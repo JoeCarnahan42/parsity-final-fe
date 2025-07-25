@@ -1,8 +1,7 @@
 import { Pie } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
-import ChartDataLabels from "chartjs-plugin-datalabels";
 
-ChartJS.register(ArcElement, Tooltip, Legend, ChartDataLabels);
+ChartJS.register(ArcElement, Tooltip, Legend);
 
 export const PieChart = ({ used, budgeted, title }) => {
   let labels, dataValues, colors;
@@ -27,8 +26,7 @@ export const PieChart = ({ used, budgeted, title }) => {
       {
         data: dataValues,
         backgroundColor: colors,
-        borderColor: "#fff",
-        borderWidth: 2,
+        borderWidth: 0,
       },
     ],
   };
@@ -42,13 +40,7 @@ export const PieChart = ({ used, budgeted, title }) => {
         text: title,
       },
       datalabels: {
-        formatter: (value) => {
-          if (total === 0) return "0 (0%)";
-          const percent = ((value / total) * 100).toFixed(1);
-          return `${value} (${percent}%)`;
-        },
-        color: "black",
-        font: { weight: "bold" },
+        display: false,
       },
       tooltip: {
         callbacks: {

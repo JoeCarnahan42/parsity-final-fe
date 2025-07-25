@@ -1,5 +1,6 @@
 import { useProjectContext } from "../context/ProjectContext";
 import { useWindowContext } from "../context/WindowContext";
+import { useAuth } from "../context/AuthContext";
 
 // Components
 import { ProjectBreakdown } from "./ProjectBreakdown";
@@ -8,9 +9,11 @@ import { ProjectForm } from "./ProjectForm";
 import { UpdateForm } from "./UpdateForm";
 import { Blockers } from "./Blockers";
 import { Comments } from "./Comments";
+import { Archives } from "./Archives";
 
 export const Window = () => {
   const { project } = useProjectContext();
+  const { loading } = useAuth();
   const {
     showDetails,
     showNewProjForm,
@@ -19,10 +22,17 @@ export const Window = () => {
     showUpdateForm,
     showBlockers,
     showComments,
+    showArchives,
   } = useWindowContext();
 
   // TODO - find a way to refactor this to avoid unexpected overlapping
   const renderComponent = () => {
+    if (loading) {
+      return <h1>Loading, please wait...</h1>;
+    }
+    if (showArchives) {
+      return <Archives />;
+    }
     if (showUpdateForm) {
       return <UpdateForm />;
     }
@@ -51,6 +61,12 @@ export const Window = () => {
   };
 
   const windowTitle = () => {
+    if (loading) {
+      return <span>Loading</span>;
+    }
+    if (showArchives) {
+      return <span>Archived Projects</span>;
+    }
     if (showUpdateForm) {
       return (
         <span>
@@ -76,21 +92,23 @@ export const Window = () => {
     <div
       style={{
         position: "fixed",
-        top: "50%",
+        top: "45%",
         left: "50%",
         transform: "translate(-50%, -50%)",
         width: "1000px",
-        height: "760px",
+        height: "770px",
         backgroundColor: "white",
         boxShadow: "0 0 15px rgba(0,0,0,0.3)",
         borderRadius: "8px",
         zIndex: 1000,
+        display: "flex",
+        flexDirection: "column",
       }}
     >
       <div
         style={{
           padding: "10px",
-          backgroundColor: "#f0f0f0",
+          backgroundColor: "#cddaffff",
           borderBottom: "1px solid #ccc",
           display: "flex",
           justifyContent: "space-between",
@@ -98,6 +116,7 @@ export const Window = () => {
       >
         {windowTitle()}
         <button
+          className="btn btn-danger"
           onClick={() => {
             closeWindow();
           }}
@@ -105,7 +124,9 @@ export const Window = () => {
           X
         </button>
       </div>
-      {renderComponent()}
+      <div style={{ overflowY: "auto", flexGrow: 1, padding: "10px" }}>
+        {renderComponent()}
+      </div>
     </div>
   );
 };
