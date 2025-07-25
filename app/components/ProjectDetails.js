@@ -8,9 +8,6 @@ export const ProjectDetails = () => {
 
   return (
     <div className="d-flex w-100 p-3">
-      {console.log("PURCHASE LIST ---", project.purchaseList)}
-      {console.log("MATERIAL LIST ---", project.material)}
-      {/* TODO - populate window with project info */}
       <div style={{ width: "300px" }} className="me-3 d-flex flex-column gap-3">
         <div className="border rounded p-2">
           <h3 className="mt-0">

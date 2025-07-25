@@ -80,7 +80,7 @@ export const Window = () => {
         left: "50%",
         transform: "translate(-50%, -50%)",
         width: "1000px",
-        height: "700px",
+        height: "760px",
         backgroundColor: "white",
         boxShadow: "0 0 15px rgba(0,0,0,0.3)",
         borderRadius: "8px",

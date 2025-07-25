@@ -6,6 +6,14 @@ import { useWindowContext } from "../context/WindowContext";
 import { useAuth } from "../context/AuthContext";
 import { useToggleView } from "../context/ViewContext";
 
+// TODO - Add an archives button to view all completed projects
+// TODO - Add a "completed" state to projects for archived rendering
+
+// BIG TODO - implement Google OAuth
+// BIG TODO - implement Google Calendar meeting scheduling
+
+// TODO - figure out a reason/way to display project managers/contacts.
+
 // Components
 import { ProjectBtn } from "./ProjectBtn";
 import { LogoutButton } from "./LogoutButton";

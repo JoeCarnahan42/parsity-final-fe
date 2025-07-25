@@ -22,6 +22,8 @@ export const ProjectBreakdown = () => {
     }
   };
 
+  // TODO - show breakdown of profit calculation
+
   const getProjectProfit = () => {
     if (project.currentMetrics) {
       const projectProfit =
@@ -147,7 +149,7 @@ export const ProjectBreakdown = () => {
             <>
               <div className="container">
                 <div className="row">
-                  <div className="col-6">
+                  <div className="col-4">
                     <p>
                       Estimated Completion:{" "}
                       {project.currentMetrics[0].expected_date}
@@ -158,15 +160,57 @@ export const ProjectBreakdown = () => {
                     </p>
                     <p>Total Spent: ${getTotalCost()}</p>
                   </div>
-                  <div className="col-6">
+                  <div className="col-4">
+                    <div className="container">
+                      <h6 className="card-title text-center">Cost Breakdown</h6>
+                      <table
+                        className="table table-bordered table-sm"
+                        style={{ fontSize: "0.8rem", width: "auto" }}
+                      >
+                        <thead className="table-light">
+                          <tr>
+                            <th>Category</th>
+                            <th className="text-end">Amount</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>Purchase Items Cost</td>
+                            <td className="text-end">
+                              ${Number(purchaseItemCost).toFixed(2)}
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Material Cost</td>
+                            <td className="text-end">
+                              ${Number(getMaterialCost()).toFixed(2)}
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Other Spending</td>
+                            <td className="text-end">
+                              $
+                              {Number(
+                                project.currentMetrics[0].budget_money
+                              ).toFixed(2)}
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                  <div className="col-4">
                     <p>Sale Price: ${project.sale_price}</p>
                     <p>
-                      Current Profit: <span>${getProjectProfit()}</span>
+                      Current Profit:{" "}
+                      <span className="text-success">
+                        ${getProjectProfit().toFixed(2)}
+                      </span>
                     </p>
                   </div>
                 </div>
               </div>
-              <div className="">
+              <div>
                 <div className="container">
                   <div className="row justify-content-center">
                     <div className="col-4">
