@@ -7,7 +7,7 @@ export const ProjDeleteBtn = ({ projectId, onDelete }) => {
   const handleDelete = async () => {
     try {
       const res = await axios.delete(
-        `http://localhost:8000/projects/${projectId}`,
+        `https://parsity-final-be.onrender.com/projects/${projectId}`,
         {
           withCredentials: true,
         }

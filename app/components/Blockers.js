@@ -30,7 +30,7 @@ export const Blockers = () => {
   const deleteBlocker = async (id) => {
     try {
       await axios.delete(
-        `http://localhost:8000/comments/${projectId}/blockers/${id}`,
+        `https://parsity-final-be.onrender.com/comments/${projectId}/blockers/${id}`,
         {
           withCredentials: true,
         }

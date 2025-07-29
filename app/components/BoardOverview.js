@@ -73,12 +73,15 @@ export const BoardOverview = () => {
     async function fetch() {
       setLoading(true);
       try {
-        const responseOne = await axios.get("http://localhost:8000/projects/", {
-          withCredentials: true,
-        });
+        const responseOne = await axios.get(
+          "https://parsity-final-be.onrender.com/projects/",
+          {
+            withCredentials: true,
+          }
+        );
 
         const responseTwo = await axios.get(
-          "http://localhost:8000/comments/comments&blockers",
+          "https://parsity-final-be.onrender.com/comments/comments&blockers",
           {
             withCredentials: true,
           }

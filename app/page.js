@@ -46,7 +46,8 @@ export default function MainAuth() {
               <button
                 className="btn align-items-center border border-secondary rounded px-3 py-2 bg-white shadow-sm"
                 onClick={() => {
-                  window.location.href = "http://localhost:8000/login/google";
+                  window.location.href =
+                    "https://parsity-final-be.onrender.com/login/google";
                 }}
                 style={{ gap: "10px", fontWeight: "500" }}
               >

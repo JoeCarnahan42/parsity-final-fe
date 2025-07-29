@@ -24,7 +24,7 @@ export const Comments = () => {
   const deleteComment = async (id) => {
     try {
       await axios.delete(
-        `http://localhost:8000/comments/${projectId}/comments/${id}`,
+        `https://parsity-final-be.onrender.com/comments/${projectId}/comments/${id}`,
         {
           withCredentials: true,
         }

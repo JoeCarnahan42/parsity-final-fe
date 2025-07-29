@@ -19,7 +19,7 @@ export const RegForm = () => {
 
     try {
       await axios.post(
-        "http://localhost:8000/register/",
+        "https://parsity-final-be.onrender.com/register/",
         { email, password, firstName, lastName },
         { withCredentials: true }
       );
