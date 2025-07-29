@@ -33,7 +33,7 @@ export const GoogleLoginBtn = () => {
 
   return (
     <button
-      className="d-flex align-items-center border border-secondary rounded px-3 py-2 bg-white shadow-sm"
+      className="align-items-center border border-secondary rounded px-3 py-2 bg-white shadow-sm"
       onClick={handleGoogleLogin}
       style={{ gap: "10px", fontWeight: 500 }}
     >
