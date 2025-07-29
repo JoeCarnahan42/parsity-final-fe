@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import { useInitialAuth } from "./hooks/useInitialAuth";
 import { useAuthCheck } from "./hooks/useAuthCheck";
 import { useAuth } from "./context/AuthContext";
@@ -43,11 +44,18 @@ export default function MainAuth() {
                 </button>
               </p>
               <button
-                className="btn btn-outline-primary my-3"
+                className="btn align-items-center border border-secondary rounded px-3 py-2 bg-white shadow-sm"
                 onClick={() => {
                   window.location.href = "http://localhost:8000/login/google";
                 }}
+                style={{ gap: "10px", fontWeight: "500" }}
               >
+                <Image
+                  src="https://developers.google.com/identity/images/g-logo.png"
+                  alt="Google logo"
+                  width={20}
+                  height={20}
+                />
                 Continue with Google
               </button>
             </>
