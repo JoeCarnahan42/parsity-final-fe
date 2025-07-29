@@ -83,7 +83,7 @@ export const UpdateForm = () => {
 
       try {
         const res = await axios.post(
-          `http://localhost:8000/comments/${projectId}/comments`,
+          `https://parsity-final-be.onrender.com/comments/${projectId}/comments`,
           commentInput,
           {
             withCredentials: true,
@@ -115,7 +115,7 @@ export const UpdateForm = () => {
 
       try {
         const res = await axios.post(
-          `http://localhost:8000/comments/${projectId}/blockers`,
+          `https://parsity-final-be.onrender.com/comments/${projectId}/blockers`,
           blockerInput,
           {
             withCredentials: true,
@@ -148,7 +148,7 @@ export const UpdateForm = () => {
 
       try {
         await axios.put(
-          `http://localhost:8000/projects/${projectId}`,
+          `https://parsity-final-be.onrender.com/projects/${projectId}`,
           projectInput,
           {
             withCredentials: true,
@@ -173,7 +173,7 @@ export const UpdateForm = () => {
     if (whatToUpdate === "Metrics") {
       try {
         await axios.put(
-          `http://localhost:8000/metrics/${projectId}/current-metrics`,
+          `https://parsity-final-be.onrender.com/metrics/${projectId}/current-metrics`,
           metricInput,
           {
             withCredentials: true,

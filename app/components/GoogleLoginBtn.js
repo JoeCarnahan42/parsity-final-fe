@@ -21,7 +21,7 @@ export const GoogleLoginBtn = () => {
           .then((res) => {
             if (res.data.user) {
               // Redirect or update UI
-              window.location.href = "/dashboard";
+              window.location.href = "/";
             } else {
               alert("Google login failed.");
             }
