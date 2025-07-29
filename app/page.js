@@ -9,8 +9,7 @@ import { RegForm } from "./components/RegForm";
 import { BoardOverview } from "./components/BoardOverview";
 
 export default function MainAuth() {
-  // TODO - look in to ngx-currency
-  // TODO - fix numbers in db to not contain ($) and (,) Figure out how to add them visually
+  // TODO - look into a react currency library
   useInitialAuth();
   useAuthCheck();
   const { user, authMode, setAuthMode, sessionExpired, loading } = useAuth();
@@ -43,6 +42,14 @@ export default function MainAuth() {
                   Register here
                 </button>
               </p>
+              <button
+                className="btn btn-outline-primary my-3"
+                onClick={() => {
+                  window.location.href = "http://localhost:8000/login/google";
+                }}
+              >
+                Continue with Google
+              </button>
             </>
           )}
 

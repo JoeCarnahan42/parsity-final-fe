@@ -6,8 +6,6 @@ import { useWindowContext } from "../context/WindowContext";
 import { useAuth } from "../context/AuthContext";
 import { useToggleView } from "../context/ViewContext";
 
-// TODO - add ability to delete projects, must cascade to delete all related tables rows. Also needs to remove project from projectPool.
-
 // BIG TODO - implement Google OAuth
 // BIG TODO - implement Google Calendar meeting scheduling
 
@@ -75,15 +73,12 @@ export const BoardOverview = () => {
     async function fetch() {
       setLoading(true);
       try {
-        const responseOne = await axios.get(
-          "https://parsity-final-be.onrender.com/projects/",
-          {
-            withCredentials: true,
-          }
-        );
+        const responseOne = await axios.get("http://localhost:8000/projects/", {
+          withCredentials: true,
+        });
 
         const responseTwo = await axios.get(
-          "https://parsity-final-be.onrender.com/comments/comments&blockers",
+          "http://localhost:8000/comments/comments&blockers",
           {
             withCredentials: true,
           }

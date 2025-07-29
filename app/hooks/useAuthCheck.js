@@ -16,12 +16,9 @@ export const useAuthCheck = (intervalMs = 5 * 60 * 1000) => {
 
     const checkAuth = async () => {
       try {
-        const res = await axios.get(
-          "https://parsity-final-be.onrender.com/login/check",
-          {
-            withCredentials: true,
-          }
-        );
+        const res = await axios.get("http://localhost:8000/login/check", {
+          withCredentials: true,
+        });
         setSessionExpired(false);
         if (timeoutId) {
           clearTimeout(timeoutId);

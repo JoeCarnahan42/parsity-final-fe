@@ -19,7 +19,7 @@ export const ProjectBtn = (props) => {
     setShowArchives(false);
     try {
       const response = await axios.get(
-        `https://parsity-final-be.onrender.com/projects/${e.currentTarget.id}`,
+        `http://localhost:8000/projects/${e.currentTarget.id}`,
         {
           withCredentials: true,
         }

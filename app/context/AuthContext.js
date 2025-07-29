@@ -17,7 +17,7 @@ export const AuthProvider = ({ children }) => {
     setLoading(true);
     try {
       const res = await axios.post(
-        "https://parsity-final-be.onrender.com/login/",
+        "http://localhost:8000/login/",
         credentials,
         {
           withCredentials: true,
@@ -34,7 +34,7 @@ export const AuthProvider = ({ children }) => {
 
   const logout = async () => {
     await axios.post(
-      "https://parsity-final-be.onrender.com/login/logout",
+      "http://localhost:8000/login/logout",
       {},
       { withCredentials: true }
     );

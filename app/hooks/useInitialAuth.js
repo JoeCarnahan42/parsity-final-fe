@@ -8,12 +8,9 @@ export const useInitialAuth = () => {
   useEffect(() => {
     const checkAndRedirect = async () => {
       try {
-        const res = await axios.get(
-          "https://parsity-final-be.onrender.com/login/check",
-          {
-            withCredentials: true,
-          }
-        );
+        const res = await axios.get("http://localhost:8000/login/check", {
+          withCredentials: true,
+        });
         if (res.status === 200 || 304) {
           setUser(res.data.user);
         }
