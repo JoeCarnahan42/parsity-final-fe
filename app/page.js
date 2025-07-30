@@ -54,25 +54,6 @@ export default function MainAuth() {
               onClick={() => {
                 window.location.href =
                   "https://parsity-final-be.onrender.com/login/google";
-
-                const interval = setInterval(() => {
-                  if (popup?.closed) {
-                    clearInterval(interval);
-                    axios
-                      .get(
-                        "https://parsity-final-be.onrender.com/login/auth/user",
-                        {
-                          withCredentials: true,
-                        }
-                      )
-                      .then((res) => {
-                        setUser(res.data.user);
-                      })
-                      .catch((err) => {
-                        console.error("Not logged in", err);
-                      });
-                  }
-                }, 500);
               }}
               style={{ gap: "10px", fontWeight: "500" }}
             >
