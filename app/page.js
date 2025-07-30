@@ -19,7 +19,7 @@ export default function MainAuth() {
     const handleMessage = (event) => {
       console.log("log 1", event);
       if (
-        event.origin === "https://parsity-final-fe.vercel.app" &&
+        event.origin === "https://parsity-final-be.onrender.com" &&
         event.data.loggedIn === true
       ) {
         console.log("log 2");
