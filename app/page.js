@@ -21,6 +21,9 @@ export default function MainAuth() {
         event.origin === "https://parsity-final-fe.vercel.app" &&
         event.data.loggedIn === true
       ) {
+        console.log(
+          "getting: https://parsity-final-be.onrender.com/login/auth/user"
+        );
         axios
           .get("https://parsity-final-be.onrender.com/login/auth/user", {
             withCredentials: true,
