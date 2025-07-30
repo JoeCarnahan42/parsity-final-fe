@@ -35,12 +35,6 @@ export default function MainAuth() {
       {sessionExpired === true && (
         <>
           <p style={{ color: "red" }}>Session Expired</p>
-          <button
-            className="btn btn-link p-0"
-            onClick={() => setAuthMode("login")}
-          >
-            Back To Login
-          </button>
         </>
       )}
       {loading === true && <h1>Loading, please wait...</h1>}
