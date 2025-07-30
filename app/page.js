@@ -17,6 +17,7 @@ export default function MainAuth() {
 
   useEffect(() => {
     const handleMessage = (event) => {
+      console.log("handlemessage");
       if (
         event.origin === "https://parsity-final-fe.vercel.app" &&
         event.data.loggedIn === true
