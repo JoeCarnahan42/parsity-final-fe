@@ -48,24 +48,23 @@ export default function MainAuth() {
       {loading === true && <h1>Loading, please wait...</h1>}
       {!user && (
         <>
-          <>
-            <button
-              className="btn align-items-center border border-secondary rounded px-3 py-2 bg-white shadow-sm"
-              onClick={() => {
-                window.location.href =
-                  "https://parsity-final-be.onrender.com/login/google";
-              }}
-              style={{ gap: "10px", fontWeight: "500" }}
-            >
-              <Image
-                src="https://developers.google.com/identity/images/g-logo.png"
-                alt="Google logo"
-                width={20}
-                height={20}
-              />
-              Continue with Google
-            </button>
-          </>
+          <h1>Please log in using Google</h1>
+          <button
+            className="btn align-items-center border border-secondary rounded px-3 py-2 bg-white shadow-sm"
+            onClick={() => {
+              window.location.href =
+                "https://parsity-final-be.onrender.com/login/google";
+            }}
+            style={{ gap: "10px", fontWeight: "500" }}
+          >
+            <Image
+              src="https://developers.google.com/identity/images/g-logo.png"
+              alt="Google logo"
+              width={20}
+              height={20}
+            />
+            Continue with Google
+          </button>
         </>
       )}
 
