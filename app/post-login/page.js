@@ -18,12 +18,12 @@ export default function PostLoginPage() {
           setUser(res.data.user);
           router.replace("/");
         } else {
-          router.replace("/login");
+          router.replace("/");
         }
       })
       .catch((err) => {
         console.error("Login failed", err);
-        router.replace("/login");
+        router.replace("/");
       });
   }, []);
 
