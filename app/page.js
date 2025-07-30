@@ -16,33 +16,20 @@ export default function MainAuth() {
   const { user, setUser, sessionExpired, loading } = useAuth();
 
   useEffect(() => {
-    const handleMessage = (event) => {
-      console.log("log 1", event);
-      if (
-        event.origin === "https://parsity-final-be.onrender.com" &&
-        event.data.loggedIn === true
-      ) {
-        console.log("log 2: request fires");
-        axios
-          .get("https://parsity-final-be.onrender.com/login/auth/user", {
-            withCredentials: true,
-          })
-          .then((res) => {
-            console.log("log 3", res);
-            if (res.data.user) {
-              setUser(res.data.user);
-            }
-          })
-          .catch((err) => {
-            console.log("log 4", err);
-            setUser(null);
-          });
-      }
-    };
-
-    window.addEventListener("message", handleMessage);
-
-    return () => window.removeEventListener("message", handleMessage);
+    axios
+      .get("https://parsity-final-be.onrender.com/login/auth/user", {
+        withCredentials: true,
+      })
+      .then((res) => {
+        if (res.data.user) {
+          console.log("User should be set");
+          setUser(res.data.user);
+        } else {
+          console.log("User does not exist");
+          setUser(null);
+        }
+      })
+      .catch((err) => console.log("Auth Failed", err), setUser(null));
   }, []);
 
   return (
