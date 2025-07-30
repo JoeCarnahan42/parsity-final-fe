@@ -8,7 +8,6 @@ import { useAuth } from "./context/AuthContext";
 import { AuthForm } from "./components/AuthForm";
 import { RegForm } from "./components/RegForm";
 import { BoardOverview } from "./components/BoardOverview";
-import { GoogleLoginBtn } from "./components/GoogleLoginBtn";
 
 export default function MainAuth() {
   // TODO - look into a react currency library
@@ -44,7 +43,22 @@ export default function MainAuth() {
                   Register here
                 </button>
               </p>
-              <GoogleLoginBtn />
+              <button
+                className="btn align-items-center border border-secondary rounded px-3 py-2 bg-white shadow-sm"
+                onClick={() => {
+                  window.location.href =
+                    "https://parsity-final-be.onrender.com/login/google";
+                }}
+                style={{ gap: "10px", fontWeight: "500" }}
+              >
+                <Image
+                  src="https://developers.google.com/identity/images/g-logo.png"
+                  alt="Google logo"
+                  width={20}
+                  height={20}
+                />
+                Continue with Google
+              </button>
             </>
           )}
 
