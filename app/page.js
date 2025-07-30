@@ -22,12 +22,13 @@ export default function MainAuth() {
         event.origin === "https://parsity-final-be.onrender.com" &&
         event.data.loggedIn === true
       ) {
-        console.log("log 2");
+        console.log("log 2: request fires");
         axios
           .get("https://parsity-final-be.onrender.com/login/auth/user", {
             withCredentials: true,
           })
           .then((res) => {
+            console.log("log 3", res);
             if (res.data.user) {
               setUser(res.data.user);
             }
