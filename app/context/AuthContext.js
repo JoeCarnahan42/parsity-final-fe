@@ -11,26 +11,6 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
   const [isSessionActive, setIsSessionActive] = useState(false);
   const [sessionExpired, setSessionExpired] = useState(false);
-  const [authMode, setAuthMode] = useState("login");
-
-  const login = async (credentials) => {
-    setLoading(true);
-    try {
-      const res = await axios.post(
-        "https://parsity-final-be.onrender.com/login/",
-        credentials,
-        {
-          withCredentials: true,
-        }
-      );
-      setLoading(false);
-      setUser(res.data);
-      setIsSessionActive(true);
-    } catch (err) {
-      console.error("Login failed:", err);
-      throw err;
-    }
-  };
 
   const logout = async () => {
     await axios.post(
@@ -39,7 +19,6 @@ export const AuthProvider = ({ children }) => {
       { withCredentials: true }
     );
     setUser(null);
-    setAuthMode("login");
     setIsSessionActive(false);
   };
 

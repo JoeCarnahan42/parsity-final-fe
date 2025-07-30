@@ -1,7 +1,6 @@
 "use client";
 import Image from "next/image";
 import axios from "axios";
-import { useInitialAuth } from "./hooks/useInitialAuth";
 import { useAuthCheck } from "./hooks/useAuthCheck";
 import { useAuth } from "./context/AuthContext";
 import { useEffect } from "react";
@@ -11,8 +10,7 @@ import { BoardOverview } from "./components/BoardOverview";
 
 export default function MainAuth() {
   // TODO - look into a react currency library
-  // useInitialAuth();
-  // useAuthCheck();
+  useAuthCheck();
   const { user, setUser, sessionExpired, loading } = useAuth();
 
   useEffect(() => {
@@ -48,7 +46,8 @@ export default function MainAuth() {
       {loading === true && <h1>Loading, please wait...</h1>}
       {!user && (
         <>
-          <h1>Please log in using Google</h1>
+          <h1>Welcome to my final project!</h1>
+          <h2>Please log in using Google</h2>
           <button
             className="btn align-items-center border border-secondary rounded px-3 py-2 bg-white shadow-sm"
             onClick={() => {
