@@ -65,11 +65,8 @@ export default function MainAuth() {
             <button
               className="btn align-items-center border border-secondary rounded px-3 py-2 bg-white shadow-sm"
               onClick={() => {
-                const popup = window.open(
-                  "https://parsity-final-be.onrender.com/login/google",
-                  "_blank",
-                  "width=500,height=600"
-                );
+                window.location.href =
+                  "https://parsity-final-be.onrender.com/login/google";
 
                 const interval = setInterval(() => {
                   if (popup?.closed) {
