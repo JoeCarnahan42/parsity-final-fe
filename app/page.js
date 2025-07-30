@@ -16,26 +16,29 @@ export default function MainAuth() {
   const { user, setUser, sessionExpired, loading } = useAuth();
 
   useEffect(() => {
-    const listener = (event) => {
+    const handleMessage = (event) => {
       if (
         event.origin === "https://parsity-final-fe.vercel.app" &&
-        event.data.loggedIn
+        event.data.loggedIn === true
       ) {
         axios
           .get("https://parsity-final-be.onrender.com/login/auth/user", {
             withCredentials: true,
           })
           .then((res) => {
-            setUser(res.data.user);
+            if (res.data.user) {
+              setUser(res.data.user);
+            }
           })
-          .catch((err) => {
-            console.error("Login failed", err);
+          .catch(() => {
+            setUser(null);
           });
       }
     };
 
-    window.addEventListener("message", listener);
-    return () => window.removeEventListener("message", listener);
+    window.addEventListener("message", handleMessage);
+
+    return () => window.removeEventListener("message", handleMessage);
   }, []);
 
   return (
