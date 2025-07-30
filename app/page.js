@@ -33,7 +33,8 @@ export default function MainAuth() {
               setUser(res.data.user);
             }
           })
-          .catch(() => {
+          .catch((err) => {
+            console.log("log 4", err);
             setUser(null);
           });
       }
