@@ -11,25 +11,19 @@ import { BoardOverview } from "./components/BoardOverview";
 
 export default function MainAuth() {
   // TODO - look into a react currency library
-  useInitialAuth();
-  useAuthCheck();
+  // useInitialAuth();
+  // useAuthCheck();
   const { user, setUser, sessionExpired, loading } = useAuth();
 
   useEffect(() => {
-    axios
-      .get("https://parsity-final-be.onrender.com/auth/user", {
+    try {
+      const res = axios.get("https://parsity-final-be.onrender.com/auth/user", {
         withCredentials: true,
-      })
-      .then((res) => {
-        if (!res.ok) throw new Error("Not authenticated");
-        return res.json();
-      })
-      .then((data) => {
-        setUser(data.user);
-      })
-      .catch(() => {
-        setUser(null);
       });
+      console.log(res);
+    } catch (err) {
+      console.error(err);
+    }
   }, []);
 
   return (
