@@ -16,17 +16,16 @@ export default function MainAuth() {
   const { user, setUser, sessionExpired, loading } = useAuth();
 
   useEffect(() => {
-    try {
-      const res = axios.get(
-        "https://parsity-final-be.onrender.com/login/auth/user",
-        {
-          withCredentials: true,
-        }
-      );
-      console.log(res);
-    } catch (err) {
-      console.error(err);
-    }
+    axios
+      .get("https://parsity-final-be.onrender.com/login/auth/user", {
+        withCredentials: true,
+      })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.error("Not logged in", err);
+      });
   }, []);
 
   return (
