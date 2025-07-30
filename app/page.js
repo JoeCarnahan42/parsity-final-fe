@@ -16,16 +16,26 @@ export default function MainAuth() {
   const { user, setUser, sessionExpired, loading } = useAuth();
 
   useEffect(() => {
-    axios
-      .get("https://parsity-final-be.onrender.com/login/auth/user", {
-        withCredentials: true,
-      })
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.error("Not logged in", err);
-      });
+    const listener = (event) => {
+      if (
+        event.origin === "https://parsity-final-fe.vercel.app" &&
+        event.data.loggedIn
+      ) {
+        axios
+          .get("https://parsity-final-be.onrender.com/login/auth/user", {
+            withCredentials: true,
+          })
+          .then((res) => {
+            setUser(res.data.user);
+          })
+          .catch((err) => {
+            console.error("Login failed", err);
+          });
+      }
+    };
+
+    window.addEventListener("message", listener);
+    return () => window.removeEventListener("message", listener);
   }, []);
 
   return (
@@ -48,8 +58,30 @@ export default function MainAuth() {
             <button
               className="btn align-items-center border border-secondary rounded px-3 py-2 bg-white shadow-sm"
               onClick={() => {
-                window.location.href =
-                  "https://parsity-final-be.onrender.com/login/google";
+                const popup = window.open(
+                  "https://parsity-final-be.onrender.com/login/google",
+                  "_blank",
+                  "width=500,height=600"
+                );
+
+                const interval = setInterval(() => {
+                  if (popup?.closed) {
+                    clearInterval(interval);
+                    axios
+                      .get(
+                        "https://parsity-final-be.onrender.com/login/auth/user",
+                        {
+                          withCredentials: true,
+                        }
+                      )
+                      .then((res) => {
+                        setUser(res.data.user);
+                      })
+                      .catch((err) => {
+                        console.error("Not logged in", err);
+                      });
+                  }
+                }, 500);
               }}
               style={{ gap: "10px", fontWeight: "500" }}
             >
