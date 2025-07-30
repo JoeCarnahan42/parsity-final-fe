@@ -17,9 +17,12 @@ export default function MainAuth() {
 
   useEffect(() => {
     try {
-      const res = axios.get("https://parsity-final-be.onrender.com/auth/user", {
-        withCredentials: true,
-      });
+      const res = axios.get(
+        "https://parsity-final-be.onrender.com/login/auth/user",
+        {
+          withCredentials: true,
+        }
+      );
       console.log(res);
     } catch (err) {
       console.error(err);
