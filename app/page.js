@@ -17,14 +17,12 @@ export default function MainAuth() {
 
   useEffect(() => {
     const handleMessage = (event) => {
-      console.log("handlemessage");
+      console.log("log 1", event);
       if (
         event.origin === "https://parsity-final-fe.vercel.app" &&
         event.data.loggedIn === true
       ) {
-        console.log(
-          "getting: https://parsity-final-be.onrender.com/login/auth/user"
-        );
+        console.log("log 2");
         axios
           .get("https://parsity-final-be.onrender.com/login/auth/user", {
             withCredentials: true,
