@@ -32,7 +32,7 @@ export const BoardOverview = () => {
     numOfComments,
   } = useProjectContext();
 
-  const { user, loading, setLoading } = useAuth();
+  const { user, setLoading } = useAuth();
 
   const [rawData, setRawData] = useState([]);
   const [error, setError] = useState(null);

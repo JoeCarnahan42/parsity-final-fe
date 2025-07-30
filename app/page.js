@@ -1,19 +1,36 @@
 "use client";
 import Image from "next/image";
+import axios from "axios";
 import { useInitialAuth } from "./hooks/useInitialAuth";
 import { useAuthCheck } from "./hooks/useAuthCheck";
 import { useAuth } from "./context/AuthContext";
+import { useEffect } from "react";
 
 // Components
-import { AuthForm } from "./components/AuthForm";
-import { RegForm } from "./components/RegForm";
 import { BoardOverview } from "./components/BoardOverview";
 
 export default function MainAuth() {
   // TODO - look into a react currency library
   useInitialAuth();
   useAuthCheck();
-  const { user, authMode, setAuthMode, sessionExpired, loading } = useAuth();
+  const { user, setUser, sessionExpired, loading } = useAuth();
+
+  useEffect(() => {
+    axios
+      .get("https://parsity-final-be.onrender.com/auth/user", {
+        withCredentials: true,
+      })
+      .then((res) => {
+        if (!res.ok) throw new Error("Not authenticated");
+        return res.json();
+      })
+      .then((data) => {
+        setUser(data.user);
+      })
+      .catch(() => {
+        setUser(null);
+      });
+  }, []);
 
   return (
     <div className="text-center mt-5">
@@ -31,51 +48,24 @@ export default function MainAuth() {
       {loading === true && <h1>Loading, please wait...</h1>}
       {!user && (
         <>
-          {authMode === "login" && (
-            <>
-              <AuthForm />
-              <p className="mt-3">
-                Don&apos;t have an account?{" "}
-                <button
-                  className="btn btn-link p-0"
-                  onClick={() => setAuthMode("register")}
-                >
-                  Register here
-                </button>
-              </p>
-              <button
-                className="btn align-items-center border border-secondary rounded px-3 py-2 bg-white shadow-sm"
-                onClick={() => {
-                  window.location.href =
-                    "https://parsity-final-be.onrender.com/login/google";
-                }}
-                style={{ gap: "10px", fontWeight: "500" }}
-              >
-                <Image
-                  src="https://developers.google.com/identity/images/g-logo.png"
-                  alt="Google logo"
-                  width={20}
-                  height={20}
-                />
-                Continue with Google
-              </button>
-            </>
-          )}
-
-          {authMode === "register" && (
-            <>
-              <RegForm />
-              <p className="mt-3">
-                Already have an account?{" "}
-                <button
-                  className="btn btn-link p-0"
-                  onClick={() => setAuthMode("login")}
-                >
-                  Login here
-                </button>
-              </p>
-            </>
-          )}
+          <>
+            <button
+              className="btn align-items-center border border-secondary rounded px-3 py-2 bg-white shadow-sm"
+              onClick={() => {
+                window.location.href =
+                  "https://parsity-final-be.onrender.com/login/google";
+              }}
+              style={{ gap: "10px", fontWeight: "500" }}
+            >
+              <Image
+                src="https://developers.google.com/identity/images/g-logo.png"
+                alt="Google logo"
+                width={20}
+                height={20}
+              />
+              Continue with Google
+            </button>
+          </>
         </>
       )}
 
