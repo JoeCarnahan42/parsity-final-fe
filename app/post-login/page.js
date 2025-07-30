@@ -16,12 +16,14 @@ export default function PostLoginPage() {
       .then((res) => {
         if (res.data.user) {
           setUser(res.data.user);
-          router.replace("/"); // or redirect to dashboard
+          router.replace("/");
+        } else {
+          router.replace("/login");
         }
       })
       .catch((err) => {
         console.error("Login failed", err);
-        router.replace("/"); // fallback or login page
+        router.replace("/login");
       });
   }, []);
 
