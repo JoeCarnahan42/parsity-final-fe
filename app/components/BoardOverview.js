@@ -134,7 +134,7 @@ export const BoardOverview = () => {
         <div className="container text-center border border-5 rounded-5 p-3">
           <div className="container row">
             <div
-              className="d-flex align-items-center justify-content-center border rounded me-2 px-3"
+              className=" align-items-center justify-content-center border rounded me-2 px-3"
               style={{
                 height: "45px",
                 backgroundColor: "aqua",
