@@ -143,7 +143,7 @@ export const BoardOverview = () => {
             }}
           >
             {/* TODO - allow text background to grow with name length */}
-            <p className="mb-0">Hello, {user.first_name}!</p>
+            <p className="text-center mb-0">Hello, {user.first_name}!</p>
           </div>
           <div className="container row">
             <div
