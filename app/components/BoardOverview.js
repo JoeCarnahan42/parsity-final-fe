@@ -175,7 +175,6 @@ export const BoardOverview = () => {
               style={{
                 minWidth: "150px",
                 height: "45px",
-                backgroundColor: "#BEF246",
               }}
             >
               <ToggleButton />
@@ -199,7 +198,7 @@ export const BoardOverview = () => {
           <div className="row">
             <div
               className="border border-2 rounded-2 p-2 w-25 d-flex flex-column"
-              style={{ height: "250px" }}
+              style={{ height: "250px", borderColor: "#3FF054" }}
             >
               <div
                 style={{ overflowY: "auto", maxHeight: "100%" }}
@@ -224,7 +223,7 @@ export const BoardOverview = () => {
             </div>
             <div
               className="border border-2 rounded-2 p-2 w-25 d-flex flex-column"
-              style={{ height: "250px" }}
+              style={{ height: "250px", borderColor: "#3FF054" }}
             >
               <div
                 style={{ overflowY: "auto", maxHeight: "100%" }}
@@ -249,7 +248,7 @@ export const BoardOverview = () => {
             </div>
             <div
               className="border border-2 rounded-2 p-2 w-25 d-flex flex-column"
-              style={{ height: "250px" }}
+              style={{ height: "250px", borderColor: "#3FF054" }}
             >
               <div
                 style={{ overflowY: "auto", maxHeight: "100%" }}
@@ -274,7 +273,7 @@ export const BoardOverview = () => {
             </div>
             <div
               className="border border-2 rounded-2 p-2 w-25 d-flex flex-column"
-              style={{ height: "250px" }}
+              style={{ height: "250px", borderColor: "#3FF054" }}
             >
               <div
                 style={{ overflowY: "auto", maxHeight: "100%" }}
@@ -302,7 +301,7 @@ export const BoardOverview = () => {
           <div className="row">
             <div
               className="border border-2 rounded-2 p-2 w-25 d-flex flex-column"
-              style={{ height: "250px" }}
+              style={{ height: "250px", borderColor: "#3FF054" }}
             >
               <div
                 style={{ overflowY: "auto", maxHeight: "100%" }}
@@ -327,7 +326,7 @@ export const BoardOverview = () => {
             </div>
             <div
               className="border border-2 rounded-2 p-2 w-25 d-flex flex-column"
-              style={{ height: "250px" }}
+              style={{ height: "250px", borderColor: "#3FF054" }}
             >
               <div
                 style={{ overflowY: "auto", maxHeight: "100%" }}
@@ -352,7 +351,7 @@ export const BoardOverview = () => {
             </div>
             <div
               className="border border-2 rounded-2 p-2 w-25 d-flex flex-column"
-              style={{ height: "250px" }}
+              style={{ height: "250px", borderColor: "#3FF054" }}
             >
               <div
                 style={{ overflowY: "auto", maxHeight: "100%" }}
@@ -377,7 +376,7 @@ export const BoardOverview = () => {
             </div>
             <div
               className="border border-2 rounded-2 p-2 w-25 d-flex flex-column"
-              style={{ height: "250px" }}
+              style={{ height: "250px", borderColor: "#3FF054" }}
             >
               <div
                 style={{ overflowY: "auto", maxHeight: "100%" }}
