@@ -44,67 +44,72 @@ export const MeetingForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="form-group">
-      <h2 className="text-xl font-semibold">Schedule a Meeting</h2>
+    <div className="container">
+      <form onSubmit={handleSubmit} className="form-group">
+        <h2 className="text-xl font-semibold">Schedule a Meeting</h2>
 
-      <input
-        type="text"
-        name="summary"
-        placeholder="Meeting Title"
-        value={formData.summary}
-        onChange={handleChange}
-        required
-        className="form-control"
-      />
-
-      <textarea
-        name="description"
-        placeholder="Description"
-        value={formData.description}
-        onChange={handleChange}
-        className="form-control"
-      />
-
-      <input
-        type="text"
-        name="location"
-        placeholder="Location"
-        value={formData.location}
-        onChange={handleChange}
-        className="form-control"
-      />
-
-      <label className="block">
-        Start Time:
         <input
-          type="datetime-local"
-          name="start"
-          value={formData.start}
+          type="text"
+          name="summary"
+          placeholder="Meeting Title"
+          value={formData.summary}
           onChange={handleChange}
           required
           className="form-control"
         />
-      </label>
 
-      <label className="block">
-        End Time:
-        <input
-          type="datetime-local"
-          name="end"
-          value={formData.end}
+        <textarea
+          name="description"
+          placeholder="Description"
+          value={formData.description}
           onChange={handleChange}
-          required
           className="form-control"
         />
-      </label>
-      {confirmationMsg && (
-        <div className="alert alert-success text-center fade show" role="alert">
-          {confirmationMsg}
-        </div>
-      )}
-      <button type="submit" className="btn btn-success">
-        Create Calendar Event
-      </button>
-    </form>
+
+        <input
+          type="text"
+          name="location"
+          placeholder="Location"
+          value={formData.location}
+          onChange={handleChange}
+          className="form-control"
+        />
+
+        <label className="block">
+          Start Time:
+          <input
+            type="datetime-local"
+            name="start"
+            value={formData.start}
+            onChange={handleChange}
+            required
+            className="form-control"
+          />
+        </label>
+
+        <label className="block">
+          End Time:
+          <input
+            type="datetime-local"
+            name="end"
+            value={formData.end}
+            onChange={handleChange}
+            required
+            className="form-control"
+          />
+        </label>
+        {confirmationMsg && (
+          <div
+            className="alert alert-success text-center fade show"
+            role="alert"
+          >
+            {confirmationMsg}
+          </div>
+        )}
+        <button type="submit" className="btn btn-success">
+          Create Calendar Event
+        </button>
+      </form>
+    </div>
   );
 };
