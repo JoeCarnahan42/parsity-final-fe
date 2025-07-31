@@ -12,7 +12,7 @@ export const MeetingForm = () => {
     end: "",
     timezone,
   });
-  const [confirmationMsg, setConfirmationMsg] = useState(null);
+  const [confirmationMsg, setConfirmationMsg] = useState("");
 
   const handleChange = (e) => {
     setFormData((prev) => ({
@@ -44,7 +44,7 @@ export const MeetingForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4 max-w-md mx-auto">
+    <form onSubmit={handleSubmit} className="form-group">
       <h2 className="text-xl font-semibold">Schedule a Meeting</h2>
 
       <input
@@ -54,7 +54,7 @@ export const MeetingForm = () => {
         value={formData.summary}
         onChange={handleChange}
         required
-        className="w-full p-2 border rounded"
+        className="form-control"
       />
 
       <textarea
@@ -62,7 +62,7 @@ export const MeetingForm = () => {
         placeholder="Description"
         value={formData.description}
         onChange={handleChange}
-        className="w-full p-2 border rounded"
+        className="form-control"
       />
 
       <input
@@ -71,7 +71,7 @@ export const MeetingForm = () => {
         placeholder="Location"
         value={formData.location}
         onChange={handleChange}
-        className="w-full p-2 border rounded"
+        className="form-control"
       />
 
       <label className="block">
@@ -82,7 +82,7 @@ export const MeetingForm = () => {
           value={formData.start}
           onChange={handleChange}
           required
-          className="w-full p-2 border rounded"
+          className="form-control"
         />
       </label>
 
@@ -94,16 +94,15 @@ export const MeetingForm = () => {
           value={formData.end}
           onChange={handleChange}
           required
-          className="w-full p-2 border rounded"
+          className="form-control"
         />
       </label>
       {confirmationMsg && (
-        <div className="text-green-600">{confirmationMsg}</div>
+        <div className="alert alert-success text-center fade show" role="alert">
+          {confirmationMsg}
+        </div>
       )}
-      <button
-        type="submit"
-        className="px-4 py-2 bg-blue-600 text-white rounded"
-      >
+      <button type="submit" className="btn btn-success">
         Create Calendar Event
       </button>
     </form>
