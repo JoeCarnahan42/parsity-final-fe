@@ -133,7 +133,7 @@ export const BoardOverview = () => {
         <br />
         <div className="container text-center border border-5 rounded-5 p-3">
           <div
-            className="align-items-center justify-content-center border rounded me-2 px-3"
+            className="text-center align-items-center justify-content-center border rounded me-2 px-3"
             style={{
               height: "45px",
               width: "500px",
@@ -143,7 +143,7 @@ export const BoardOverview = () => {
             }}
           >
             {/* TODO - allow text background to grow with name length */}
-            <p className="text-center mb-0">Hello, {user.first_name}!</p>
+            <p className="mb-0">Hello, {user.first_name}!</p>
           </div>
           <div className="container row">
             <div
