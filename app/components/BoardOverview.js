@@ -5,10 +5,6 @@ import { useProjectContext } from "../context/ProjectContext";
 import { useWindowContext } from "../context/WindowContext";
 import { useAuth } from "../context/AuthContext";
 import { useToggleView } from "../context/ViewContext";
-
-// BIG TODO - implement Google OAuth
-// BIG TODO - implement Google Calendar meeting scheduling
-
 // TODO - figure out a reason/way to display project managers/contacts.
 
 // Components
@@ -141,7 +137,7 @@ export const BoardOverview = () => {
               style={{
                 minWidth: "200px",
                 height: "45px",
-                backgroundColor: "aqua",
+                backgroundColor: "#6FF03E",
                 fontSize: "xx-large",
               }}
             >
@@ -152,7 +148,7 @@ export const BoardOverview = () => {
               style={{
                 minWidth: "200px",
                 height: "45px",
-                backgroundColor: "lavender",
+                backgroundColor: "#30F289",
               }}
             >
               <p className="mb-0">
@@ -164,7 +160,7 @@ export const BoardOverview = () => {
               style={{
                 minWidth: "200px",
                 height: "45px",
-                backgroundColor: "forestgreen",
+                backgroundColor: "#3FF054",
               }}
             >
               <p className="mb-0">
@@ -176,6 +172,7 @@ export const BoardOverview = () => {
               style={{
                 minWidth: "150px",
                 height: "45px",
+                backgroundColor: "#BEF246",
               }}
             >
               <ToggleButton />
@@ -183,8 +180,13 @@ export const BoardOverview = () => {
             <div className="d-flex align-items-center justify-content-center flex-grow-1">
               <button
                 onClick={() => openArchives()}
-                className="btn btn-success w-100"
-                style={{ minWidth: "150px", height: "45px" }}
+                className="btn w-100 text-dark"
+                style={{
+                  minWidth: "150px",
+                  height: "45px",
+                  backgroundColor: "#3EF0CB",
+                  border: "1px solid #3EF0CB",
+                }}
               >
                 Archives
               </button>
@@ -401,7 +403,11 @@ export const BoardOverview = () => {
             <div className="col-6">
               <button
                 onClick={() => openNewProjForm()}
-                className="btn btn-primary w-50"
+                className="btn w-50 text-dark"
+                style={{
+                  backgroundColor: "#3EF0CB",
+                  border: "1px solid #3EF0CB",
+                }}
               >
                 Create a new project
               </button>
