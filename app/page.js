@@ -31,7 +31,10 @@ export default function MainAuth() {
   }, []);
 
   return (
-    <div style={{ backgroundColor: "darkgray" }} className="text-center mt-5">
+    <div
+      style={{ backgroundColor: "darkgray", minHeight: "100vh" }}
+      className="text-center mt-5"
+    >
       {sessionExpired === true && (
         <>
           <p style={{ color: "red" }}>Session Expired</p>
