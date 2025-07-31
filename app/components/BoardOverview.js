@@ -135,9 +135,9 @@ export const BoardOverview = () => {
         </div>
         <br />
         <div className="container text-center border border-5 rounded-5 p-3">
-          <div className="container row">
+          <div className="container d-flex flex-wrap gap-2 justify-content-start">
             <div
-              className="d-flex align-items-center justify-content-center border rounded col-3 me-2"
+              className="d-flex align-items-center justify-content-center border rounded px-3"
               style={{
                 height: "45px",
                 width: "250px",
@@ -145,11 +145,10 @@ export const BoardOverview = () => {
                 fontSize: "xx-large",
               }}
             >
-              {/* TODO - allow text background to grow with name length */}
               <p className="mb-0">Hello, {user.first_name}!</p>
             </div>
             <div
-              className="d-flex align-items-center justify-content-center border rounded col-3 me-2"
+              className="d-flex align-items-center justify-content-center border rounded"
               style={{
                 height: "45px",
                 width: "200px",
@@ -161,7 +160,7 @@ export const BoardOverview = () => {
               </p>
             </div>
             <div
-              className="d-flex align-items-center justify-content-center border rounded col-3 me-2"
+              className="d-flex align-items-center justify-content-center border rounded"
               style={{
                 height: "45px",
                 width: "200px",
@@ -173,15 +172,15 @@ export const BoardOverview = () => {
               </p>
             </div>
             <div
-              className="d-flex align-items-center justify-content-center w-25"
-              style={{ height: "45px" }}
+              className="d-flex align-items-center justify-content-center"
+              style={{ height: "45px", width: "150px" }}
             >
               <ToggleButton />
             </div>
-            <div className="d-flex align-items-center justify-content-center col-3">
+            <div className="d-flex align-items-center justify-content-center">
               <button
                 onClick={() => openArchives()}
-                style={{ width: "200px" }}
+                style={{ width: "200px", height: "45px" }}
                 className="btn btn-success"
               >
                 Archives
