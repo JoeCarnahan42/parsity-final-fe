@@ -25,6 +25,8 @@ export const WindowContextProvider = ({ children }) => {
   const [whatToUpdate, setWhatToUpdate] = useState(null);
   // State for wether or not the archives window is visible
   const [showArchives, setShowArchives] = useState(false);
+  // State for wether or not the meeting window is visible
+  const [showMeeting, setShowMeeting] = useState(false);
 
   const closeWindow = () => {
     setShowDetails(false);
@@ -37,6 +39,7 @@ export const WindowContextProvider = ({ children }) => {
     setShowBlockers(false);
     setShowComments(false);
     setShowArchives(false);
+    setShowMeeting(false);
   };
 
   return (
@@ -61,6 +64,8 @@ export const WindowContextProvider = ({ children }) => {
         setWhatToUpdate,
         setShowArchives,
         showArchives,
+        showMeeting,
+        setShowMeeting,
       }}
     >
       {children}

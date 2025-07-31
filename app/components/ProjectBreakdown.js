@@ -3,6 +3,7 @@ import { useProjectContext } from "../context/ProjectContext";
 import { useWindowContext } from "../context/WindowContext";
 import { PieChart } from "./MetricsChart";
 import { ProjDeleteBtn } from "./ProjDeleteBtn";
+import { MeetingBtn } from "./MeetingBtn";
 
 export const ProjectBreakdown = () => {
   const { project, setProject, setProjectPool } = useProjectContext();
@@ -139,6 +140,7 @@ export const ProjectBreakdown = () => {
           >
             Details
           </button>
+          <MeetingBtn />
           <ProjDeleteBtn
             projectId={project.id}
             onDelete={() => {

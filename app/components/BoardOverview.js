@@ -145,6 +145,7 @@ export const BoardOverview = () => {
                 fontSize: "xx-large",
               }}
             >
+              {/* TODO - allow text background to grow with name length */}
               <p className="mb-0">Hello, {user.first_name}!</p>
             </div>
             <div

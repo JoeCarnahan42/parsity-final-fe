@@ -23,12 +23,16 @@ export const Window = () => {
     showBlockers,
     showComments,
     showArchives,
+    showMeeting,
   } = useWindowContext();
 
   // TODO - find a way to refactor this to avoid unexpected overlapping
   const renderComponent = () => {
     if (loading) {
       return <h1>Loading, please wait...</h1>;
+    }
+    if (showMeeting) {
+      return <h1>Meeting Window</h1>; // Placeholder for meeting window component
     }
     if (showArchives) {
       return <Archives />;
