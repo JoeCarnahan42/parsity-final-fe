@@ -197,7 +197,7 @@ export const BoardOverview = () => {
           <div className="row">
             <div
               className="border border-2 rounded-2 p-2 w-25 d-flex flex-column"
-              style={{ height: "250px" }}
+              style={{ height: "250px", backgroundColor: "#1829DB" }}
             >
               <div
                 style={{ overflowY: "auto", maxHeight: "100%" }}
@@ -205,10 +205,7 @@ export const BoardOverview = () => {
               >
                 {quotingProjects.length > 0 ? (
                   quotingProjects.map((project) => (
-                    <div
-                      style={{ backgroundColor: "#1829DB" }}
-                      key={project.id}
-                    >
+                    <div key={project.id}>
                       <div>
                         <ProjectBtn project={project} />
                       </div>
@@ -225,7 +222,7 @@ export const BoardOverview = () => {
             </div>
             <div
               className="border border-2 rounded-2 p-2 w-25 d-flex flex-column"
-              style={{ height: "250px" }}
+              style={{ height: "250px", backgroundColor: "#1829DB" }}
             >
               <div
                 style={{ overflowY: "auto", maxHeight: "100%" }}
@@ -233,10 +230,7 @@ export const BoardOverview = () => {
               >
                 {processingProjects.length > 0 ? (
                   processingProjects.map((project) => (
-                    <div
-                      style={{ backgroundColor: "#1829DB" }}
-                      key={project.id}
-                    >
+                    <div key={project.id}>
                       <div key={project.id}>
                         <ProjectBtn project={project} />
                       </div>
@@ -253,7 +247,7 @@ export const BoardOverview = () => {
             </div>
             <div
               className="border border-2 rounded-2 p-2 w-25 d-flex flex-column"
-              style={{ height: "250px" }}
+              style={{ height: "250px", backgroundColor: "#1829DB" }}
             >
               <div
                 style={{ overflowY: "auto", maxHeight: "100%" }}
@@ -261,10 +255,7 @@ export const BoardOverview = () => {
               >
                 {kickedOffProjects.length > 0 ? (
                   kickedOffProjects.map((project) => (
-                    <div
-                      style={{ backgroundColor: "#1829DB" }}
-                      key={project.id}
-                    >
+                    <div key={project.id}>
                       <div key={project.id}>
                         <ProjectBtn project={project} />
                       </div>
@@ -281,7 +272,7 @@ export const BoardOverview = () => {
             </div>
             <div
               className="border border-2 rounded-2 p-2 w-25 d-flex flex-column"
-              style={{ height: "250px" }}
+              style={{ height: "250px", backgroundColor: "#1829DB" }}
             >
               <div
                 style={{ overflowY: "auto", maxHeight: "100%" }}
@@ -289,10 +280,7 @@ export const BoardOverview = () => {
               >
                 {inProdProjects.length > 0 ? (
                   inProdProjects.map((project) => (
-                    <div
-                      style={{ backgroundColor: "#1829DB" }}
-                      key={project.id}
-                    >
+                    <div key={project.id}>
                       <div key={project.id}>
                         <ProjectBtn project={project} />
                       </div>
@@ -312,7 +300,7 @@ export const BoardOverview = () => {
           <div className="row">
             <div
               className="border border-2 rounded-2 p-2 w-25 d-flex flex-column"
-              style={{ height: "250px" }}
+              style={{ height: "250px", backgroundColor: "#1829DB" }}
             >
               <div
                 style={{ overflowY: "auto", maxHeight: "100%" }}
@@ -320,10 +308,7 @@ export const BoardOverview = () => {
               >
                 {debugProjects.length > 0 ? (
                   debugProjects.map((project) => (
-                    <div
-                      style={{ backgroundColor: "#1829DB" }}
-                      key={project.id}
-                    >
+                    <div key={project.id}>
                       <div key={project.id}>
                         <ProjectBtn project={project} />
                       </div>
@@ -340,7 +325,7 @@ export const BoardOverview = () => {
             </div>
             <div
               className="border border-2 rounded-2 p-2 w-25 d-flex flex-column"
-              style={{ height: "250px" }}
+              style={{ height: "250px", backgroundColor: "#1829DB" }}
             >
               <div
                 style={{ overflowY: "auto", maxHeight: "100%" }}
@@ -348,10 +333,7 @@ export const BoardOverview = () => {
               >
                 {runoffProjects.length > 0 ? (
                   runoffProjects.map((project) => (
-                    <div
-                      style={{ backgroundColor: "#1829DB" }}
-                      key={project.id}
-                    >
+                    <div key={project.id}>
                       <div key={project.id}>
                         <ProjectBtn project={project} />
                       </div>
@@ -368,7 +350,7 @@ export const BoardOverview = () => {
             </div>
             <div
               className="border border-2 rounded-2 p-2 w-25 d-flex flex-column"
-              style={{ height: "250px" }}
+              style={{ height: "250px", backgroundColor: "#1829DB" }}
             >
               <div
                 style={{ overflowY: "auto", maxHeight: "100%" }}
@@ -376,10 +358,7 @@ export const BoardOverview = () => {
               >
                 {shippingProjects.length > 0 ? (
                   shippingProjects.map((project) => (
-                    <div
-                      style={{ backgroundColor: "#1829DB" }}
-                      key={project.id}
-                    >
+                    <div key={project.id}>
                       <div key={project.id}>
                         <ProjectBtn project={project} />
                       </div>
@@ -396,7 +375,7 @@ export const BoardOverview = () => {
             </div>
             <div
               className="border border-2 rounded-2 p-2 w-25 d-flex flex-column"
-              style={{ height: "250px" }}
+              style={{ height: "250px", backgroundColor: "#1829DB" }}
             >
               <div
                 style={{ overflowY: "auto", maxHeight: "100%" }}
@@ -404,10 +383,7 @@ export const BoardOverview = () => {
               >
                 {installProjects.length > 0 ? (
                   installProjects.map((project) => (
-                    <div
-                      style={{ backgroundColor: "#1829DB" }}
-                      key={project.id}
-                    >
+                    <div key={project.id}>
                       <div key={project.id}>
                         <ProjectBtn project={project} />
                       </div>
