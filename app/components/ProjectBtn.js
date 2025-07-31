@@ -54,8 +54,6 @@ export const ProjectBtn = (props) => {
             borderRadius: "4px",
             paddingLeft: "2px",
             paddingRight: "2px",
-            backgroundColor: "#3EF0CB",
-            border: "1px solid #3EF0CB",
           }}
         >
           Blockers: {numBlockers}

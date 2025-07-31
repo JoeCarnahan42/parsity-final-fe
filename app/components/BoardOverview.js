@@ -130,17 +130,14 @@ export const BoardOverview = () => {
           <h1>Project Dashboard</h1>
         </div>
         <br />
-        <div
-          className="container text-center border border-5 rounded-5 p-3"
-          style={{ backgroundColor: "#A2F2AC" }}
-        >
+        <div className="container text-center border border-5 rounded-5 p-3">
           <div className="container d-flex justify-content-between align-items-center flex-wrap gap-2">
             <div
               className="d-flex align-items-center justify-content-center border rounded px-3 flex-grow-1"
               style={{
                 minWidth: "200px",
                 height: "45px",
-                backgroundColor: "#6FF03E",
+                backgroundColor: "aqua",
                 fontSize: "xx-large",
               }}
             >
@@ -151,7 +148,7 @@ export const BoardOverview = () => {
               style={{
                 minWidth: "200px",
                 height: "45px",
-                backgroundColor: "#30F289",
+                backgroundColor: "lavender",
               }}
             >
               <p className="mb-0">
@@ -163,7 +160,7 @@ export const BoardOverview = () => {
               style={{
                 minWidth: "200px",
                 height: "45px",
-                backgroundColor: "#3FF054",
+                backgroundColor: "forestgreen",
               }}
             >
               <p className="mb-0">
@@ -182,13 +179,8 @@ export const BoardOverview = () => {
             <div className="d-flex align-items-center justify-content-center flex-grow-1">
               <button
                 onClick={() => openArchives()}
-                className="btn w-100 text-dark"
-                style={{
-                  minWidth: "150px",
-                  height: "45px",
-                  backgroundColor: "#3EF0CB",
-                  border: "1px solid #3EF0CB",
-                }}
+                className="btn btn-success w-100"
+                style={{ minWidth: "150px", height: "45px" }}
               >
                 Archives
               </button>
@@ -198,7 +190,7 @@ export const BoardOverview = () => {
           <div className="row">
             <div
               className="border border-2 rounded-2 p-2 w-25 d-flex flex-column"
-              style={{ height: "250px", borderColor: "#3FF054" }}
+              style={{ height: "250px" }}
             >
               <div
                 style={{ overflowY: "auto", maxHeight: "100%" }}
@@ -223,7 +215,7 @@ export const BoardOverview = () => {
             </div>
             <div
               className="border border-2 rounded-2 p-2 w-25 d-flex flex-column"
-              style={{ height: "250px", borderColor: "#3FF054" }}
+              style={{ height: "250px" }}
             >
               <div
                 style={{ overflowY: "auto", maxHeight: "100%" }}
@@ -248,7 +240,7 @@ export const BoardOverview = () => {
             </div>
             <div
               className="border border-2 rounded-2 p-2 w-25 d-flex flex-column"
-              style={{ height: "250px", borderColor: "#3FF054" }}
+              style={{ height: "250px" }}
             >
               <div
                 style={{ overflowY: "auto", maxHeight: "100%" }}
@@ -273,7 +265,7 @@ export const BoardOverview = () => {
             </div>
             <div
               className="border border-2 rounded-2 p-2 w-25 d-flex flex-column"
-              style={{ height: "250px", borderColor: "#3FF054" }}
+              style={{ height: "250px" }}
             >
               <div
                 style={{ overflowY: "auto", maxHeight: "100%" }}
@@ -301,7 +293,7 @@ export const BoardOverview = () => {
           <div className="row">
             <div
               className="border border-2 rounded-2 p-2 w-25 d-flex flex-column"
-              style={{ height: "250px", borderColor: "#3FF054" }}
+              style={{ height: "250px" }}
             >
               <div
                 style={{ overflowY: "auto", maxHeight: "100%" }}
@@ -326,7 +318,7 @@ export const BoardOverview = () => {
             </div>
             <div
               className="border border-2 rounded-2 p-2 w-25 d-flex flex-column"
-              style={{ height: "250px", borderColor: "#3FF054" }}
+              style={{ height: "250px" }}
             >
               <div
                 style={{ overflowY: "auto", maxHeight: "100%" }}
@@ -351,7 +343,7 @@ export const BoardOverview = () => {
             </div>
             <div
               className="border border-2 rounded-2 p-2 w-25 d-flex flex-column"
-              style={{ height: "250px", borderColor: "#3FF054" }}
+              style={{ height: "250px" }}
             >
               <div
                 style={{ overflowY: "auto", maxHeight: "100%" }}
@@ -376,7 +368,7 @@ export const BoardOverview = () => {
             </div>
             <div
               className="border border-2 rounded-2 p-2 w-25 d-flex flex-column"
-              style={{ height: "250px", borderColor: "#3FF054" }}
+              style={{ height: "250px" }}
             >
               <div
                 style={{ overflowY: "auto", maxHeight: "100%" }}
@@ -405,11 +397,7 @@ export const BoardOverview = () => {
             <div className="col-6">
               <button
                 onClick={() => openNewProjForm()}
-                className="btn w-50 text-dark"
-                style={{
-                  backgroundColor: "#3EF0CB",
-                  border: "1px solid #3EF0CB",
-                }}
+                className="btn btn-primary w-50"
               >
                 Create a new project
               </button>
