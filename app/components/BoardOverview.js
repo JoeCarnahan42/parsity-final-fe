@@ -140,7 +140,7 @@ export const BoardOverview = () => {
               className="d-flex align-items-center justify-content-center border rounded col-3 me-2"
               style={{
                 height: "45px",
-                width: "300px",
+                width: "250px",
                 backgroundColor: "aqua",
                 fontSize: "xx-large",
               }}
