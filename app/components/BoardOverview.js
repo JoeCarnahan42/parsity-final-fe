@@ -127,7 +127,7 @@ export const BoardOverview = () => {
     <div style={{ backgroundColor: "darkgray" }}>
       <div
         style={{ backgroundColor: "lightgray" }}
-        className="text-center mt-5"
+        className="container border border-rounded text-center mt-5"
       >
         <h1>Project Dashboard</h1>
       </div>
