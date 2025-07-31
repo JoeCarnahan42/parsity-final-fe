@@ -135,7 +135,7 @@ export const BoardOverview = () => {
         </div>
         <br />
         <div className="container text-center border border-5 rounded-5 p-3">
-          <div className="container d-flex flex-wrap gap-2 justify-content-start">
+          <div className="container d-flex flex-wrap gap-2 p-3 justify-content-start">
             <div
               className="d-flex align-items-center justify-content-center border rounded px-3"
               style={{
