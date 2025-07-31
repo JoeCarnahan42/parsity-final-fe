@@ -6,6 +6,9 @@ import { useWindowContext } from "../context/WindowContext";
 import { useAuth } from "../context/AuthContext";
 import { useToggleView } from "../context/ViewContext";
 
+// BIG TODO - implement Google OAuth
+// BIG TODO - implement Google Calendar meeting scheduling
+
 // TODO - figure out a reason/way to display project managers/contacts.
 
 // Components
@@ -131,21 +134,20 @@ export const BoardOverview = () => {
           <h1>Project Dashboard</h1>
         </div>
         <br />
-        <div className="container justify-content-center text-center border border-5 rounded-5 p-3">
-          <div
-            className="border rounded me-2 px-3 mx-auto d-flex align-items-center"
-            style={{
-              height: "45px",
-              width: "500px",
-              backgroundColor: "aqua",
-              fontSize: "xx-large",
-              whiteSpace: "nowrap",
-            }}
-          >
-            {/* TODO - allow text background to grow with name length */}
-            <p className="mb-0">Hello, {user.first_name}!</p>
-          </div>
+        <div className="container text-center border border-5 rounded-5 p-3">
           <div className="container row">
+            <div
+              className="d-flex align-items-center justify-content-center border rounded col-3 me-2"
+              style={{
+                height: "45px",
+                width: "300px",
+                backgroundColor: "aqua",
+                fontSize: "xx-large",
+              }}
+            >
+              {/* TODO - allow text background to grow with name length */}
+              <p className="mb-0">Hello, {user.first_name}!</p>
+            </div>
             <div
               className="d-flex align-items-center justify-content-center border rounded col-3 me-2"
               style={{
