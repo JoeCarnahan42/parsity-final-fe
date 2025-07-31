@@ -131,9 +131,9 @@ export const BoardOverview = () => {
           <h1>Project Dashboard</h1>
         </div>
         <br />
-        <div className="container text-center border border-5 rounded-5 p-3">
+        <div className="container justify-content-center text-center border border-5 rounded-5 p-3">
           <div
-            className="border rounded me-2 px-3 mx-auto d-flex align-items-center justify-content-center"
+            className="border rounded me-2 px-3 mx-auto d-flex align-items-center"
             style={{
               height: "45px",
               width: "500px",
