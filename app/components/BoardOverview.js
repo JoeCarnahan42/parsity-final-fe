@@ -133,7 +133,7 @@ export const BoardOverview = () => {
         <br />
         <div className="container text-center border border-5 rounded-5 p-3">
           <div
-            className="text-center align-items-center justify-content-center border rounded me-2 px-3"
+            className="border rounded me-2 px-3 mx-auto d-flex align-items-center justify-content-center"
             style={{
               height: "45px",
               width: "500px",
