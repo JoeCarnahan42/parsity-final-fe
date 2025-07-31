@@ -135,12 +135,12 @@ export const BoardOverview = () => {
         </div>
         <br />
         <div className="container text-center border border-5 rounded-5 p-3">
-          <div className="container d-flex flex-wrap gap-2 p-3 justify-content-start">
+          <div className="container d-flex justify-content-between align-items-center flex-wrap gap-2">
             <div
-              className="d-flex align-items-center justify-content-center border rounded px-3"
+              className="d-flex align-items-center justify-content-center border rounded px-3 flex-grow-1"
               style={{
+                minWidth: "200px",
                 height: "45px",
-                width: "250px",
                 backgroundColor: "aqua",
                 fontSize: "xx-large",
               }}
@@ -148,10 +148,10 @@ export const BoardOverview = () => {
               <p className="mb-0">Hello, {user.first_name}!</p>
             </div>
             <div
-              className="d-flex align-items-center justify-content-center border rounded"
+              className="d-flex align-items-center justify-content-center border rounded flex-grow-1"
               style={{
+                minWidth: "200px",
                 height: "45px",
-                width: "200px",
                 backgroundColor: "lavender",
               }}
             >
@@ -160,10 +160,10 @@ export const BoardOverview = () => {
               </p>
             </div>
             <div
-              className="d-flex align-items-center justify-content-center border rounded"
+              className="d-flex align-items-center justify-content-center border rounded flex-grow-1"
               style={{
+                minWidth: "200px",
                 height: "45px",
-                width: "200px",
                 backgroundColor: "forestgreen",
               }}
             >
@@ -172,16 +172,19 @@ export const BoardOverview = () => {
               </p>
             </div>
             <div
-              className="d-flex align-items-center justify-content-center"
-              style={{ height: "45px", width: "150px" }}
+              className="d-flex align-items-center justify-content-center flex-grow-1"
+              style={{
+                minWidth: "150px",
+                height: "45px",
+              }}
             >
               <ToggleButton />
             </div>
-            <div className="d-flex align-items-center justify-content-center">
+            <div className="d-flex align-items-center justify-content-center flex-grow-1">
               <button
                 onClick={() => openArchives()}
-                style={{ width: "200px", height: "45px" }}
-                className="btn btn-success"
+                className="btn btn-success w-100"
+                style={{ minWidth: "150px", height: "45px" }}
               >
                 Archives
               </button>
