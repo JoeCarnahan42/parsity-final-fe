@@ -1,3 +1,6 @@
+"use client";
+import { useWindowContext } from "../context/WindowContext";
+
 export const MeetingBtn = () => {
   const { setShowWindow, setShowMeeting } = useWindowContext();
   return (
