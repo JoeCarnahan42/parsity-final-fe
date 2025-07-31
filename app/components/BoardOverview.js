@@ -140,23 +140,21 @@ export const BoardOverview = () => {
               style={{
                 minWidth: "200px",
                 height: "45px",
-                backgroundColor: "aqua",
+                backgroundColor: "#1866DB",
                 fontSize: "xx-large",
               }}
             >
-              <p style={{ color: "#1866DB" }} className="mb-0">
-                Hello, {user.first_name}!
-              </p>
+              <p className="mb-0">Hello, {user.first_name}!</p>
             </div>
             <div
               className="d-flex align-items-center justify-content-center border rounded flex-grow-1"
               style={{
                 minWidth: "200px",
                 height: "45px",
-                backgroundColor: "lavender",
+                backgroundColor: "#6589E0",
               }}
             >
-              <p style={{ color: "#6589E0" }} className="mb-0">
+              <p className="mb-0">
                 Total Blockers: <strong>{numOfBlockers}</strong>
               </p>
             </div>
@@ -165,10 +163,10 @@ export const BoardOverview = () => {
               style={{
                 minWidth: "200px",
                 height: "45px",
-                backgroundColor: "forestgreen",
+                backgroundColor: "#4F99DA",
               }}
             >
-              <p style={{ color: "#4F99DA" }} className="mb-0">
+              <p className="mb-0">
                 Total Comments: <strong>{numOfComments}</strong>
               </p>
             </div>
@@ -184,8 +182,12 @@ export const BoardOverview = () => {
             <div className="d-flex align-items-center justify-content-center flex-grow-1">
               <button
                 onClick={() => openArchives()}
-                className="btn btn-success w-100"
-                style={{ minWidth: "150px", height: "45px", color: "#18A4DB" }}
+                className="btn w-100"
+                style={{
+                  minWidth: "150px",
+                  height: "45px",
+                  backgroundColor: "#18A4DB",
+                }}
               >
                 Archives
               </button>
@@ -203,7 +205,10 @@ export const BoardOverview = () => {
               >
                 {quotingProjects.length > 0 ? (
                   quotingProjects.map((project) => (
-                    <div style={{ color: "#1829DB" }} key={project.id}>
+                    <div
+                      style={{ backgroundColor: "#1829DB" }}
+                      key={project.id}
+                    >
                       <div>
                         <ProjectBtn project={project} />
                       </div>
@@ -228,7 +233,10 @@ export const BoardOverview = () => {
               >
                 {processingProjects.length > 0 ? (
                   processingProjects.map((project) => (
-                    <div style={{ color: "#1829DB" }} key={project.id}>
+                    <div
+                      style={{ backgroundColor: "#1829DB" }}
+                      key={project.id}
+                    >
                       <div key={project.id}>
                         <ProjectBtn project={project} />
                       </div>
@@ -253,7 +261,10 @@ export const BoardOverview = () => {
               >
                 {kickedOffProjects.length > 0 ? (
                   kickedOffProjects.map((project) => (
-                    <div style={{ color: "#1829DB" }} key={project.id}>
+                    <div
+                      style={{ backgroundColor: "#1829DB" }}
+                      key={project.id}
+                    >
                       <div key={project.id}>
                         <ProjectBtn project={project} />
                       </div>
@@ -278,7 +289,10 @@ export const BoardOverview = () => {
               >
                 {inProdProjects.length > 0 ? (
                   inProdProjects.map((project) => (
-                    <div style={{ color: "#1829DB" }} key={project.id}>
+                    <div
+                      style={{ backgroundColor: "#1829DB" }}
+                      key={project.id}
+                    >
                       <div key={project.id}>
                         <ProjectBtn project={project} />
                       </div>
@@ -306,7 +320,10 @@ export const BoardOverview = () => {
               >
                 {debugProjects.length > 0 ? (
                   debugProjects.map((project) => (
-                    <div style={{ color: "#1829DB" }} key={project.id}>
+                    <div
+                      style={{ backgroundColor: "#1829DB" }}
+                      key={project.id}
+                    >
                       <div key={project.id}>
                         <ProjectBtn project={project} />
                       </div>
@@ -331,7 +348,10 @@ export const BoardOverview = () => {
               >
                 {runoffProjects.length > 0 ? (
                   runoffProjects.map((project) => (
-                    <div style={{ color: "#1829DB" }} key={project.id}>
+                    <div
+                      style={{ backgroundColor: "#1829DB" }}
+                      key={project.id}
+                    >
                       <div key={project.id}>
                         <ProjectBtn project={project} />
                       </div>
@@ -356,7 +376,10 @@ export const BoardOverview = () => {
               >
                 {shippingProjects.length > 0 ? (
                   shippingProjects.map((project) => (
-                    <div style={{ color: "#1829DB" }} key={project.id}>
+                    <div
+                      style={{ backgroundColor: "#1829DB" }}
+                      key={project.id}
+                    >
                       <div key={project.id}>
                         <ProjectBtn project={project} />
                       </div>
@@ -381,7 +404,10 @@ export const BoardOverview = () => {
               >
                 {installProjects.length > 0 ? (
                   installProjects.map((project) => (
-                    <div style={{ color: "#1829DB" }} key={project.id}>
+                    <div
+                      style={{ backgroundColor: "#1829DB" }}
+                      key={project.id}
+                    >
                       <div key={project.id}>
                         <ProjectBtn project={project} />
                       </div>
