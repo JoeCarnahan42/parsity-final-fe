@@ -10,6 +10,7 @@ import { UpdateForm } from "./UpdateForm";
 import { Blockers } from "./Blockers";
 import { Comments } from "./Comments";
 import { Archives } from "./Archives";
+import { MeetingForm } from "./MeetingForm";
 
 export const Window = () => {
   const { project } = useProjectContext();
@@ -32,7 +33,7 @@ export const Window = () => {
       return <h1>Loading, please wait...</h1>;
     }
     if (showMeeting) {
-      return <h1>Meeting Window</h1>; // Placeholder for meeting window component
+      return <MeetingForm />;
     }
     if (showArchives) {
       return <Archives />;
