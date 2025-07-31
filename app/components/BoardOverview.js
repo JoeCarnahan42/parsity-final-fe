@@ -196,8 +196,8 @@ export const BoardOverview = () => {
           <br />
           <div className="row">
             <div
-              className="border border-2 rounded-2 p-2 w-25 d-flex flex-column"
-              style={{ height: "250px", borderColor: "#1829DB" }}
+              className="border border-2 border-primary rounded-2 p-2 w-25 d-flex flex-column"
+              style={{ height: "250px" }}
             >
               <div
                 style={{ overflowY: "auto", maxHeight: "100%" }}
@@ -221,8 +221,8 @@ export const BoardOverview = () => {
               </div>
             </div>
             <div
-              className="border border-2 rounded-2 p-2 w-25 d-flex flex-column"
-              style={{ height: "250px", borderColor: "#1829DB" }}
+              className="border border-2 border-primary rounded-2 p-2 w-25 d-flex flex-column"
+              style={{ height: "250px" }}
             >
               <div
                 style={{ overflowY: "auto", maxHeight: "100%" }}
@@ -246,8 +246,8 @@ export const BoardOverview = () => {
               </div>
             </div>
             <div
-              className="border border-2 rounded-2 p-2 w-25 d-flex flex-column"
-              style={{ height: "250px", borderColor: "#1829DB" }}
+              className="border border-2 border-primary rounded-2 p-2 w-25 d-flex flex-column"
+              style={{ height: "250px" }}
             >
               <div
                 style={{ overflowY: "auto", maxHeight: "100%" }}
@@ -271,8 +271,8 @@ export const BoardOverview = () => {
               </div>
             </div>
             <div
-              className="border border-2 rounded-2 p-2 w-25 d-flex flex-column"
-              style={{ height: "250px", borderColor: "#1829DB" }}
+              className="border border-2 border-primary rounded-2 p-2 w-25 d-flex flex-column"
+              style={{ height: "250px" }}
             >
               <div
                 style={{ overflowY: "auto", maxHeight: "100%" }}
@@ -299,8 +299,8 @@ export const BoardOverview = () => {
           <br />
           <div className="row">
             <div
-              className="border border-2 rounded-2 p-2 w-25 d-flex flex-column"
-              style={{ height: "250px", borderColor: "#1829DB" }}
+              className="border border-2 border-primary rounded-2 p-2 w-25 d-flex flex-column"
+              style={{ height: "250px" }}
             >
               <div
                 style={{ overflowY: "auto", maxHeight: "100%" }}
@@ -324,8 +324,8 @@ export const BoardOverview = () => {
               </div>
             </div>
             <div
-              className="border border-2 rounded-2 p-2 w-25 d-flex flex-column"
-              style={{ height: "250px", borderColor: "#1829DB" }}
+              className="border border-2 border-primary rounded-2 p-2 w-25 d-flex flex-column"
+              style={{ height: "250px" }}
             >
               <div
                 style={{ overflowY: "auto", maxHeight: "100%" }}
@@ -349,8 +349,8 @@ export const BoardOverview = () => {
               </div>
             </div>
             <div
-              className="border border-2 rounded-2 p-2 w-25 d-flex flex-column"
-              style={{ height: "250px", borderColor: "#1829DB" }}
+              className="border border-2 border-primary rounded-2 p-2 w-25 d-flex flex-column"
+              style={{ height: "250px" }}
             >
               <div
                 style={{ overflowY: "auto", maxHeight: "100%" }}
@@ -374,8 +374,8 @@ export const BoardOverview = () => {
               </div>
             </div>
             <div
-              className="border border-2 rounded-2 p-2 w-25 d-flex flex-column"
-              style={{ height: "250px", borderColor: "#1829DB" }}
+              className="border border-2 border-primary rounded-2 p-2 w-25 d-flex flex-column"
+              style={{ height: "250px" }}
             >
               <div
                 style={{ overflowY: "auto", maxHeight: "100%" }}
