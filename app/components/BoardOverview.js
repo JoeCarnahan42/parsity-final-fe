@@ -130,7 +130,10 @@ export const BoardOverview = () => {
           <h1>Project Dashboard</h1>
         </div>
         <br />
-        <div className="container text-center border border-5 rounded-5 p-3">
+        <div
+          className="container text-center border border-5 rounded-5 p-3"
+          style={{ backgroundColor: "#A2F2AC" }}
+        >
           <div className="container d-flex justify-content-between align-items-center flex-wrap gap-2">
             <div
               className="d-flex align-items-center justify-content-center border rounded px-3 flex-grow-1"
